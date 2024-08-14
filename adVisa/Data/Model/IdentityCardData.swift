@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import SwiftData
 
-struct IdentityCardData: Codable {
-    var id = UUID()
+@Model
+class IdentityCardData {
+    @Attribute(.unique) var id: String = UUID().uuidString
     var identityId: String
+    
+    init(identityId: String) {
+        self.identityId = identityId
+    }
 }

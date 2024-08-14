@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71CF2C6CB2A3009CFC1D /* SwiftDataContextManager.swift */; };
 		E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997602C6B6D7800D6C39F /* PassportData.swift */; };
 		E90997642C6B6EC300D6C39F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997632C6B6EC300D6C39F /* Helper.swift */; };
 		E90997662C6B710300D6C39F /* IdentityCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997652C6B710300D6C39F /* IdentityCardData.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		237F71CF2C6CB2A3009CFC1D /* SwiftDataContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContextManager.swift; sourceTree = "<group>"; };
 		E90997602C6B6D7800D6C39F /* PassportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportData.swift; sourceTree = "<group>"; };
 		E90997632C6B6EC300D6C39F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E90997652C6B710300D6C39F /* IdentityCardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityCardData.swift; sourceTree = "<group>"; };
@@ -58,9 +60,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		237F71CD2C6CB24C009CFC1D /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				237F71CF2C6CB2A3009CFC1D /* SwiftDataContextManager.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		237F71D12C6CB547009CFC1D /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		E909975E2C6B6CE200D6C39F /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				237F71D12C6CB547009CFC1D /* Repository */,
 				E909975F2C6B6CE500D6C39F /* Model */,
 			);
 			path = Data;
@@ -112,6 +130,7 @@
 		E9855F622C6A4BF30019080B /* adVisa */ = {
 			isa = PBXGroup;
 			children = (
+				237F71CD2C6CB24C009CFC1D /* Infrastructure */,
 				E90997622C6B6EB900D6C39F /* Helper */,
 				E909975E2C6B6CE200D6C39F /* Data */,
 				E9855F632C6A4BF30019080B /* adVisaApp.swift */,
@@ -215,6 +234,7 @@
 				E90997642C6B6EC300D6C39F /* Helper.swift in Sources */,
 				E95791B12C6CAF460023305B /* CrimeRemarkData.swift in Sources */,
 				E95791A92C6CACDC0023305B /* InviterData.swift in Sources */,
+				237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

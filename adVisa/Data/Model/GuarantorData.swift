@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftData
 
-struct GuarantorData: Codable {
-    var id = UUID()
+@Model
+class GuarantorData {
+    @Attribute(.unique) var id: String = UUID().uuidString
     var guarantorName: String
     var guarantorTelephoneNum: String
     var guarantorAddress: String
@@ -19,4 +21,17 @@ struct GuarantorData: Codable {
     var guarantorPosition: String
     var guarantorNationality: String
     var guarantorImmigrationStatus: String
+    
+    init(guarantorName: String, guarantorTelephoneNum: String, guarantorAddress: String, guarantorDoB: Date, guarantorGender: GenderEnum, guarantorRelationship: String, guarantorOccupation: String, guarantorPosition: String, guarantorNationality: String, guarantorImmigrationStatus: String) {
+        self.guarantorName = guarantorName
+        self.guarantorTelephoneNum = guarantorTelephoneNum
+        self.guarantorAddress = guarantorAddress
+        self.guarantorDoB = guarantorDoB
+        self.guarantorGender = guarantorGender
+        self.guarantorRelationship = guarantorRelationship
+        self.guarantorOccupation = guarantorOccupation
+        self.guarantorPosition = guarantorPosition
+        self.guarantorNationality = guarantorNationality
+        self.guarantorImmigrationStatus = guarantorImmigrationStatus
+    }
 }

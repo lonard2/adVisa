@@ -6,11 +6,18 @@
 //
 
 import Foundation
+import SwiftData
 
-struct MiscData: Codable {
-    var id = UUID()
+@Model
+class MiscData {
+    @Attribute(.unique) var id: String = UUID().uuidString
     var visitPurpose: String
     var specialRemark: String
-    
     var dateOfApplication: Date
+    
+    init(visitPurpose: String, specialRemark: String, dateOfApplication: Date) {
+        self.visitPurpose = visitPurpose
+        self.specialRemark = specialRemark
+        self.dateOfApplication = dateOfApplication
+    }
 }

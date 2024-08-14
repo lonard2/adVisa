@@ -6,10 +6,18 @@
 //
 
 import Foundation
+import SwiftData
 
-struct EmployerData: Codable {
-    var id = UUID()
+@Model
+class EmployerData {
+    @Attribute(.unique) var id: String = UUID().uuidString
     var employerName: Date
     var employerTelephoneNum: String
     var employerAddress: String
+    
+    init(employerName: Date, employerTelephoneNum: String, employerAddress: String) {
+        self.employerName = employerName
+        self.employerTelephoneNum = employerTelephoneNum
+        self.employerAddress = employerAddress
+    }
 }

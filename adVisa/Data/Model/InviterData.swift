@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftData
 
-struct InviterData: Codable {
-    var id = UUID()
+@Model
+class InviterData {
+    @Attribute(.unique) var id: String = UUID().uuidString
     var inviterName: String
     var inviterTelephoneNum: String
     var inviterAddress: String
@@ -19,4 +21,17 @@ struct InviterData: Codable {
     var inviterPosition: String
     var inviterNationality: String
     var inviterImmigrationStatus: String
+    
+    init(inviterName: String, inviterTelephoneNum: String, inviterAddress: String, inviterDoB: Date, inviterGender: GenderEnum, inviterRelationship: String, inviterOccupation: String, inviterPosition: String, inviterNationality: String, inviterImmigrationStatus: String) {
+        self.inviterName = inviterName
+        self.inviterTelephoneNum = inviterTelephoneNum
+        self.inviterAddress = inviterAddress
+        self.inviterDoB = inviterDoB
+        self.inviterGender = inviterGender
+        self.inviterRelationship = inviterRelationship
+        self.inviterOccupation = inviterOccupation
+        self.inviterPosition = inviterPosition
+        self.inviterNationality = inviterNationality
+        self.inviterImmigrationStatus = inviterImmigrationStatus
+    }
 }

@@ -6,10 +6,17 @@
 //
 
 import Foundation
-
-struct TravelHistoryData: Codable {
-    var id = UUID()
+import SwiftData
+@Model
+class TravelHistoryData {
+    @Attribute(.unique) var id: String = UUID().uuidString
     var travelDate: Date
     var travelDuration: String
     var travelType: String
+    
+    init(travelDate: Date, travelDuration: String, travelType: String) {
+        self.travelDate = travelDate
+        self.travelDuration = travelDuration
+        self.travelType = travelType
+    }
 }

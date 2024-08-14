@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftData
 
-struct PassportData: Codable {
-    var id = UUID()
+@Model
+class PassportData {
+    @Attribute(.unique) var id: String = UUID().uuidString
     var surname: String
     var givenName: String
     var dateOfBirth: Date
@@ -24,4 +26,25 @@ struct PassportData: Codable {
     var dateOfIssue: Date
     var issuingAuthority: String
     var dateOfExpiry: Date
+    
+    init(id: String, surname: String, givenName: String, dateOfBirth: Date, city: String, state: String, country: String, gender: GenderEnum, martialStatus: MartialStatusEnum, nationality: String, passportType: PassportTypeEnum, passportID: String, placeOfIssue: String, dateOfIssue: Date, issuingAuthority: String, dateOfExpiry: Date) {
+        self.id = id
+        self.surname = surname
+        self.givenName = givenName
+        self.dateOfBirth = dateOfBirth
+        self.city = city
+        self.state = state
+        self.country = country
+        self.gender = gender
+        self.martialStatus = martialStatus
+        self.nationality = nationality
+        self.passportType = passportType
+        self.passportID = passportID
+        self.placeOfIssue = placeOfIssue
+        self.dateOfIssue = dateOfIssue
+        self.issuingAuthority = issuingAuthority
+        self.dateOfExpiry = dateOfExpiry
+    }
+    
+    //Add to domain
 }
