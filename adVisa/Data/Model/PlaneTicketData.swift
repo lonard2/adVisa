@@ -20,3 +20,17 @@ class PlaneTicketData {
         self.transportName = transportName
     }
 }
+
+extension SwiftDataContextManager {
+    func initializePlaneTicketContainer() {
+        do {
+            planeTicketContainer = try ModelContainer(for: PlaneTicketData.self)
+            if let planeTicketContainer {
+                context = ModelContext(planeTicketContainer)
+            }
+
+        } catch {
+            debugPrint("Error initializing plane ticket container:", error)
+        }
+    }
+}

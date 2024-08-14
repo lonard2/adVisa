@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71CF2C6CB2A3009CFC1D /* SwiftDataContextManager.swift */; };
+		237F71D32C6CB8F9009CFC1D /* PassortRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71D22C6CB8F9009CFC1D /* PassortRepository.swift */; };
+		237F71D62C6CB962009CFC1D /* DataRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71D52C6CB962009CFC1D /* DataRepositoryProtocol.swift */; };
+		237F71D82C6CBA5D009CFC1D /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71D72C6CBA5D009CFC1D /* DataError.swift */; };
+		237F71DA2C6CBA87009CFC1D /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71D92C6CBA87009CFC1D /* BaseResponse.swift */; };
+		237F71DC2C6CBBD2009CFC1D /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71DB2C6CBBD2009CFC1D /* EmptyResponse.swift */; };
 		E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997602C6B6D7800D6C39F /* PassportData.swift */; };
 		E90997642C6B6EC300D6C39F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997632C6B6EC300D6C39F /* Helper.swift */; };
 		E90997662C6B710300D6C39F /* IdentityCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997652C6B710300D6C39F /* IdentityCardData.swift */; };
@@ -29,6 +34,11 @@
 
 /* Begin PBXFileReference section */
 		237F71CF2C6CB2A3009CFC1D /* SwiftDataContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContextManager.swift; sourceTree = "<group>"; };
+		237F71D22C6CB8F9009CFC1D /* PassortRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassortRepository.swift; sourceTree = "<group>"; };
+		237F71D52C6CB962009CFC1D /* DataRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryProtocol.swift; sourceTree = "<group>"; };
+		237F71D72C6CBA5D009CFC1D /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
+		237F71D92C6CBA87009CFC1D /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		237F71DB2C6CBBD2009CFC1D /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		E90997602C6B6D7800D6C39F /* PassportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportData.swift; sourceTree = "<group>"; };
 		E90997632C6B6EC300D6C39F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E90997652C6B710300D6C39F /* IdentityCardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityCardData.swift; sourceTree = "<group>"; };
@@ -64,6 +74,9 @@
 			isa = PBXGroup;
 			children = (
 				237F71CF2C6CB2A3009CFC1D /* SwiftDataContextManager.swift */,
+				237F71D72C6CBA5D009CFC1D /* DataError.swift */,
+				237F71D92C6CBA87009CFC1D /* BaseResponse.swift */,
+				237F71DB2C6CBBD2009CFC1D /* EmptyResponse.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -71,8 +84,18 @@
 		237F71D12C6CB547009CFC1D /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				237F71D42C6CB953009CFC1D /* protocol */,
+				237F71D22C6CB8F9009CFC1D /* PassortRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		237F71D42C6CB953009CFC1D /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				237F71D52C6CB962009CFC1D /* DataRepositoryProtocol.swift */,
+			);
+			path = protocol;
 			sourceTree = "<group>";
 		};
 		E909975E2C6B6CE200D6C39F /* Data */ = {
@@ -220,6 +243,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E90997662C6B710300D6C39F /* IdentityCardData.swift in Sources */,
+				237F71D32C6CB8F9009CFC1D /* PassortRepository.swift in Sources */,
+				237F71D82C6CBA5D009CFC1D /* DataError.swift in Sources */,
 				E95791AF2C6CAF070023305B /* MiscData.swift in Sources */,
 				E95791A72C6C8CF80023305B /* GuarantorData.swift in Sources */,
 				E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */,
@@ -231,6 +256,9 @@
 				E95791A52C6C88990023305B /* OccupationData.swift in Sources */,
 				E95791A32C6C88250023305B /* EmployerData.swift in Sources */,
 				E957919F2C6C874D0023305B /* DomicileData.swift in Sources */,
+				237F71D62C6CB962009CFC1D /* DataRepositoryProtocol.swift in Sources */,
+				237F71DC2C6CBBD2009CFC1D /* EmptyResponse.swift in Sources */,
+				237F71DA2C6CBA87009CFC1D /* BaseResponse.swift in Sources */,
 				E90997642C6B6EC300D6C39F /* Helper.swift in Sources */,
 				E95791B12C6CAF460023305B /* CrimeRemarkData.swift in Sources */,
 				E95791A92C6CACDC0023305B /* InviterData.swift in Sources */,

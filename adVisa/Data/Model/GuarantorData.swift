@@ -35,3 +35,17 @@ class GuarantorData {
         self.guarantorImmigrationStatus = guarantorImmigrationStatus
     }
 }
+
+extension SwiftDataContextManager {
+    func initializeGuarantorContainer() {
+        do {
+            guarantorContainer = try ModelContainer(for: GuarantorData.self)
+            if let guarantorContainer {
+                context = ModelContext(guarantorContainer)
+            }
+
+        } catch {
+            debugPrint("Error initializing guarantor container:", error)
+        }
+    }
+}

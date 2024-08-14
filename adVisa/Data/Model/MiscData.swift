@@ -21,3 +21,17 @@ class MiscData {
         self.dateOfApplication = dateOfApplication
     }
 }
+
+extension SwiftDataContextManager {
+    func initializeMiscContainer() {
+        do {
+            miscContainer = try ModelContainer(for: MiscData.self)
+            if let miscContainer {
+                context = ModelContext(miscContainer)
+            }
+
+        } catch {
+            debugPrint("Error initializing misc container:", error)
+        }
+    }
+}

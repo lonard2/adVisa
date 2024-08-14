@@ -18,7 +18,7 @@ class PassportData {
     var state: String
     var country: String
     var gender: GenderEnum
-    var martialStatus: MartialStatusEnum
+    var maritalStatus: MartialStatusEnum
     var nationality: String
     var passportType: PassportTypeEnum
     var passportID: String
@@ -27,8 +27,7 @@ class PassportData {
     var issuingAuthority: String
     var dateOfExpiry: Date
     
-    init(id: String, surname: String, givenName: String, dateOfBirth: Date, city: String, state: String, country: String, gender: GenderEnum, martialStatus: MartialStatusEnum, nationality: String, passportType: PassportTypeEnum, passportID: String, placeOfIssue: String, dateOfIssue: Date, issuingAuthority: String, dateOfExpiry: Date) {
-        self.id = id
+    init(surname: String, givenName: String, dateOfBirth: Date, city: String, state: String, country: String, gender: GenderEnum, martialStatus: MartialStatusEnum, nationality: String, passportType: PassportTypeEnum, passportID: String, placeOfIssue: String, dateOfIssue: Date, issuingAuthority: String, dateOfExpiry: Date) {
         self.surname = surname
         self.givenName = givenName
         self.dateOfBirth = dateOfBirth
@@ -36,7 +35,7 @@ class PassportData {
         self.state = state
         self.country = country
         self.gender = gender
-        self.martialStatus = martialStatus
+        self.maritalStatus = martialStatus
         self.nationality = nationality
         self.passportType = passportType
         self.passportID = passportID
@@ -47,4 +46,18 @@ class PassportData {
     }
     
     //Add to domain
+}
+
+extension SwiftDataContextManager {
+    func initializePassportContainer() {
+        do {
+            passportContainer = try ModelContainer(for: PassportData.self)
+            if let passportContainer {
+                context = ModelContext(passportContainer)
+            }
+
+        } catch {
+            debugPrint("Error initializing passport container:", error)
+        }
+    }
 }

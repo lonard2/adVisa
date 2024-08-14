@@ -35,3 +35,17 @@ class InviterData {
         self.inviterImmigrationStatus = inviterImmigrationStatus
     }
 }
+
+extension SwiftDataContextManager {
+    func initializeInviterContainer() {
+        do {
+            inviterContainer = try ModelContainer(for: InviterData.self)
+            if let inviterContainer {
+                context = ModelContext(inviterContainer)
+            }
+
+        } catch {
+            debugPrint("Error initializing inviter container:", error)
+        }
+    }
+}
