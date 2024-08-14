@@ -27,7 +27,7 @@ class PassportData {
     var issuingAuthority: String
     var dateOfExpiry: Date
     
-    init(surname: String, givenName: String, dateOfBirth: Date, city: String, state: String, country: String, gender: GenderEnum, martialStatus: MartialStatusEnum, nationality: String, passportType: PassportTypeEnum, passportID: String, placeOfIssue: String, dateOfIssue: Date, issuingAuthority: String, dateOfExpiry: Date) {
+    init(surname: String, givenName: String, dateOfBirth: Date, city: String, state: String, country: String, gender: GenderEnum, maritalStatus: MartialStatusEnum, nationality: String, passportType: PassportTypeEnum, passportID: String, placeOfIssue: String, dateOfIssue: Date, issuingAuthority: String, dateOfExpiry: Date) {
         self.surname = surname
         self.givenName = givenName
         self.dateOfBirth = dateOfBirth
@@ -35,7 +35,7 @@ class PassportData {
         self.state = state
         self.country = country
         self.gender = gender
-        self.maritalStatus = martialStatus
+        self.maritalStatus = maritalStatus
         self.nationality = nationality
         self.passportType = passportType
         self.passportID = passportID

@@ -12,7 +12,7 @@ public class SwiftDataContextManager {
     public static var shared = SwiftDataContextManager()
     var passportContainer: ModelContainer?
     var identityCardContainer: ModelContainer?
-    var planeTickerContainer: ModelContainer?
+    var planeTicketContainer: ModelContainer?
     var domicileContainer: ModelContainer?
     var travelHistoryContainer: ModelContainer?
     var employerContainer: ModelContainer?
