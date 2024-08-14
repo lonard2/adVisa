@@ -20,7 +20,25 @@ extension TravelHistoryData {
 }
 
 extension GuarantorData {
+
+}
+
+extension GuarantorData {
+    func getOccupation() -> String {
+        return "\(self.guarantorOccupation) as \(self.guarantorPosition)"
+    }
+    
     func getNationalityAndImmigrationStatus() -> String {
-        return "\(self.nationality), \(self.immigrationStatus)"
+        return "\(self.guarantorNationality), \(self.guarantorImmigrationStatus)"
+    }
+}
+
+extension InviterData {
+    func getOccupation() -> String {
+        return "\(self.inviterOccupation) as \(self.inviterPosition)"
+    }
+    
+    func getNationalityAndImmigrationStatus() -> String {
+        return "\(self.inviterNationality), \(self.inviterImmigrationStatus)"
     }
 }

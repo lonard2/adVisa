@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct TravelHistoryData: Codable {
+struct MiscData: Codable {
     var id = UUID()
-    var travelDate: Date
-    var travelDuration: String
-    var travelType: String
+    var visitPurpose: String
+    var specialRemark: String
+    
+    var dateOfApplication: Date
 }

@@ -7,18 +7,6 @@
 
 import Foundation
 
-enum GenderEnum: String, Codable {
-    case male, female
-}
-
-enum MartialStatusEnum: String, Codable {
-    case single, married, divorced
-}
-
-enum PassportTypeEnum: String, Codable {
-    case diplomatic, official, ordinary, other
-}
-
 struct PassportData: Codable {
     var id = UUID()
     var surname: String

@@ -13,7 +13,10 @@ struct GuarantorData: Codable {
     var guarantorTelephoneNum: String
     var guarantorAddress: String
     var guarantorDoB: Date
+    var guarantorGender: GenderEnum
     var guarantorRelationship: String
     var guarantorOccupation: String
-    var guarantorNationalityAndStatus: String
+    var guarantorPosition: String
+    var guarantorNationality: String
+    var guarantorImmigrationStatus: String
 }
