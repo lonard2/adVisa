@@ -45,7 +45,23 @@ internal class PassortRepository: DataRepositoryProtocol {
         return Future<Bool, DataError> { promise in
             Task { @MainActor in
                 do {
-                    let entity = PassportData(surname: param.surname, givenName: param.givenName, dateOfBirth: param.dateOfBirth, city: param.city, state: param.state, country: param.country, gender: param.gender, martialStatus: param.maritalStatus, nationality: param.nationality, passportType: param.passportType, passportID: param.passportID, placeOfIssue: param.placeOfIssue, dateOfIssue: param.dateOfIssue, issuingAuthority: param.issuingAuthority, dateOfExpiry: param.dateOfExpiry)
+                    let entity = PassportData(
+                        surname: param.surname,
+                        givenName: param.givenName,
+                        dateOfBirth: param.dateOfBirth,
+                        city: param.city,
+                        state: param.state,
+                        country: param.country,
+                        gender: param.gender,
+                        maritalStatus: param.maritalStatus, 
+                        nationality: param.nationality,
+                        passportType: param.passportType,
+                        passportID: param.passportID,
+                        placeOfIssue: param.placeOfIssue,
+                        dateOfIssue: param.dateOfIssue,
+                        issuingAuthority: param.issuingAuthority,
+                        dateOfExpiry: param.dateOfExpiry
+                    )
                     
                     self.container?.mainContext.insert(entity)
                     
