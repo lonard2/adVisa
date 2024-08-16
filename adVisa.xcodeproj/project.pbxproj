@@ -262,12 +262,12 @@
 				2353DC732C6FA6D400E57375 /* DataPolicyViewModel.swift */,
 				E9855F652C6A4BF30019080B /* ContentView.swift */,
 				E97932C32C6F8EEE0065DDD0 /* CameraView.swift */,
-<<<<<<< HEAD
 				E97F19DE2C7225A800895F25 /* DocumentScannerView.swift */,
 				E97F19E02C7226CE00895F25 /* TextRecognition.swift */,
 				2353DC742C6FA6D400E57375 /* DataPolicy.swift */,
 				2353DC752C6FA6D400E57375 /* DataPolicySheet.swift */,
 				E9CD97672C7319DD00A4E85E /* CameraLayerView.swift */,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				235535342C7339BA00973F80 /* TestCameraView.swift */,
 				235535362C733A1200973F80 /* ImagePicker.swift */,
@@ -275,6 +275,8 @@
 =======
 >>>>>>> d097fd9 (Add camera components, and adding ML model of classification)
 >>>>>>> d0bcadf (Add camera components, and adding ML model of classification)
+=======
+>>>>>>> b4da393 (commit with folder changes)
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,10 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				E97932C52C6F95810065DDD0 /* CameraViewModel.swift */,
-<<<<<<< HEAD
 				2353DC732C6FA6D400E57375 /* DataPolicyViewModel.swift */,
-=======
->>>>>>> d097fd9 (Add camera components, and adding ML model of classification)
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
