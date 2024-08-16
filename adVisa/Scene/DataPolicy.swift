@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct DataPolicy: View {
+    @State private var showingSheet = false
+    @ObservedObject var viewModel: DataPolicyViewModel = DataPolicyViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button("Show Sheet") {
+            showingSheet.toggle()
+        }
+        
+        .sheet(isPresented: $showingSheet) {
+            DataPolicySheet()
+                .environmentObject(viewModel)
+                .presentationDragIndicator(.visible)
+                
+        }
+        
     }
 }
 
