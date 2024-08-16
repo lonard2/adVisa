@@ -10,7 +10,7 @@ import SwiftData
 
 @Model
 class PassportData {
-    @Attribute(.unique) var id: String = UUID().uuidString
+    @Attribute(.unique) var id: String
     var surname: String
     var givenName: String
     var dateOfBirth: Date
@@ -27,7 +27,8 @@ class PassportData {
     var issuingAuthority: String
     var dateOfExpiry: Date
     
-    init(surname: String, givenName: String, dateOfBirth: Date, city: String, state: String, country: String, gender: GenderEnum, maritalStatus: MartialStatusEnum, nationality: String, passportType: PassportTypeEnum, passportID: String, placeOfIssue: String, dateOfIssue: Date, issuingAuthority: String, dateOfExpiry: Date) {
+    init(id:String, surname: String, givenName: String, dateOfBirth: Date, city: String, state: String, country: String, gender: GenderEnum, maritalStatus: MartialStatusEnum, nationality: String, passportType: PassportTypeEnum, passportID: String, placeOfIssue: String, dateOfIssue: Date, issuingAuthority: String, dateOfExpiry: Date) {
+        self.id = id
         self.surname = surname
         self.givenName = givenName
         self.dateOfBirth = dateOfBirth

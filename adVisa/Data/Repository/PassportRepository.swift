@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import SwiftData
 
-internal class PassortRepository: DataRepositoryProtocol {
+public class PassportRepository: DataRepositoryProtocol {
     
     typealias T = PassportData
     
@@ -18,6 +18,7 @@ internal class PassortRepository: DataRepositoryProtocol {
     func fetchById(id: String) -> AnyPublisher<PassportData?, DataError> {
         return Future<PassportData?, DataError> { promise in
             Task { @MainActor in
+                
                 let fetchDescriptor = FetchDescriptor<PassportData>(
                     predicate: #Predicate<PassportData> {
                         $0.id == id
@@ -46,6 +47,7 @@ internal class PassortRepository: DataRepositoryProtocol {
             Task { @MainActor in
                 do {
                     let entity = PassportData(
+                        id: param.id,
                         surname: param.surname,
                         givenName: param.givenName,
                         dateOfBirth: param.dateOfBirth,
