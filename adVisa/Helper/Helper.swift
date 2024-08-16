@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreImage
+import AVFoundation
 
 extension PassportData {
     func getPlaceOfBirth() -> String {
@@ -40,5 +42,25 @@ extension InviterData {
     
     func getNationalityAndImmigrationStatus() -> String {
         return "\(self.inviterNationality), \(self.inviterImmigrationStatus)"
+    }
+}
+
+
+extension CMSampleBuffer {
+    var cgImage: CGImage? {
+        let pixelBuffer: CVPixelBuffer? = CMSampleBufferGetImageBuffer(self)
+        
+        guard let imagePixelBuffer = pixelBuffer else {
+            return nil
+        }
+        
+        return CIImage(cvPixelBuffer: imagePixelBuffer).cgImage
+    }
+}
+
+extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let currentFrame = sampleBuffer.cgImage else { return }
+        addToPreviewStream?(currentFrame)
     }
 }
