@@ -5,14 +5,9 @@
 //  Created by hendra on 16/08/24.
 //
 
-import SwiftUI
+import Foundation
 
-struct DataPolicyViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    DataPolicyViewModel()
+class DataPolicyViewModel: ObservableObject {
+    @Published var isAgreeToTerms: Bool = false
+    @Published var isAgreeToPrivacy: Bool = false
 }
