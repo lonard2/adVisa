@@ -22,7 +22,6 @@ struct DataPolicy: View {
                 .presentationDragIndicator(.visible)
                 
         }
-        
     }
 }
 
