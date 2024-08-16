@@ -48,8 +48,11 @@
 		E97932C42C6F8EEE0065DDD0 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97932C32C6F8EEE0065DDD0 /* CameraView.swift */; };
 		E97932C62C6F95810065DDD0 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97932C52C6F95810065DDD0 /* CameraViewModel.swift */; };
 		E97932CA2C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E97932C92C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel */; };
+<<<<<<< HEAD
 		E97F19DF2C7225A800895F25 /* DocumentScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97F19DE2C7225A800895F25 /* DocumentScannerView.swift */; };
 		E97F19E12C7226CE00895F25 /* TextRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97F19E02C7226CE00895F25 /* TextRecognition.swift */; };
+=======
+>>>>>>> d097fd9 (Add camera components, and adding ML model of classification)
 		E9855F642C6A4BF30019080B /* adVisaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9855F632C6A4BF30019080B /* adVisaApp.swift */; };
 		E9855F662C6A4BF30019080B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9855F652C6A4BF30019080B /* ContentView.swift */; };
 		E9855F682C6A4BF60019080B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9855F672C6A4BF60019080B /* Assets.xcassets */; };
@@ -110,8 +113,11 @@
 		E97932C32C6F8EEE0065DDD0 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		E97932C52C6F95810065DDD0 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		E97932C92C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AdVisaClassificationModel.mlmodel; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		E97F19DE2C7225A800895F25 /* DocumentScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScannerView.swift; sourceTree = "<group>"; };
 		E97F19E02C7226CE00895F25 /* TextRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognition.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> d097fd9 (Add camera components, and adding ML model of classification)
 		E9855F602C6A4BF30019080B /* adVisa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adVisa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9855F632C6A4BF30019080B /* adVisaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adVisaApp.swift; sourceTree = "<group>"; };
 		E9855F652C6A4BF30019080B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -255,11 +261,14 @@
 			children = (
 				E9855F652C6A4BF30019080B /* ContentView.swift */,
 				E97932C32C6F8EEE0065DDD0 /* CameraView.swift */,
+<<<<<<< HEAD
 				E97F19DE2C7225A800895F25 /* DocumentScannerView.swift */,
 				E97F19E02C7226CE00895F25 /* TextRecognition.swift */,
 				2353DC742C6FA6D400E57375 /* DataPolicy.swift */,
 				2353DC752C6FA6D400E57375 /* DataPolicySheet.swift */,
 				E9CD97672C7319DD00A4E85E /* CameraLayerView.swift */,
+=======
+>>>>>>> d097fd9 (Add camera components, and adding ML model of classification)
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,7 +277,10 @@
 			isa = PBXGroup;
 			children = (
 				E97932C52C6F95810065DDD0 /* CameraViewModel.swift */,
+<<<<<<< HEAD
 				2353DC732C6FA6D400E57375 /* DataPolicyViewModel.swift */,
+=======
+>>>>>>> d097fd9 (Add camera components, and adding ML model of classification)
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
