@@ -21,8 +21,9 @@ struct CameraView: View {
             } else {
                 ZStack {
                     if let image = image {
-                        Image(decorative: image, scale: 1)
+                        Image(decorative: image, scale: geo.size.height)
                             .resizable()
+                            .rotationEffect(.degrees(90))
                             .scaledToFit()
                             .frame(width: geo.size.width, height: geo.size.height)
                     } else {
