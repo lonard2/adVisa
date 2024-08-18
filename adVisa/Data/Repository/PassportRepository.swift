@@ -55,7 +55,6 @@ public class PassportRepository: DataRepositoryProtocol {
                         state: param.state,
                         country: param.country,
                         gender: param.gender,
-                        maritalStatus: param.maritalStatus, 
                         nationality: param.nationality,
                         passportType: param.passportType,
                         passportID: param.passportID,
@@ -100,7 +99,6 @@ public class PassportRepository: DataRepositoryProtocol {
                             entity.givenName = param.givenName
                             entity.surname = param.surname
                             entity.issuingAuthority = param.issuingAuthority
-                            entity.maritalStatus = param.maritalStatus
                             entity.nationality = param.nationality
                             entity.passportID = param.passportID
                             entity.passportType = param.passportType
