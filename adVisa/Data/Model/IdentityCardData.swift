@@ -12,9 +12,11 @@ import SwiftData
 class IdentityCardData {
     @Attribute(.unique) var id: String = UUID().uuidString
     var identityId: String
+    var martialStatus: MartialStatusEnum
     
-    init(identityId: String) {
+    init(identityId: String, martialStatus: MartialStatusEnum) {
         self.identityId = identityId
+        self.martialStatus = martialStatus
     }
 }
 
