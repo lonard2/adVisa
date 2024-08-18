@@ -252,11 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				E9855F652C6A4BF30019080B /* ContentView.swift */,
-<<<<<<< HEAD
-=======
-				2353DC742C6FA6D400E57375 /* DataPolicy.swift */,
-				2353DC752C6FA6D400E57375 /* DataPolicySheet.swift */,
->>>>>>> production
 				E97932C32C6F8EEE0065DDD0 /* CameraView.swift */,
 				E97F19DE2C7225A800895F25 /* DocumentScannerView.swift */,
 				E97F19E02C7226CE00895F25 /* TextRecognition.swift */,
