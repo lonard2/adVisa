@@ -24,16 +24,16 @@ struct DestinationCard: View {
                 Text(countryName)
                     .font(.system(size: 15))
                     .fontWeight(.semibold)
-                    .foregroundStyle(Color(.black))
+                    .foregroundStyle(Color(.primaryBlack))
                 
                 Text("1st Most Visited")
                     .font(.system(size: 11))
-                    .foregroundStyle(Color(.black))
+                    .foregroundStyle(Color(.darkGray))
             }
             .padding(8)
             
         }
-        .background(Color(.white))
+        .background(Color(.primaryWhite))
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(radius: 4, x: 0, y: 1)
         .frame(width: 132, height: 166)

@@ -65,11 +65,11 @@ struct DiscoverPage: View {
                         Spacer()
                     }
                     .searchable(text: $searchText, prompt: "Search Country")
-                    .background(Color(.white))
+                    .background(Color(.primaryWhite))
                 }
             }
         }
-        .background(Color(.blue))
+        .background(Color(.primaryBlue))
     }
 }
 
