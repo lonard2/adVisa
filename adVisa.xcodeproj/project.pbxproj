@@ -22,6 +22,7 @@
 		237F71EB2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */; };
 		237F71EE2C6DB6D8009CFC1D /* Data in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71ED2C6DB6D8009CFC1D /* Data */; };
 		237F71F02C6DB7C9009CFC1D /* Repository in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71EF2C6DB7C9009CFC1D /* Repository */; };
+		260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */; };
 		263201A02C731F9F006BD06F /* DiscoverPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632019F2C731F9F006BD06F /* DiscoverPage.swift */; };
 		263201A22C733B71006BD06F /* DestinationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263201A12C733B71006BD06F /* DestinationCard.swift */; };
 		265655552C7356A6004B2FAA /* PersonalDocumentGuideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265655542C7356A6004B2FAA /* PersonalDocumentGuideCard.swift */; };
@@ -91,6 +92,7 @@
 		237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDataRepositoryTests.swift; sourceTree = "<group>"; };
 		237F71ED2C6DB6D8009CFC1D /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = adVisa/Data; sourceTree = "<group>"; };
 		237F71EF2C6DB7C9009CFC1D /* Repository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Repository; path = adVisa/Data/Repository; sourceTree = "<group>"; };
+		260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentSheet.swift; sourceTree = "<group>"; };
 		2632019F2C731F9F006BD06F /* DiscoverPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPage.swift; sourceTree = "<group>"; };
 		263201A12C733B71006BD06F /* DestinationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationCard.swift; sourceTree = "<group>"; };
 		265655542C7356A6004B2FAA /* PersonalDocumentGuideCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDocumentGuideCard.swift; sourceTree = "<group>"; };
@@ -210,6 +212,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		260A230D2C740F4E00F034D1 /* Upload Document */ = {
+			isa = PBXGroup;
+			children = (
+				260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */,
+			);
+			path = "Upload Document";
+			sourceTree = "<group>";
+		};
 		265655532C735221004B2FAA /* Discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +303,7 @@
 		E97932C72C6F97F80065DDD0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				260A230D2C740F4E00F034D1 /* Upload Document */,
 				269CE5642C739B730008EF59 /* Document Requirement */,
 				265655562C737B1F004B2FAA /* VisaPrompt */,
 				2353DC732C6FA6D400E57375 /* DataPolicyViewModel.swift */,
@@ -475,6 +486,7 @@
 				269E2E072C6CEB9700CFEB0E /* InviterRepository.swift in Sources */,
 				269E2DFB2C6CE30300CFEB0E /* PlaneTicketRepository.swift in Sources */,
 				269CE5662C739B9E0008EF59 /* DocumentRequirementPage.swift in Sources */,
+				260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */,
 				269E2E0D2C6CECB100CFEB0E /* CrimeRemarkRepository.swift in Sources */,
 				E90997662C6B710300D6C39F /* IdentityCardData.swift in Sources */,
 				263201A22C733B71006BD06F /* DestinationCard.swift in Sources */,
