@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 //
 //  ContentView.swift
 //  adVisa
@@ -57,4 +55,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
->>>>>>> 6ef1140 (Finalize camera configuration with full screen)
