@@ -58,9 +58,9 @@ extension CMSampleBuffer {
     }
 }
 
-extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let currentFrame = sampleBuffer.cgImage else { return }
-        addToPreviewStream?(currentFrame)
-    }
-}
+//extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
+//    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+//        guard let currentFrame = sampleBuffer.cgImage else { return }
+//        addToPreviewStream?(currentFrame)
+//    }
+//}
