@@ -12,42 +12,39 @@ struct ContentView: View {
     @State private var openCamera = false
     
     var body: some View {
-        
-        TabView {
-            GeometryReader { geo in
-                if openCamera {
-                    CameraLayerView()
-                        .ignoresSafeArea()
-                } else {
+        GeometryReader { geo in
+            TabView {
                     ZStack {
                         VStack {
                             Button {
-                                openCamera = true
+                                openCamera.toggle()
                             } label: {
                                 Text("Open camera")
                             }
                         }
                     }
                     .frame(width: geo.size.width, height: geo.size.height)
-                }
+                    .tabItem {
+                        Label("Discover", systemImage: "map.circle.fill")
+                    }
+                    .fullScreenCover(isPresented: $openCamera) {
+                        CameraLayerView()
+                            .ignoresSafeArea()
+                    }
+                
+                Text("History Page")
+                    .tabItem {
+                        Label("History", systemImage: "clock.fill")
+                    }
+                
+                
+                Text("Saved Document Page")
+                    .tabItem {
+                        Label("Discover", systemImage: "doc")
+                    }
             }
-                .tabItem {
-                    Label("Discover", systemImage: "map.circle.fill")
-                }
-            
-            Text("History Page")
-                .tabItem {
-                    Label("History", systemImage: "clock.fill")
-                }
-            
-            
-            Text("Saved Document Page")
-                .tabItem {
-                    Label("Discover", systemImage: "doc")
-                }
-            
-            
         }
+        
     }
 }
 

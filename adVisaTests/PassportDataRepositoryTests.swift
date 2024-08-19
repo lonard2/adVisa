@@ -44,7 +44,6 @@ final class PassportDataRepositoryTests: XCTestCase {
             state: "NY",
             country: "USA",
             gender: .male,
-            maritalStatus: .single,
             nationality: "American",
             passportType: .ordinary,
             passportID: "123456789",
