@@ -10,6 +10,8 @@
 		2353DC762C6FA6D400E57375 /* DataPolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353DC732C6FA6D400E57375 /* DataPolicyViewModel.swift */; };
 		2353DC772C6FA6D400E57375 /* DataPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353DC742C6FA6D400E57375 /* DataPolicy.swift */; };
 		2353DC782C6FA6D400E57375 /* DataPolicySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353DC752C6FA6D400E57375 /* DataPolicySheet.swift */; };
+		235535352C7339BA00973F80 /* TestCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235535342C7339BA00973F80 /* TestCameraView.swift */; };
+		235535372C733A1200973F80 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235535362C733A1200973F80 /* ImagePicker.swift */; };
 		237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71CF2C6CB2A3009CFC1D /* SwiftDataContextManager.swift */; };
 		237F71D32C6CB8F9009CFC1D /* PassportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71D22C6CB8F9009CFC1D /* PassportRepository.swift */; };
 		237F71D62C6CB962009CFC1D /* DataRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71D52C6CB962009CFC1D /* DataRepositoryProtocol.swift */; };
@@ -71,6 +73,8 @@
 		2353DC732C6FA6D400E57375 /* DataPolicyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPolicyViewModel.swift; path = adVisa/Scene/ViewModel/DataPolicyViewModel.swift; sourceTree = SOURCE_ROOT; };
 		2353DC742C6FA6D400E57375 /* DataPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPolicy.swift; path = adVisa/Scene/View/DataPolicy.swift; sourceTree = SOURCE_ROOT; };
 		2353DC752C6FA6D400E57375 /* DataPolicySheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPolicySheet.swift; path = adVisa/Scene/View/DataPolicySheet.swift; sourceTree = SOURCE_ROOT; };
+		235535342C7339BA00973F80 /* TestCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCameraView.swift; sourceTree = "<group>"; };
+		235535362C733A1200973F80 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		237F71CF2C6CB2A3009CFC1D /* SwiftDataContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContextManager.swift; sourceTree = "<group>"; };
 		237F71D22C6CB8F9009CFC1D /* PassportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportRepository.swift; sourceTree = "<group>"; };
 		237F71D52C6CB962009CFC1D /* DataRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -263,6 +267,8 @@
 				2353DC742C6FA6D400E57375 /* DataPolicy.swift */,
 				2353DC752C6FA6D400E57375 /* DataPolicySheet.swift */,
 				E9CD97672C7319DD00A4E85E /* CameraLayerView.swift */,
+				235535342C7339BA00973F80 /* TestCameraView.swift */,
+				235535362C733A1200973F80 /* ImagePicker.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -459,6 +465,7 @@
 				269E2E0B2C6CEC3E00CFEB0E /* MiscRepository.swift in Sources */,
 				237F71D62C6CB962009CFC1D /* DataRepositoryProtocol.swift in Sources */,
 				269E2DFD2C6CE70E00CFEB0E /* DomicileRepository.swift in Sources */,
+				235535372C733A1200973F80 /* ImagePicker.swift in Sources */,
 				269E2E032C6CE97000CFEB0E /* OccupationRepository.swift in Sources */,
 				237F71DC2C6CBBD2009CFC1D /* EmptyResponse.swift in Sources */,
 				E97F19E12C7226CE00895F25 /* TextRecognition.swift in Sources */,
@@ -470,6 +477,7 @@
 				E95791A92C6CACDC0023305B /* InviterData.swift in Sources */,
 				E97932CA2C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel in Sources */,
 				237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */,
+				235535352C7339BA00973F80 /* TestCameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
