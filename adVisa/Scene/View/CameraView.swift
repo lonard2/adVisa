@@ -308,6 +308,10 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             device.unlockForConfiguration()
         } catch {
             print("Error occurred while toggling torch feature, due to \(error)")
+            
+        }
+    }
+    
     @objc private func captureImage() {
         isCapturingImage = true
     }
