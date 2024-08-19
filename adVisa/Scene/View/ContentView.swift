@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var cameraVm = CameraViewModel()
+//    @State private var cameraVm = CameraViewModel()
     @State private var openCamera = false
     
     var body: some View {
@@ -17,7 +17,8 @@ struct ContentView: View {
         TabView {
             GeometryReader { geo in
                 if openCamera {
-                    CameraView(image: $cameraVm.currentFrame)
+                    CameraLayerView()
+                        .ignoresSafeArea()
                 } else {
                     ZStack {
                         VStack {

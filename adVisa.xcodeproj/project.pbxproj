@@ -54,6 +54,7 @@
 		E9855F662C6A4BF30019080B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9855F652C6A4BF30019080B /* ContentView.swift */; };
 		E9855F682C6A4BF60019080B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9855F672C6A4BF60019080B /* Assets.xcassets */; };
 		E9855F6B2C6A4BF70019080B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9855F6A2C6A4BF70019080B /* Preview Assets.xcassets */; };
+		E9CD97682C7319DD00A4E85E /* CameraLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD97672C7319DD00A4E85E /* CameraLayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		E9855F652C6A4BF30019080B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E9855F672C6A4BF60019080B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9855F6A2C6A4BF70019080B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E9CD97672C7319DD00A4E85E /* CameraLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraLayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 				E97F19E02C7226CE00895F25 /* TextRecognition.swift */,
 				2353DC742C6FA6D400E57375 /* DataPolicy.swift */,
 				2353DC752C6FA6D400E57375 /* DataPolicySheet.swift */,
+				E9CD97672C7319DD00A4E85E /* CameraLayerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				E97F19DF2C7225A800895F25 /* DocumentScannerView.swift in Sources */,
 				237F71D32C6CB8F9009CFC1D /* PassportRepository.swift in Sources */,
 				237F71D82C6CBA5D009CFC1D /* DataError.swift in Sources */,
+				E9CD97682C7319DD00A4E85E /* CameraLayerView.swift in Sources */,
 				E95791AF2C6CAF070023305B /* MiscData.swift in Sources */,
 				2353DC762C6FA6D400E57375 /* DataPolicyViewModel.swift in Sources */,
 				269E2E012C6CE8CB00CFEB0E /* EmployerRepository.swift in Sources */,
