@@ -11,8 +11,8 @@ enum GenderEnum: String, Codable {
     case male, female
 }
 
-enum MartialStatusEnum: String, Codable {
-    case single, married, divorced
+enum MaritalStatusEnum: String, Codable {
+    case single, married, divorced, widowed
 }
 
 enum PassportTypeEnum: String, Codable {
