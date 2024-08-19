@@ -14,6 +14,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     private var isAuthorized = false
     
     private let captureSession = AVCaptureSession()
+    private var isCapturingImage = false
     private var deviceInput: AVCaptureDeviceInput?
     private var videoOutput: AVCaptureVideoDataOutput?
     private var instructions: UILabel!
@@ -62,6 +63,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         circularButton.layer.cornerRadius = 30
         circularButton.clipsToBounds = true
         circularButton.translatesAutoresizingMaskIntoConstraints = false
+        circularButton.addTarget(self, action: #selector(captureImage), for: .touchUpInside)
         
         circularButtonBorder = UIView()
         circularButtonBorder.layer.cornerRadius = 30
@@ -123,6 +125,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         view.addSubview(instructionGuidelineImageView)
         view.addSubview(bottomLayer)
         view.addSubview(backButton)
+        view.addSubview(circularButton)
         
         NSLayoutConstraint.activate([
             topLayer.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13),
@@ -305,6 +308,72 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             device.unlockForConfiguration()
         } catch {
             print("Error occurred while toggling torch feature, due to \(error)")
+    @objc private func captureImage() {
+        isCapturingImage = true
+    }
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard isCapturingImage else { return }
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+
+        // Reset the flag after capturing the image
+        isCapturingImage = false
+
+        DispatchQueue.main.async {
+            self.processCapturedImage(ciImage)
+        }
+    }
+    
+    private func processCapturedImage(_ image: CIImage) {
+        let request = VNRecognizeTextRequest { request, error in
+            guard let observations = request.results as? [VNRecognizedTextObservation], error == nil else {
+                print("Text recognition error: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            // Extract recognized text
+            let recognizedTexts = observations.compactMap { $0.topCandidates(1).first?.string }
+            self.extractIdentityCardData(from: recognizedTexts)
+        }
+        
+        request.recognitionLevel = .accurate
+        let handler = VNImageRequestHandler(ciImage: image, options: [:])
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            do {
+                try handler.perform([request])
+            } catch {
+                print("Failed to perform text recognition: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func extractIdentityCardData(from recognizedTexts: [String]) {
+        var identityId: String?
+        var maritalStatus: MaritalStatusEnum?
+        
+        for text in recognizedTexts {
+            if text.contains("NIK") || text.range(of: #"\d{16}"#, options: .regularExpression) != nil {
+                identityId = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+            }
+            
+            if text.uppercased().contains("BELUM KAWIN") {
+                maritalStatus = .single
+            } else if text.uppercased().contains("KAWIN") {
+                maritalStatus = .married
+            }
+        }
+        
+        if let identityId = identityId, let maritalStatus = maritalStatus {
+            DispatchQueue.main.async {
+                print("NIK \(identityId)")
+                print("Status \(maritalStatus)")
+            }
+        } else {
+            DispatchQueue.main.async {
+                print("Could not extract identity data.")
+            }
         }
     }
     
