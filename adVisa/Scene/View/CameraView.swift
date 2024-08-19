@@ -16,6 +16,15 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     private let captureSession = AVCaptureSession()
     private var deviceInput: AVCaptureDeviceInput?
     private var videoOutput: AVCaptureVideoDataOutput?
+    private var instructions: UILabel!
+    private var bottomLayer = UIView()
+    private var topLayer = UIView()
+    private var backButton = UIButton(type: .system)
+    private var instructionGuidelineImage = UIImage()
+    private var instructionGuidelineImageView = UIImageView()
+    
+    private let circularButton = UIButton(type: .system)
+    
     private var sessionQueue = DispatchQueue(label: "advisa.camerascanner.preview.scene")
     
     var screenRect: CGRect! = nil
@@ -23,6 +32,93 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     private var previewLayer = AVCaptureVideoPreviewLayer()
     
     var addToPreviewStream: ((CGImage) -> Void)?
+    
+    override func loadView() {
+        view = UIView()
+        view.backgroundColor = .white
+        
+        instructions = UILabel()
+        instructions.translatesAutoresizingMaskIntoConstraints = false
+        instructions.textAlignment = .center
+        instructions.text = "Use a solid background and put the object within the frame."
+        instructions.font = UIFont.systemFont(ofSize: 18)
+        instructions.textColor = .black
+        instructions.numberOfLines = 0
+        
+        
+        
+        instructionGuidelineImage = UIImage(named: "passport_bio_camera_guide.png")!
+        
+        instructionGuidelineImageView = UIImageView(image: instructionGuidelineImage)
+        instructionGuidelineImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        instructionGuidelineImageView.tintColor = .white
+        
+        instructionGuidelineImageView.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
+        
+        circularButton.backgroundColor = .blue
+        
+        circularButton.layer.cornerRadius = 30
+        circularButton.clipsToBounds = true
+        circularButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        topLayer = UIView()
+        topLayer.backgroundColor = .white
+        topLayer.translatesAutoresizingMaskIntoConstraints = false
+        topLayer.alpha = 0.2
+        
+        let chevronImage = UIImage(systemName: "chevron.backward")
+        backButton.setImage(chevronImage, for: .normal)
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(.blue, for: .normal)
+        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        backButton.tintColor = .blue
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.contentHorizontalAlignment = .leading
+        backButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        
+        bottomLayer = UIView()
+        bottomLayer.translatesAutoresizingMaskIntoConstraints = false
+        bottomLayer.backgroundColor = .white
+        
+        bottomLayer.addSubview(circularButton)
+        bottomLayer.addSubview(instructions)
+        
+        view.addSubview(topLayer)
+        view.addSubview(instructionGuidelineImageView)
+        view.addSubview(bottomLayer)
+        view.addSubview(backButton)
+        
+        NSLayoutConstraint.activate([
+            topLayer.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13),
+            
+            topLayer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topLayer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topLayer.topAnchor.constraint(equalTo: view.topAnchor),
+            
+            backButton.leadingAnchor.constraint(equalTo: topLayer.leadingAnchor, constant: 16),
+            backButton.bottomAnchor.constraint(equalTo: topLayer.bottomAnchor, constant: -16),
+            
+            instructionGuidelineImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            instructionGuidelineImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            bottomLayer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomLayer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomLayer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomLayer.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
+            
+            circularButton.bottomAnchor.constraint(equalTo: bottomLayer.bottomAnchor, constant: -32),
+            circularButton.centerXAnchor.constraint(equalTo: bottomLayer.centerXAnchor),
+            circularButton.widthAnchor.constraint(equalToConstant: 60),
+            circularButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            instructions.bottomAnchor.constraint(equalTo: circularButton.topAnchor, constant: -20),
+            instructions.centerXAnchor.constraint(equalTo: bottomLayer.centerXAnchor),
+            instructions.leadingAnchor.constraint(equalTo: bottomLayer.leadingAnchor, constant: 20),
+            instructions.trailingAnchor.constraint(equalTo: bottomLayer.trailingAnchor, constant: -20),
+        ])
+    }
     
     func checkPermission() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -41,15 +137,6 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             sessionQueue.resume()
         }
     }
-
-    
-//    lazy var previewStream: AsyncStream<CGImage> = {
-//        AsyncStream { continuation in
-//            addToPreviewStream = { cgImage in
-//                continuation.yield(cgImage)
-//            }
-//        }
-//    }()
     
     override func viewDidLoad() {
         checkPermission()
@@ -116,20 +203,20 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         screenRect = UIScreen.main.bounds
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = CGRect(x: 0, y: 0, width: screenRect.size.width, height: screenRect.size.height)
+        previewLayer.frame = view.bounds
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
         previewLayer.connection?.videoRotationAngle = 90
         
         DispatchQueue.main.async { [weak self] in
-            self!.view.layer.addSublayer(self!.previewLayer)
+            self!.view.layer.insertSublayer(self!.previewLayer, at: 0)
         }
     }
     
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: any UIViewControllerTransitionCoordinator) {
         screenRect = UIScreen.main.bounds
-        self.previewLayer.frame = CGRect(x: 0, y: 0, width: screenRect.size.width, height: screenRect.size.height)
+        previewLayer.frame = view.bounds
         
         switch UIDevice.current.orientation {
         case UIDeviceOrientation.portraitUpsideDown:
@@ -145,44 +232,8 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         }
     }
     
+    @objc private func backButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
-
-//struct CameraView: View {
-//    
-//    @Binding var image: CGImage?
-//    @State private var openMainPage = false
-//    
-//    var body: some View {
-//        GeometryReader { geo in
-//            
-//            if openMainPage {
-//                ContentView()
-//            } else {
-//                ZStack {
-//                    if let image = image {
-//                        Image(decorative: image, scale: geo.size.height)
-//                            .resizable()
-//                            .rotationEffect(.degrees(90))
-//                            .scaledToFit()
-//                            .frame(width: geo.size.width, height: geo.size.height)
-//                    } else {
-//                        VStack {
-//                            ContentUnavailableView("Camera not available...", systemImage: "xmark.circle.fill")
-//                                .frame(width: geo.size.width, height: geo.size.height)
-//                            
-//                            Button {
-//                                openMainPage = true
-//                            } label: {
-//                                Text("Back to home")
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-
-//#Preview {
-//    CameraView(image: Binding<CGImage?>)
-//}
