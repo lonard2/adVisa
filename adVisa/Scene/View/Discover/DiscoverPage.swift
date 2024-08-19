@@ -11,6 +11,7 @@ struct DiscoverPage: View {
     
     let countries = ["Turkey", "Hongkong", "Japan"]
     @State private var searchText = ""
+    @State private var hasDocument = false
     
     var searchResults: [String] {
         return countries.filter { $0.contains(searchText) }
@@ -62,11 +63,17 @@ struct DiscoverPage: View {
                         }
                         .padding(.horizontal, 16)
                         
+                        if !hasDocument {
+                            PersonalDocumentGuideCard()
+                        } else {
+                            EmptyView()
+                        }
+                        
                         Spacer()
                     }
                     .searchable(text: $searchText, prompt: "Search Country")
-                    .background(Color(.primaryWhite))
                 }
+                .background(Color(.primaryWhite))
             }
         }
         .background(Color(.primaryBlue))
