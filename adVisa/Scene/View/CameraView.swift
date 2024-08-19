@@ -20,10 +20,15 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     private var bottomLayer = UIView()
     private var topLayer = UIView()
     private var backButton = UIButton(type: .system)
+    
     private var instructionGuidelineImage = UIImage()
     private var instructionGuidelineImageView = UIImageView()
     
+    private var flashButton = UIButton(type: .system)
+    private var flashButtonBorder = UIView()
+    
     private let circularButton = UIButton(type: .system)
+    private var circularButtonBorder = UIView()
     
     private var sessionQueue = DispatchQueue(label: "advisa.camerascanner.preview.scene")
     
@@ -45,15 +50,11 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         instructions.textColor = .black
         instructions.numberOfLines = 0
         
-        
-        
         instructionGuidelineImage = UIImage(named: "passport_bio_camera_guide.png")!
         
         instructionGuidelineImageView = UIImageView(image: instructionGuidelineImage)
         instructionGuidelineImageView.translatesAutoresizingMaskIntoConstraints = false
-        
         instructionGuidelineImageView.tintColor = .white
-        
         instructionGuidelineImageView.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
         
         circularButton.backgroundColor = .blue
@@ -61,6 +62,16 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         circularButton.layer.cornerRadius = 30
         circularButton.clipsToBounds = true
         circularButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        circularButtonBorder = UIView()
+        circularButtonBorder.layer.cornerRadius = 30
+        circularButtonBorder.clipsToBounds = true
+        circularButtonBorder.translatesAutoresizingMaskIntoConstraints = false
+        
+        circularButtonBorder.tintColor = .none
+        circularButtonBorder.backgroundColor = .none
+        circularButtonBorder.layer.borderWidth = 2
+        circularButtonBorder.layer.borderColor = UIColor.gray.cgColor
         
         topLayer = UIView()
         topLayer.backgroundColor = .white
@@ -75,16 +86,39 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         backButton.tintColor = .blue
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.contentHorizontalAlignment = .leading
-        backButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
+
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        
+        let flashIcon = UIImage(systemName: "bolt.circle.fill")
+        flashButton.setImage(flashIcon, for: .normal)
+        flashButton.tintColor = .black
+        flashButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        flashButton.addTarget(self, action: #selector(toggleTorch), for: .touchUpInside)
+        
+        flashButtonBorder = UIView()
+        flashButtonBorder.layer.cornerRadius = 21
+        flashButtonBorder.clipsToBounds = true
+        
+        flashButtonBorder.tintColor = .none
+        flashButtonBorder.backgroundColor = .none
+        flashButtonBorder.layer.borderWidth = 2
+        flashButtonBorder.layer.borderColor = UIColor.gray.cgColor
+        flashButtonBorder.translatesAutoresizingMaskIntoConstraints = false
         
         bottomLayer = UIView()
         bottomLayer.translatesAutoresizingMaskIntoConstraints = false
         bottomLayer.backgroundColor = .white
         
         bottomLayer.addSubview(circularButton)
+        bottomLayer.addSubview(circularButtonBorder)
+        bottomLayer.addSubview(flashButton)
+        bottomLayer.addSubview(flashButtonBorder)
         bottomLayer.addSubview(instructions)
         
+        bottomLayer.bringSubviewToFront(flashButton)
+        bottomLayer.bringSubviewToFront(circularButton)
+
         view.addSubview(topLayer)
         view.addSubview(instructionGuidelineImageView)
         view.addSubview(bottomLayer)
@@ -112,6 +146,21 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             circularButton.centerXAnchor.constraint(equalTo: bottomLayer.centerXAnchor),
             circularButton.widthAnchor.constraint(equalToConstant: 60),
             circularButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            circularButtonBorder.centerXAnchor.constraint(equalTo: circularButton.centerXAnchor),
+            circularButtonBorder.centerYAnchor.constraint(equalTo: circularButton.centerYAnchor),
+            circularButtonBorder.widthAnchor.constraint(equalToConstant: 68),
+            circularButtonBorder.heightAnchor.constraint(equalToConstant: 68),
+            
+            flashButton.bottomAnchor.constraint(equalTo: bottomLayer.bottomAnchor, constant: -40),
+            flashButton.trailingAnchor.constraint(equalTo: bottomLayer.trailingAnchor, constant: -32),
+            flashButton.widthAnchor.constraint(equalToConstant: 50),
+            flashButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            flashButtonBorder.centerXAnchor.constraint(equalTo: flashButton.centerXAnchor),
+            flashButtonBorder.centerYAnchor.constraint(equalTo: flashButton.centerYAnchor),
+            flashButtonBorder.widthAnchor.constraint(equalToConstant: 50),
+            flashButtonBorder.heightAnchor.constraint(equalToConstant: 50),
             
             instructions.bottomAnchor.constraint(equalTo: circularButton.topAnchor, constant: -20),
             instructions.centerXAnchor.constraint(equalTo: bottomLayer.centerXAnchor),
@@ -234,6 +283,29 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     @objc private func backButtonTapped() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func toggleTorch() {
+        guard let device = AVCaptureDevice.userPreferredCamera else {
+            print("Capture device couldn't be initialized.")
+            return
+        }
+        guard device.hasTorch else {
+            print("Torch functionality isn't available right now.")
+            return
+        }
+        
+        do {
+            try device.lockForConfiguration()
+            
+            let torchOn = !device.isTorchActive
+            try device.setTorchModeOn(level: 1.0)
+            device.torchMode = torchOn ? .on : .off
+            
+            device.unlockForConfiguration()
+        } catch {
+            print("Error occurred while toggling torch feature, due to \(error)")
+        }
     }
     
 }

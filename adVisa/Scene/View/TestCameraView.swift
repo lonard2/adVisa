@@ -79,7 +79,7 @@ struct TestCameraView: View {
     private func extractIdentityCardData(from recognizedTexts: [String]) {
         // Extract NIK and Marital Status from recognized texts
         var identityId: String?
-        var maritalStatus: MartialStatusEnum?
+        var maritalStatus: MaritalStatusEnum?
         
         for text in recognizedTexts {
             if text.contains("NIK") || text.range(of: #"\d{16}"#, options: .regularExpression) != nil {
