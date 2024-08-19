@@ -20,6 +20,8 @@
 		237F71EB2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */; };
 		237F71EE2C6DB6D8009CFC1D /* Data in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71ED2C6DB6D8009CFC1D /* Data */; };
 		237F71F02C6DB7C9009CFC1D /* Repository in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71EF2C6DB7C9009CFC1D /* Repository */; };
+		263201A02C731F9F006BD06F /* DiscoverPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632019F2C731F9F006BD06F /* DiscoverPage.swift */; };
+		263201A22C733B71006BD06F /* DestinationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263201A12C733B71006BD06F /* DestinationCard.swift */; };
 		269E2DF92C6CE22700CFEB0E /* IdentityCardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2DF82C6CE22700CFEB0E /* IdentityCardRepository.swift */; };
 		269E2DFB2C6CE30300CFEB0E /* PlaneTicketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2DFA2C6CE30300CFEB0E /* PlaneTicketRepository.swift */; };
 		269E2DFD2C6CE70E00CFEB0E /* DomicileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2DFC2C6CE70E00CFEB0E /* DomicileRepository.swift */; };
@@ -81,6 +83,8 @@
 		237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDataRepositoryTests.swift; sourceTree = "<group>"; };
 		237F71ED2C6DB6D8009CFC1D /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = adVisa/Data; sourceTree = "<group>"; };
 		237F71EF2C6DB7C9009CFC1D /* Repository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Repository; path = adVisa/Data/Repository; sourceTree = "<group>"; };
+		2632019F2C731F9F006BD06F /* DiscoverPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPage.swift; sourceTree = "<group>"; };
+		263201A12C733B71006BD06F /* DestinationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationCard.swift; sourceTree = "<group>"; };
 		269E2DF82C6CE22700CFEB0E /* IdentityCardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityCardRepository.swift; sourceTree = "<group>"; };
 		269E2DFA2C6CE30300CFEB0E /* PlaneTicketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneTicketRepository.swift; sourceTree = "<group>"; };
 		269E2DFC2C6CE70E00CFEB0E /* DomicileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomicileRepository.swift; sourceTree = "<group>"; };
@@ -194,6 +198,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		265655532C735221004B2FAA /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				2632019F2C731F9F006BD06F /* DiscoverPage.swift */,
+				263201A12C733B71006BD06F /* DestinationCard.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
 		E909975E2C6B6CE200D6C39F /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +270,7 @@
 				E97F19E02C7226CE00895F25 /* TextRecognition.swift */,
 				2353DC742C6FA6D400E57375 /* DataPolicy.swift */,
 				2353DC752C6FA6D400E57375 /* DataPolicySheet.swift */,
+				265655532C735221004B2FAA /* Discover */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -427,6 +441,7 @@
 				269E2DFB2C6CE30300CFEB0E /* PlaneTicketRepository.swift in Sources */,
 				269E2E0D2C6CECB100CFEB0E /* CrimeRemarkRepository.swift in Sources */,
 				E90997662C6B710300D6C39F /* IdentityCardData.swift in Sources */,
+				263201A22C733B71006BD06F /* DestinationCard.swift in Sources */,
 				269E2DF92C6CE22700CFEB0E /* IdentityCardRepository.swift in Sources */,
 				2353DC782C6FA6D400E57375 /* DataPolicySheet.swift in Sources */,
 				269E2E052C6CE9E200CFEB0E /* GuarantorRepository.swift in Sources */,
@@ -445,6 +460,7 @@
 				E95791AB2C6CADF10023305B /* Enum.swift in Sources */,
 				E97932C62C6F95810065DDD0 /* CameraViewModel.swift in Sources */,
 				E95791A52C6C88990023305B /* OccupationData.swift in Sources */,
+				263201A02C731F9F006BD06F /* DiscoverPage.swift in Sources */,
 				E97932C02C6F8A780065DDD0 /* CameraManager.swift in Sources */,
 				E95791A32C6C88250023305B /* EmployerData.swift in Sources */,
 				2353DC772C6FA6D400E57375 /* DataPolicy.swift in Sources */,
