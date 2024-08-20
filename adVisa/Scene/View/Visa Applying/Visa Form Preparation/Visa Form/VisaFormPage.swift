@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct VisaFormPage: View {
+    
+    @StateObject var viewModel = VisaFormViewModel()
+    
     var body: some View {
         VStack(spacing: 20) {
             ZStack{
@@ -26,7 +29,7 @@ struct VisaFormPage: View {
                             .font(.system(size: 22))
                             .bold()
                         
-                        Text("Preview and complete your data")
+                        Text("We want to confirm some things...")
                             .foregroundStyle(Color(.primaryWhite))
                             .font(.system(size: 15))
                     }
@@ -35,117 +38,28 @@ struct VisaFormPage: View {
             }
             .background(Color(.primaryBlue))
             
-            VStack(spacing: 12) {
+            VStack(spacing: 20) {
                 
-                HStack {
-                    Text("Personal Data")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
+                switch(viewModel.pageStep) {
                     
-                    Spacer()
+                case 1:
+                    OtherNameForm(viewModel: viewModel)
+                                        
+                case 2:
+                    NationalityForm(viewModel: viewModel)
                     
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
+                case 3:
+                    CurrentAddressForm(viewModel: viewModel)
                     
-                }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
-                
-                HStack {
-                    Text("Visit Details")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
+                case 4:
+                    ContactInformationForm(viewModel: viewModel)
                     
-                    Spacer()
+                case 5:
+                    CompanyInformationForm(viewModel: viewModel)
                     
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                    
-                }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
-                
-                HStack {
-                    Text("Occupancy Details")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                    
-                }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
-                
-                HStack {
-                    Text("Guarantor/Inviter Details")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                    
-                }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
-                
-                HStack {
-                    Text("Criminal History")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                    
-                }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
-                
-                
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Text("Continue")
-                        .padding(.vertical, 7)
-                        .frame(maxWidth: .infinity)
-                        .font(.system(size: 15))
-                        .foregroundStyle(Color(.primaryWhite))
-                        .background(Color(.primaryBlue))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                default:
+                    Text("Page Error to Load...")
+                        .font(.title)
                 }
                 
             }
