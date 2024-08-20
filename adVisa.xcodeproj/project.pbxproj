@@ -40,6 +40,7 @@
 		269E2E072C6CEB9700CFEB0E /* InviterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2E062C6CEB9700CFEB0E /* InviterRepository.swift */; };
 		269E2E0B2C6CEC3E00CFEB0E /* MiscRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2E0A2C6CEC3E00CFEB0E /* MiscRepository.swift */; };
 		269E2E0D2C6CECB100CFEB0E /* CrimeRemarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2E0C2C6CECB100CFEB0E /* CrimeRemarkRepository.swift */; };
+		26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */; };
 		E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997602C6B6D7800D6C39F /* PassportData.swift */; };
 		E90997642C6B6EC300D6C39F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997632C6B6EC300D6C39F /* Helper.swift */; };
 		E90997662C6B710300D6C39F /* IdentityCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997652C6B710300D6C39F /* IdentityCardData.swift */; };
@@ -112,6 +113,7 @@
 		269E2E062C6CEB9700CFEB0E /* InviterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviterRepository.swift; sourceTree = "<group>"; };
 		269E2E0A2C6CEC3E00CFEB0E /* MiscRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscRepository.swift; sourceTree = "<group>"; };
 		269E2E0C2C6CECB100CFEB0E /* CrimeRemarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeRemarkRepository.swift; sourceTree = "<group>"; };
+		26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDetailsPage.swift; sourceTree = "<group>"; };
 		E90997602C6B6D7800D6C39F /* PassportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportData.swift; sourceTree = "<group>"; };
 		E90997632C6B6EC300D6C39F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E90997652C6B710300D6C39F /* IdentityCardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityCardData.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			children = (
 				269CE5652C739B9E0008EF59 /* DocumentRequirementPage.swift */,
 				260A23102C74166C00F034D1 /* VisaFormPage.swift */,
+				26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */,
 			);
 			path = "Visa Applying";
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				265655552C7356A6004B2FAA /* PersonalDocumentGuideCard.swift in Sources */,
 				E95791A72C6C8CF80023305B /* GuarantorData.swift in Sources */,
 				E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */,
+				26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */,
 				E90997682C6B712A00D6C39F /* PlaneTicketData.swift in Sources */,
 				E9855F662C6A4BF30019080B /* ContentView.swift in Sources */,
 				E95791A12C6C87AB0023305B /* TravelHistoryData.swift in Sources */,
@@ -716,7 +720,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = MRV3669B85;
+				DEVELOPMENT_TEAM = VPGX5Q423F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -746,7 +750,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = MRV3669B85;
+				DEVELOPMENT_TEAM = VPGX5Q423F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
