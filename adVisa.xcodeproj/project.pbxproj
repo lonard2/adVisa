@@ -24,6 +24,7 @@
 		237F71F02C6DB7C9009CFC1D /* Repository in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71EF2C6DB7C9009CFC1D /* Repository */; };
 		260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */; };
 		260A23112C74166C00F034D1 /* VisaFormPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23102C74166C00F034D1 /* VisaFormPage.swift */; };
+		260A23132C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */; };
 		263201A02C731F9F006BD06F /* DiscoverPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632019F2C731F9F006BD06F /* DiscoverPage.swift */; };
 		263201A22C733B71006BD06F /* DestinationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263201A12C733B71006BD06F /* DestinationCard.swift */; };
 		265655552C7356A6004B2FAA /* PersonalDocumentGuideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265655542C7356A6004B2FAA /* PersonalDocumentGuideCard.swift */; };
@@ -95,6 +96,7 @@
 		237F71EF2C6DB7C9009CFC1D /* Repository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Repository; path = adVisa/Data/Repository; sourceTree = "<group>"; };
 		260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentSheet.swift; sourceTree = "<group>"; };
 		260A23102C74166C00F034D1 /* VisaFormPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaFormPage.swift; sourceTree = "<group>"; };
+		260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmUploadDocumentPage.swift; sourceTree = "<group>"; };
 		2632019F2C731F9F006BD06F /* DiscoverPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPage.swift; sourceTree = "<group>"; };
 		263201A12C733B71006BD06F /* DestinationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationCard.swift; sourceTree = "<group>"; };
 		265655542C7356A6004B2FAA /* PersonalDocumentGuideCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDocumentGuideCard.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */,
+				260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */,
 			);
 			path = "Upload Document";
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				260A23112C74166C00F034D1 /* VisaFormPage.swift in Sources */,
+				260A23132C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift in Sources */,
 				E97932C22C6F8E6F0065DDD0 /* CIImage+Extension.swift in Sources */,
 				265655582C737B53004B2FAA /* VisaPromptPage.swift in Sources */,
 				269E2E072C6CEB9700CFEB0E /* InviterRepository.swift in Sources */,
