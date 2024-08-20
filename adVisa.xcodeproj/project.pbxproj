@@ -40,10 +40,17 @@
 		269E2E072C6CEB9700CFEB0E /* InviterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2E062C6CEB9700CFEB0E /* InviterRepository.swift */; };
 		269E2E0B2C6CEC3E00CFEB0E /* MiscRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2E0A2C6CEC3E00CFEB0E /* MiscRepository.swift */; };
 		269E2E0D2C6CECB100CFEB0E /* CrimeRemarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2E0C2C6CECB100CFEB0E /* CrimeRemarkRepository.swift */; };
+		26A166472C74A1C5008622D2 /* VisaFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166462C74A1C5008622D2 /* VisaFormViewModel.swift */; };
+		26A166492C74A37B008622D2 /* OtherNameForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166482C74A37B008622D2 /* OtherNameForm.swift */; };
+		26A1664B2C74A477008622D2 /* NationalityForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1664A2C74A477008622D2 /* NationalityForm.swift */; };
+		26A1664D2C74A55F008622D2 /* CurrentAddressForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1664C2C74A55F008622D2 /* CurrentAddressForm.swift */; };
+		26A166532C74A8D8008622D2 /* ContactInformationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166522C74A8D8008622D2 /* ContactInformationForm.swift */; };
+		26A166552C74A9BE008622D2 /* CompanyInformationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166542C74A9BE008622D2 /* CompanyInformationForm.swift */; };
 		26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */; };
 		26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85C2C748A9300970A26 /* Itinerary.swift */; };
 		26B4C8602C748C2D00970A26 /* ItineraryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */; };
 		26D07A9E2C74929900C024A7 /* FormPreviewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D07A9D2C74929900C024A7 /* FormPreviewPage.swift */; };
+		26D07AA12C7496AB00C024A7 /* EditVisaFormPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D07AA02C7496AB00C024A7 /* EditVisaFormPage.swift */; };
 		E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997602C6B6D7800D6C39F /* PassportData.swift */; };
 		E90997642C6B6EC300D6C39F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997632C6B6EC300D6C39F /* Helper.swift */; };
 		E90997662C6B710300D6C39F /* IdentityCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90997652C6B710300D6C39F /* IdentityCardData.swift */; };
@@ -119,10 +126,17 @@
 		269E2E062C6CEB9700CFEB0E /* InviterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviterRepository.swift; sourceTree = "<group>"; };
 		269E2E0A2C6CEC3E00CFEB0E /* MiscRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscRepository.swift; sourceTree = "<group>"; };
 		269E2E0C2C6CECB100CFEB0E /* CrimeRemarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeRemarkRepository.swift; sourceTree = "<group>"; };
+		26A166462C74A1C5008622D2 /* VisaFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaFormViewModel.swift; sourceTree = "<group>"; };
+		26A166482C74A37B008622D2 /* OtherNameForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherNameForm.swift; sourceTree = "<group>"; };
+		26A1664A2C74A477008622D2 /* NationalityForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalityForm.swift; sourceTree = "<group>"; };
+		26A1664C2C74A55F008622D2 /* CurrentAddressForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAddressForm.swift; sourceTree = "<group>"; };
+		26A166522C74A8D8008622D2 /* ContactInformationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInformationForm.swift; sourceTree = "<group>"; };
+		26A166542C74A9BE008622D2 /* CompanyInformationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInformationForm.swift; sourceTree = "<group>"; };
 		26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDetailsPage.swift; sourceTree = "<group>"; };
 		26B4C85C2C748A9300970A26 /* Itinerary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerary.swift; sourceTree = "<group>"; };
 		26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryCard.swift; sourceTree = "<group>"; };
 		26D07A9D2C74929900C024A7 /* FormPreviewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPreviewPage.swift; sourceTree = "<group>"; };
+		26D07AA02C7496AB00C024A7 /* EditVisaFormPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVisaFormPage.swift; sourceTree = "<group>"; };
 		E90997602C6B6D7800D6C39F /* PassportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportData.swift; sourceTree = "<group>"; };
 		E90997632C6B6EC300D6C39F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E90997652C6B710300D6C39F /* IdentityCardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityCardData.swift; sourceTree = "<group>"; };
@@ -261,11 +275,23 @@
 			isa = PBXGroup;
 			children = (
 				26B4C8592C748A3500970A26 /* Itinerary Preparation */,
-				260A23102C74166C00F034D1 /* VisaFormPage.swift */,
+				26D07A9F2C74961400C024A7 /* Visa Form Preparation */,
 				26B4C8582C74812100970A26 /* Document Preparation */,
 				26D07A9D2C74929900C024A7 /* FormPreviewPage.swift */,
 			);
 			path = "Visa Applying";
+			sourceTree = "<group>";
+		};
+		26A166432C74A15F008622D2 /* Questions Component */ = {
+			isa = PBXGroup;
+			children = (
+				26A166482C74A37B008622D2 /* OtherNameForm.swift */,
+				26A1664A2C74A477008622D2 /* NationalityForm.swift */,
+				26A1664C2C74A55F008622D2 /* CurrentAddressForm.swift */,
+				26A166522C74A8D8008622D2 /* ContactInformationForm.swift */,
+				26A166542C74A9BE008622D2 /* CompanyInformationForm.swift */,
+			);
+			path = "Questions Component";
 			sourceTree = "<group>";
 		};
 		26B4C8582C74812100970A26 /* Document Preparation */ = {
@@ -284,6 +310,32 @@
 				26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */,
 			);
 			path = "Itinerary Preparation";
+			sourceTree = "<group>";
+		};
+		26D07A9F2C74961400C024A7 /* Visa Form Preparation */ = {
+			isa = PBXGroup;
+			children = (
+				26D07AA22C7496B000C024A7 /* Visa Form */,
+				26D07AA32C74979B00C024A7 /* Edit Visa Form */,
+			);
+			path = "Visa Form Preparation";
+			sourceTree = "<group>";
+		};
+		26D07AA22C7496B000C024A7 /* Visa Form */ = {
+			isa = PBXGroup;
+			children = (
+				26A166432C74A15F008622D2 /* Questions Component */,
+				260A23102C74166C00F034D1 /* VisaFormPage.swift */,
+			);
+			path = "Visa Form";
+			sourceTree = "<group>";
+		};
+		26D07AA32C74979B00C024A7 /* Edit Visa Form */ = {
+			isa = PBXGroup;
+			children = (
+				26D07AA02C7496AB00C024A7 /* EditVisaFormPage.swift */,
+			);
+			path = "Edit Visa Form";
 			sourceTree = "<group>";
 		};
 		E909975E2C6B6CE200D6C39F /* Data */ = {
@@ -368,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				E97932C52C6F95810065DDD0 /* CameraViewModel.swift */,
+				26A166462C74A1C5008622D2 /* VisaFormViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -526,7 +579,9 @@
 			files = (
 				260A23112C74166C00F034D1 /* VisaFormPage.swift in Sources */,
 				260A23132C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift in Sources */,
+				26A1664B2C74A477008622D2 /* NationalityForm.swift in Sources */,
 				E97932C22C6F8E6F0065DDD0 /* CIImage+Extension.swift in Sources */,
+				26D07AA12C7496AB00C024A7 /* EditVisaFormPage.swift in Sources */,
 				265655582C737B53004B2FAA /* VisaPromptPage.swift in Sources */,
 				E9693A7B2C747A4300244F02 /* Document.swift in Sources */,
 				269E2E072C6CEB9700CFEB0E /* InviterRepository.swift in Sources */,
@@ -538,7 +593,9 @@
 				263201A22C733B71006BD06F /* DestinationCard.swift in Sources */,
 				269E2DF92C6CE22700CFEB0E /* IdentityCardRepository.swift in Sources */,
 				2353DC782C6FA6D400E57375 /* DataPolicySheet.swift in Sources */,
+				26A166492C74A37B008622D2 /* OtherNameForm.swift in Sources */,
 				269E2E052C6CE9E200CFEB0E /* GuarantorRepository.swift in Sources */,
+				26A166552C74A9BE008622D2 /* CompanyInformationForm.swift in Sources */,
 				E97F19DF2C7225A800895F25 /* DocumentScannerView.swift in Sources */,
 				237F71D32C6CB8F9009CFC1D /* PassportRepository.swift in Sources */,
 				237F71D82C6CBA5D009CFC1D /* DataError.swift in Sources */,
@@ -552,6 +609,7 @@
 				26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */,
 				E90997682C6B712A00D6C39F /* PlaneTicketData.swift in Sources */,
 				E9855F662C6A4BF30019080B /* ContentView.swift in Sources */,
+				26A166532C74A8D8008622D2 /* ContactInformationForm.swift in Sources */,
 				E95791A12C6C87AB0023305B /* TravelHistoryData.swift in Sources */,
 				E9855F642C6A4BF30019080B /* adVisaApp.swift in Sources */,
 				E95791AB2C6CADF10023305B /* Enum.swift in Sources */,
@@ -566,8 +624,10 @@
 				26B4C8602C748C2D00970A26 /* ItineraryCard.swift in Sources */,
 				237F71D62C6CB962009CFC1D /* DataRepositoryProtocol.swift in Sources */,
 				26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */,
+				26A166472C74A1C5008622D2 /* VisaFormViewModel.swift in Sources */,
 				269E2DFD2C6CE70E00CFEB0E /* DomicileRepository.swift in Sources */,
 				235535372C733A1200973F80 /* ImagePicker.swift in Sources */,
+				26A1664D2C74A55F008622D2 /* CurrentAddressForm.swift in Sources */,
 				269E2E032C6CE97000CFEB0E /* OccupationRepository.swift in Sources */,
 				237F71DC2C6CBBD2009CFC1D /* EmptyResponse.swift in Sources */,
 				26D07A9E2C74929900C024A7 /* FormPreviewPage.swift in Sources */,
