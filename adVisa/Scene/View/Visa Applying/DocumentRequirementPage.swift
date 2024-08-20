@@ -77,6 +77,9 @@ struct DocumentRequirementPage: View {
 }
 
 #Preview {
-    DocumentRequirementPage()
-        .modelContainer(for: Document.self)
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Document.self, configurations: config)
+    
+    return DocumentRequirementPage()
+        .modelContainer(container)
 }
