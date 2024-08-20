@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ItineraryDetailsPage: View {
+    
+    let itineraries: [Itinerary] = [
+        Itinerary(date: Date(), placeToVisit: "Hanaeda", placeToStay: "Hoshinoya")
+    ]
+    
     var body: some View {
         VStack(spacing: 20) {
             ZStack{
@@ -35,26 +41,32 @@ struct ItineraryDetailsPage: View {
             }
             .background(Color(.primaryBlue))
             
-            VStack(spacing: 12) {
+            VStack(alignment:.trailing, spacing: 12) {
                 
-                HStack {
-                    Text("Personal Data")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
+                Button {
                     
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(Color(.primaryBlack))
-                        .font(.system(size: 15))
-                    
+                } label: {
+                    HStack(spacing: 3) {
+                        Image(systemName: "plus.app.fill")
+                            .font(.system(size: 15))
+                            .foregroundStyle(Color(.primaryBlue))
+                        
+                        Text("Add more")
+                            .font(.system(size: 15))
+                            .foregroundStyle(Color(.primaryBlue))
+                    }
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 10)
+                    .background(Color.primaryBlue.opacity(0.15))
+                    .clipShape(RoundedRectangle(cornerRadius: 40))
+                    .frame(width:.infinity, height: .infinity)
                 }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
+                
+                ScrollView {
+                    ForEach(itineraries) { itinerary in
+                        ItineraryCard(itinerary: itinerary)
+                    }
+                }
                 
                 Spacer()
                 
@@ -81,5 +93,9 @@ struct ItineraryDetailsPage: View {
 }
 
 #Preview {
-    ItineraryDetailsPage()
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Itinerary.self, configurations: config)
+    
+    return ItineraryDetailsPage()
+        .modelContainer(container)
 }
