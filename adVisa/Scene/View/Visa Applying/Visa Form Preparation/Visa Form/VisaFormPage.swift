@@ -12,62 +12,79 @@ struct VisaFormPage: View {
     @StateObject var viewModel = VisaFormViewModel()
     
     var body: some View {
-        VStack(spacing: 20) {
-            ZStack{
-                Image("visa_header")
-                    .resizable()
-                    .scaledToFit()
-                
-                VStack(spacing: 20) {
-                    Image("step_2")
+        NavigationStack {
+            VStack(spacing: 20) {
+                ZStack{
+                    Image("visa_header")
                         .resizable()
                         .scaledToFit()
                     
-                    VStack(spacing: 8) {
-                        Text("VISA FORM")
-                            .foregroundStyle(Color(.primaryWhite))
-                            .font(.system(size: 22))
-                            .bold()
+                    VStack(spacing: 20) {
+                        Image("step_2")
+                            .resizable()
+                            .scaledToFit()
                         
-                        Text("We want to confirm some things...")
-                            .foregroundStyle(Color(.primaryWhite))
-                            .font(.system(size: 15))
+                        VStack(spacing: 8) {
+                            Text("VISA FORM")
+                                .foregroundStyle(Color(.primaryWhite))
+                                .font(.system(size: 22))
+                                .bold()
+                            
+                            Text("We want to confirm some things...")
+                                .foregroundStyle(Color(.primaryWhite))
+                                .font(.system(size: 15))
+                        }
                     }
+                    .offset(y: -36)
                 }
-                .offset(y: -36)
-            }
-            .background(Color(.primaryBlue))
-            
-            VStack(spacing: 20) {
+                .background(Color(.primaryBlue))
                 
-                switch(viewModel.pageStep) {
+                VStack(spacing: 20) {
                     
-                case 1:
-                    OtherNameForm(viewModel: viewModel)
-                                        
-                case 2:
-                    NationalityForm(viewModel: viewModel)
+                    switch(viewModel.pageStep) {
+                        
+                    case 1:
+                        OtherNameForm(viewModel: viewModel)
+                                            
+                    case 2:
+                        NationalityForm(viewModel: viewModel)
+                        
+                    case 3:
+                        CurrentAddressForm(viewModel: viewModel)
+                        
+                    case 4:
+                        ContactInformationForm(viewModel: viewModel)
+                        
+                    case 5:
+                        CompanyInformationForm(viewModel: viewModel)
+                        
+                    case 6:
+                        PreviousVisitForm(viewModel: viewModel)
+                        
+                    case 7:
+                        GuarantorForm(viewModel: viewModel)
+                        
+                    case 8:
+                        InviterForm(viewModel: viewModel)
+                        
+                    case 9:
+                        CrimeRecordForm(viewModel: viewModel)
+                        
+                    case 10:
+                        CrimeDetailForm(viewModel: viewModel)
+                        
+                    default:
+                        Text("Page Error to Load...")
+                            .font(.title)
+                    }
                     
-                case 3:
-                    CurrentAddressForm(viewModel: viewModel)
-                    
-                case 4:
-                    ContactInformationForm(viewModel: viewModel)
-                    
-                case 5:
-                    CompanyInformationForm(viewModel: viewModel)
-                    
-                default:
-                    Text("Page Error to Load...")
-                        .font(.title)
                 }
+                .padding(.vertical, 20)
+                .padding(.horizontal, 16)
+                .background(Color(.primaryWhite))
                 
+                Spacer()
             }
-            .padding(.vertical, 20)
-            .padding(.horizontal, 16)
-            .background(Color(.primaryWhite))
-            
-            Spacer()
         }
     }
 }

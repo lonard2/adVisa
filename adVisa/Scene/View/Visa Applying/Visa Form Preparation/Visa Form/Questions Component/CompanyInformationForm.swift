@@ -11,7 +11,7 @@ struct CompanyInformationForm: View {
     @ObservedObject var viewModel: VisaFormViewModel
     
     var body: some View {
-        VStack(spacing: 23) {
+        VStack(alignment: .leading, spacing: 23) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("The company name you currently work for:")
                     .font(.system(size: 17))

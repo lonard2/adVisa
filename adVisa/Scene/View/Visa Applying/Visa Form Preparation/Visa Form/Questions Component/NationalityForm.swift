@@ -11,7 +11,7 @@ struct NationalityForm: View {
     @ObservedObject var viewModel: VisaFormViewModel
     
     var body: some View {
-        VStack(spacing: 23) {
+        VStack(alignment: .leading, spacing: 23) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Have you registered to other nationality before?")
                     .font(.system(size: 17))

@@ -11,7 +11,7 @@ struct ContactInformationForm: View {
     @ObservedObject var viewModel: VisaFormViewModel
     
     var body: some View {
-        VStack(spacing: 23) {
+        VStack(alignment: .leading, spacing: 23) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Do you currently live in the same address as your ID?")
                     .font(.system(size: 17))

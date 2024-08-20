@@ -8,11 +8,148 @@
 import SwiftUI
 
 struct GuarantorForm: View {
+    @ObservedObject var viewModel: VisaFormViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 23) {
+            ScrollView() {
+                VStack(alignment: .leading, spacing: 23) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Do you have any guarantor in Japan?")
+                            .font(.system(size: 17))
+                            .fontWeight(.semibold)
+                        
+                        Picker(selection: $viewModel.hasGuarantor) {
+                            Text("Yes").tag(true)
+                            Text("No").tag(false)
+                            
+                        } label: {
+                            Text("hasGuarantor")
+                        }
+                        .pickerStyle(.palette)
+                    }
+                    
+                    if(viewModel.hasGuarantor) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("They are...")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            Picker(selection: $viewModel.guarantorGender) {
+                                Text("Male").tag("Male")
+                                Text("Female").tag("Female")
+                                
+                            } label: {
+                                Text("guarantorGender")
+                            }
+                            .pickerStyle(.palette)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What is \(viewModel.guarantorGender == "Male" ? "his" : "her") Name?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Guarantor's Name", text: $viewModel.guarantorName)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Where does \(viewModel.guarantorGender == "Male" ? "he" : "she") live?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Guarantor's Address", text: $viewModel.guarantorAddress)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("When does \(viewModel.guarantorGender == "Male" ? "he" : "she") born?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            DatePicker("", selection: $viewModel.guarantorBirthDate, displayedComponents: .date)
+                                .datePickerStyle(.compact)
+                                .labelsHidden()
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What is your relationship \(viewModel.guarantorGender == "Male" ? "him" : "her")?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Guarantor's Relationship With You", text: $viewModel.relationshipWithGuarantor)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What is \(viewModel.guarantorGender == "Male" ? "his" : "her") job?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Guarantor's Job", text: $viewModel.guarantorJob)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What is \(viewModel.guarantorGender == "Male" ? "his" : "her") position in that job?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Guarantor's Position", text: $viewModel.guarantorJobPosition)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What is \(viewModel.guarantorGender == "Male" ? "his" : "her") nationality?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Guarantor's Nationality", text: $viewModel.guarantorJobPosition)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                    }
+                }
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 24)
+        
+        Spacer()
+        
+        Button {
+            viewModel.nextForm()
+        } label: {
+            Text("Continue")
+                .padding(.vertical, 7)
+                .frame(maxWidth: .infinity)
+                .font(.system(size: 15))
+                .foregroundStyle(Color(.primaryWhite))
+                .background(Color(.primaryBlue))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
     }
 }
 
 #Preview {
-    GuarantorForm()
+    GuarantorForm(viewModel: VisaFormViewModel())
 }
