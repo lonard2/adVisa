@@ -23,6 +23,7 @@ public class SwiftDataContextManager {
     var crimeRemarkContainer: ModelContainer?
     
     var documentContainer: ModelContainer?
+    var itineraryContainer: ModelContainer?
     
     var context: ModelContext?
 
@@ -40,5 +41,6 @@ public class SwiftDataContextManager {
         initializeCrimeRemarkContainer()
         
         initializeDocument()
+        initializeItinerary()
     }
 }
