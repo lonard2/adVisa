@@ -67,7 +67,7 @@ struct VisaPromptPage: View {
                         
                         Picker(selection: $passportType) {
                             VStack {
-                                Image("passport")
+                                Image("Passport")
                                 Text("Regular Passport")
                             }.tag("Regular Passport")
                             

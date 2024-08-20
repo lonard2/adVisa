@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DocumentRequirementPage: View {
     
     @State private var isDone: Bool = false
+    
+    let documents: [Document] = [
+        Document(icon: "airplane.departure", title: "Away Flight Booking"),
+        Document(icon: "airplane.arrival", title: "Return Flight Booking"),
+        Document(icon: "building.2", title: "Hotel Bookings"),
+        Document(icon: "creditcard", title: "Bank Statement")
+    ]
     
     var body: some View {
         VStack(spacing: 20) {
@@ -36,105 +44,9 @@ struct DocumentRequirementPage: View {
             
             VStack(spacing: 20) {
                 
-                HStack {
-                    HStack(spacing: 12) {
-                        Image(systemName: "airplane.departure")
-                            .foregroundStyle(Color(.primaryBlack))
-                            .font(.system(size: 20))
-                            .fontWeight(.semibold)
-                        
-                        Text("Away Flight Booking")
-                            .foregroundStyle(Color(.primaryBlack))
-                            .font(.system(size: 22))
-                            .fontWeight(.semibold)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: isDone ? "checkmark.circle.fill" : "circle.fill")
-                        .foregroundStyle(Color(isDone ? .accentGreen : .defaultGray))
-                        .font(.system(size: 22))
+                ForEach(documents) { document in
+                    DocumentRow(document: document, isDone: $isDone)
                 }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: Color(isDone ? .accentGreen : .black.opacity(0.25)), radius: 4)
-                .frame(width: .infinity, height: .infinity)
-                
-                HStack {
-                    HStack(spacing: 12) {
-                        Image(systemName: "airplane.arrival")
-                            .foregroundStyle(Color(.primaryBlack))
-                            .font(.system(size: 20))
-                            .fontWeight(.semibold)
-                        
-                        Text("Return Flight Booking")
-                            .foregroundStyle(Color(.primaryBlack))
-                            .font(.system(size: 22))
-                            .fontWeight(.semibold)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: isDone ? "checkmark.circle.fill" : "circle.fill")
-                        .foregroundStyle(Color(isDone ? .accentGreen : .defaultGray))
-                        .font(.system(size: 22))
-                }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: Color(isDone ? .accentGreen : .black.opacity(0.25)), radius: 4)
-                .frame(width: .infinity, height: .infinity)
-                
-                HStack {
-                    HStack(spacing: 12) {
-                        Image(systemName: "building.2")
-                            .foregroundStyle(Color(.primaryBlack))
-                            .font(.system(size: 20))
-                            .fontWeight(.semibold)
-                        
-                        Text("Hotel Bookings")
-                            .foregroundStyle(Color(.primaryBlack))
-                            .font(.system(size: 22))
-                            .fontWeight(.semibold)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: isDone ? "checkmark.circle.fill" : "circle.fill")
-                        .foregroundStyle(Color(isDone ? .accentGreen : .defaultGray))
-                        .font(.system(size: 22))
-                }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: Color(isDone ? .accentGreen : .black.opacity(0.25)), radius: 4)
-                .frame(width: .infinity, height: .infinity)
-                
-                HStack {
-                    HStack(spacing: 12) {
-                        Image(systemName: "creditcard")
-                            .foregroundStyle(Color(.primaryBlack))
-                            .font(.system(size: 20))
-                            .fontWeight(.semibold)
-                        
-                        Text("Bank Statement")
-                            .foregroundStyle(Color(.primaryBlack))
-                            .font(.system(size: 22))
-                            .fontWeight(.semibold)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: isDone ? "checkmark.circle.fill" : "circle.fill")
-                        .foregroundStyle(Color(isDone ? .accentGreen : .defaultGray))
-                        .font(.system(size: 22))
-                }
-                .padding(16)
-                .background(Color(.primaryWhite))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: Color(isDone ? .accentGreen : .black.opacity(0.25)), radius: 4)
-                .frame(width: .infinity, height: .infinity)
                 
                 Spacer()
                 
@@ -161,8 +73,13 @@ struct DocumentRequirementPage: View {
             Spacer()
         }
     }
+    
 }
 
 #Preview {
-    DocumentRequirementPage()
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Document.self, configurations: config)
+    
+    return DocumentRequirementPage()
+        .modelContainer(container)
 }
