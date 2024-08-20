@@ -22,6 +22,8 @@ public class SwiftDataContextManager {
     var miscContainer: ModelContainer?
     var crimeRemarkContainer: ModelContainer?
     
+    var documentContainer: ModelContainer?
+    
     var context: ModelContext?
 
     init() {
@@ -36,5 +38,7 @@ public class SwiftDataContextManager {
         initializeInviterContainer()
         initializeMiscContainer()
         initializeCrimeRemarkContainer()
+        
+        initializeDocument()
     }
 }

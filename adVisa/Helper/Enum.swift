@@ -18,3 +18,7 @@ enum MaritalStatusEnum: String, Codable {
 enum PassportTypeEnum: String, Codable {
     case diplomatic, official, ordinary, other
 }
+
+enum DocumentRequirementConstants {
+    case awayTicket, boardingTicket, accomodation, bankStatement
+}
