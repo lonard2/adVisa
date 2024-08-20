@@ -105,7 +105,7 @@ struct VisaPromptPage: View {
                     } label: {
                         Text("Continue")
                             .padding(.vertical, 7)
-                            .frame(width: 369)
+                            .frame(maxWidth: .infinity)
                             .font(.system(size: 15))
                             .foregroundStyle(Color(.primaryWhite))
                             .background(Color.primaryBlue)
@@ -152,7 +152,7 @@ struct VisaPromptPage: View {
                     } label: {
                         Text("Continue")
                             .padding(.vertical, 7)
-                            .frame(width: 369)
+                            .frame(maxWidth: .infinity)
                             .font(.system(size: 15))
                             .foregroundStyle(Color(.primaryWhite))
                             .background(Color.primaryBlue)

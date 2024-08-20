@@ -28,7 +28,7 @@ struct DestinationCard: View {
                 
                 Text("1st Most Visited")
                     .font(.system(size: 11))
-                    .foregroundStyle(Color(.darkGray))
+                    .foregroundStyle(Color(.darkerGray))
             }
             .padding(8)
             

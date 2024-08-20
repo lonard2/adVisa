@@ -145,10 +145,10 @@ struct DocumentRequirementPage: View {
                 } label: {
                     Text("Continue")
                         .padding(.vertical, 7)
-                        .frame(width: 369)
+                        .frame(maxWidth: .infinity)
                         .font(.system(size: 15))
                         .foregroundStyle(Color(isDone ? .primaryWhite : .defaultGray))
-                        .background(Color(isDone ? .primaryBlue : .lightGray))
+                        .background(Color(isDone ? .primaryBlue : .lighterGray))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 .disabled(isDone ? false : true)

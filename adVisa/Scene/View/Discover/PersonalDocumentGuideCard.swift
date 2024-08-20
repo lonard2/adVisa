@@ -18,7 +18,7 @@ struct PersonalDocumentGuideCard: View {
                     
                     Text("Saved Document feature enables you to save your personal data easily through scanning your personal documents to help you efficiently auto-fill and complete your visa application directly within the app.")
                         .font(.system(size: 13))
-                        .foregroundStyle(Color(.darkGray))
+                        .foregroundStyle(Color(.darkerGray))
                 }
                 
                 NavigationLink {
