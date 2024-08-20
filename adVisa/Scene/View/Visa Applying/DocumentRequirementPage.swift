@@ -58,7 +58,7 @@ struct DocumentRequirementPage: View {
                 .padding(16)
                 .background(Color(.primaryWhite))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: Color(isDone ? .accentGreen : .gray), radius: 4)
+                .shadow(color: Color(isDone ? .accentGreen : .black.opacity(0.25)), radius: 4)
                 .frame(width: .infinity, height: .infinity)
                 
                 HStack {
@@ -83,7 +83,7 @@ struct DocumentRequirementPage: View {
                 .padding(16)
                 .background(Color(.primaryWhite))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: Color(isDone ? .accentGreen : .gray), radius: 4)
+                .shadow(color: Color(isDone ? .accentGreen : .black.opacity(0.25)), radius: 4)
                 .frame(width: .infinity, height: .infinity)
                 
                 HStack {
@@ -108,7 +108,7 @@ struct DocumentRequirementPage: View {
                 .padding(16)
                 .background(Color(.primaryWhite))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: Color(isDone ? .accentGreen : .gray), radius: 4)
+                .shadow(color: Color(isDone ? .accentGreen : .black.opacity(0.25)), radius: 4)
                 .frame(width: .infinity, height: .infinity)
                 
                 HStack {
@@ -133,7 +133,7 @@ struct DocumentRequirementPage: View {
                 .padding(16)
                 .background(Color(.primaryWhite))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-                .shadow(color: Color(isDone ? .accentGreen : .gray), radius: 4)
+                .shadow(color: Color(isDone ? .accentGreen : .black.opacity(0.25)), radius: 4)
                 .frame(width: .infinity, height: .infinity)
                 
                 Spacer()

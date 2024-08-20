@@ -35,7 +35,7 @@ struct DestinationCard: View {
         }
         .background(Color(.primaryWhite))
         .clipShape(RoundedRectangle(cornerRadius: 12))
-        .shadow(radius: 4, x: 0, y: 1)
+        .shadow(color: /*@START_MENU_TOKEN@*/.black/*@END_MENU_TOKEN@*/.opacity(0.25), radius: 4, x: 0, y: 1)
         .frame(width: 132, height: 166)
     }
 }
