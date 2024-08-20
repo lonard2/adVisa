@@ -46,6 +46,12 @@
 		26A1664D2C74A55F008622D2 /* CurrentAddressForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1664C2C74A55F008622D2 /* CurrentAddressForm.swift */; };
 		26A166532C74A8D8008622D2 /* ContactInformationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166522C74A8D8008622D2 /* ContactInformationForm.swift */; };
 		26A166552C74A9BE008622D2 /* CompanyInformationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166542C74A9BE008622D2 /* CompanyInformationForm.swift */; };
+		26A166572C74AD2C008622D2 /* PreviousVisitForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166562C74AD2C008622D2 /* PreviousVisitForm.swift */; };
+		26A166592C74CF83008622D2 /* GuarantorForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166582C74CF83008622D2 /* GuarantorForm.swift */; };
+		26A1665B2C74D61E008622D2 /* InviterForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1665A2C74D61E008622D2 /* InviterForm.swift */; };
+		26A1665D2C74DA3B008622D2 /* CrimeRecordForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1665C2C74DA3B008622D2 /* CrimeRecordForm.swift */; };
+		26A166602C74DD60008622D2 /* CheckBoxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1665F2C74DD60008622D2 /* CheckBoxToggleStyle.swift */; };
+		26A166622C74E50C008622D2 /* CrimeDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166612C74E50C008622D2 /* CrimeDetailForm.swift */; };
 		26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */; };
 		26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85C2C748A9300970A26 /* Itinerary.swift */; };
 		26B4C8602C748C2D00970A26 /* ItineraryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */; };
@@ -132,6 +138,12 @@
 		26A1664C2C74A55F008622D2 /* CurrentAddressForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAddressForm.swift; sourceTree = "<group>"; };
 		26A166522C74A8D8008622D2 /* ContactInformationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInformationForm.swift; sourceTree = "<group>"; };
 		26A166542C74A9BE008622D2 /* CompanyInformationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInformationForm.swift; sourceTree = "<group>"; };
+		26A166562C74AD2C008622D2 /* PreviousVisitForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousVisitForm.swift; sourceTree = "<group>"; };
+		26A166582C74CF83008622D2 /* GuarantorForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuarantorForm.swift; sourceTree = "<group>"; };
+		26A1665A2C74D61E008622D2 /* InviterForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviterForm.swift; sourceTree = "<group>"; };
+		26A1665C2C74DA3B008622D2 /* CrimeRecordForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeRecordForm.swift; sourceTree = "<group>"; };
+		26A1665F2C74DD60008622D2 /* CheckBoxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxToggleStyle.swift; sourceTree = "<group>"; };
+		26A166612C74E50C008622D2 /* CrimeDetailForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeDetailForm.swift; sourceTree = "<group>"; };
 		26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDetailsPage.swift; sourceTree = "<group>"; };
 		26B4C85C2C748A9300970A26 /* Itinerary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerary.swift; sourceTree = "<group>"; };
 		26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryCard.swift; sourceTree = "<group>"; };
@@ -290,8 +302,21 @@
 				26A1664C2C74A55F008622D2 /* CurrentAddressForm.swift */,
 				26A166522C74A8D8008622D2 /* ContactInformationForm.swift */,
 				26A166542C74A9BE008622D2 /* CompanyInformationForm.swift */,
+				26A166562C74AD2C008622D2 /* PreviousVisitForm.swift */,
+				26A166582C74CF83008622D2 /* GuarantorForm.swift */,
+				26A1665A2C74D61E008622D2 /* InviterForm.swift */,
+				26A1665C2C74DA3B008622D2 /* CrimeRecordForm.swift */,
+				26A166612C74E50C008622D2 /* CrimeDetailForm.swift */,
 			);
 			path = "Questions Component";
+			sourceTree = "<group>";
+		};
+		26A1665E2C74DD43008622D2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				26A1665F2C74DD60008622D2 /* CheckBoxToggleStyle.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		26B4C8582C74812100970A26 /* Document Preparation */ = {
@@ -398,6 +423,7 @@
 		E97932C72C6F97F80065DDD0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				26A1665E2C74DD43008622D2 /* Components */,
 				260A230D2C740F4E00F034D1 /* Upload Document */,
 				269CE5642C739B730008EF59 /* Visa Applying */,
 				265655562C737B1F004B2FAA /* VisaPrompt */,
@@ -589,6 +615,7 @@
 				269CE5662C739B9E0008EF59 /* DocumentRequirementPage.swift in Sources */,
 				260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */,
 				269E2E0D2C6CECB100CFEB0E /* CrimeRemarkRepository.swift in Sources */,
+				26A166572C74AD2C008622D2 /* PreviousVisitForm.swift in Sources */,
 				E90997662C6B710300D6C39F /* IdentityCardData.swift in Sources */,
 				263201A22C733B71006BD06F /* DestinationCard.swift in Sources */,
 				269E2DF92C6CE22700CFEB0E /* IdentityCardRepository.swift in Sources */,
@@ -600,17 +627,20 @@
 				237F71D32C6CB8F9009CFC1D /* PassportRepository.swift in Sources */,
 				237F71D82C6CBA5D009CFC1D /* DataError.swift in Sources */,
 				E9CD97682C7319DD00A4E85E /* CameraLayerView.swift in Sources */,
+				26A1665B2C74D61E008622D2 /* InviterForm.swift in Sources */,
 				E95791AF2C6CAF070023305B /* MiscData.swift in Sources */,
 				2353DC762C6FA6D400E57375 /* DataPolicyViewModel.swift in Sources */,
 				269E2E012C6CE8CB00CFEB0E /* EmployerRepository.swift in Sources */,
 				265655552C7356A6004B2FAA /* PersonalDocumentGuideCard.swift in Sources */,
 				E95791A72C6C8CF80023305B /* GuarantorData.swift in Sources */,
+				26A166592C74CF83008622D2 /* GuarantorForm.swift in Sources */,
 				E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */,
 				26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */,
 				E90997682C6B712A00D6C39F /* PlaneTicketData.swift in Sources */,
 				E9855F662C6A4BF30019080B /* ContentView.swift in Sources */,
 				26A166532C74A8D8008622D2 /* ContactInformationForm.swift in Sources */,
 				E95791A12C6C87AB0023305B /* TravelHistoryData.swift in Sources */,
+				26A1665D2C74DA3B008622D2 /* CrimeRecordForm.swift in Sources */,
 				E9855F642C6A4BF30019080B /* adVisaApp.swift in Sources */,
 				E95791AB2C6CADF10023305B /* Enum.swift in Sources */,
 				E97932C62C6F95810065DDD0 /* CameraViewModel.swift in Sources */,
@@ -627,6 +657,8 @@
 				26A166472C74A1C5008622D2 /* VisaFormViewModel.swift in Sources */,
 				269E2DFD2C6CE70E00CFEB0E /* DomicileRepository.swift in Sources */,
 				235535372C733A1200973F80 /* ImagePicker.swift in Sources */,
+				26A166602C74DD60008622D2 /* CheckBoxToggleStyle.swift in Sources */,
+				26A166622C74E50C008622D2 /* CrimeDetailForm.swift in Sources */,
 				26A1664D2C74A55F008622D2 /* CurrentAddressForm.swift in Sources */,
 				269E2E032C6CE97000CFEB0E /* OccupationRepository.swift in Sources */,
 				237F71DC2C6CBBD2009CFC1D /* EmptyResponse.swift in Sources */,
