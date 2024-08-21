@@ -13,7 +13,7 @@ struct ContactInformationForm: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 23) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Do you currently live in the same address as your ID?")
+                Text("Do your current address have a telephone number?")
                     .font(.system(size: 17))
                     .fontWeight(.semibold)
                 

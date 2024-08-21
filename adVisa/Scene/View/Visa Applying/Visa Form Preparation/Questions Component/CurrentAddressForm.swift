@@ -27,7 +27,7 @@ struct CurrentAddressForm: View {
                 .pickerStyle(.palette)
             }
             
-            if(viewModel.addressIsSameAsId) {
+            if(!viewModel.addressIsSameAsId) {
                 withAnimation(.easeInOut(duration: 0.3)) {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Where do you live now?")
