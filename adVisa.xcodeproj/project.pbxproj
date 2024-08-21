@@ -58,6 +58,7 @@
 		26A1666C2C7581AD008622D2 /* VisaPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1666B2C7581AD008622D2 /* VisaPromptViewModel.swift */; };
 		26A166712C758361008622D2 /* GeneralInformationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166702C758361008622D2 /* GeneralInformationForm.swift */; };
 		26A166732C7583B4008622D2 /* PersonalInformationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166722C7583B4008622D2 /* PersonalInformationForm.swift */; };
+		26A166752C7587BC008622D2 /* VisaFormConfirmationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166742C7587BC008622D2 /* VisaFormConfirmationPage.swift */; };
 		26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */; };
 		26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85C2C748A9300970A26 /* Itinerary.swift */; };
 		26B4C8602C748C2D00970A26 /* ItineraryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */; };
@@ -156,6 +157,7 @@
 		26A1666B2C7581AD008622D2 /* VisaPromptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaPromptViewModel.swift; sourceTree = "<group>"; };
 		26A166702C758361008622D2 /* GeneralInformationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInformationForm.swift; sourceTree = "<group>"; };
 		26A166722C7583B4008622D2 /* PersonalInformationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationForm.swift; sourceTree = "<group>"; };
+		26A166742C7587BC008622D2 /* VisaFormConfirmationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaFormConfirmationPage.swift; sourceTree = "<group>"; };
 		26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDetailsPage.swift; sourceTree = "<group>"; };
 		26B4C85C2C748A9300970A26 /* Itinerary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerary.swift; sourceTree = "<group>"; };
 		26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryCard.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			children = (
 				26A166432C74A15F008622D2 /* Questions Component */,
 				260A23102C74166C00F034D1 /* VisaFormPage.swift */,
+				26A166742C7587BC008622D2 /* VisaFormConfirmationPage.swift */,
 			);
 			path = "Visa Form";
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				26A166602C74DD60008622D2 /* CheckBoxToggleStyle.swift in Sources */,
 				26A166622C74E50C008622D2 /* CrimeDetailForm.swift in Sources */,
 				26A1664D2C74A55F008622D2 /* CurrentAddressForm.swift in Sources */,
+				26A166752C7587BC008622D2 /* VisaFormConfirmationPage.swift in Sources */,
 				269E2E032C6CE97000CFEB0E /* OccupationRepository.swift in Sources */,
 				237F71DC2C6CBBD2009CFC1D /* EmptyResponse.swift in Sources */,
 				26D07A9E2C74929900C024A7 /* FormPreviewPage.swift in Sources */,
