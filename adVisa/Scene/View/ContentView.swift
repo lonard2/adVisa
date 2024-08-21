@@ -5,6 +5,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     
@@ -48,9 +49,9 @@ struct ContentView: View {
             SwiftDataContextManager()
         }
     }
-    
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: Document.self)
 }

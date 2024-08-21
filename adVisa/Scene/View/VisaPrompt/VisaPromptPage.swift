@@ -23,8 +23,12 @@ struct VisaPromptPage: View {
             
             ZStack(alignment: .bottom) {
                 Image("japan_image")
+                    .resizable()
+                    .scaledToFit()
                 
                 Image("visa_header")
+                    .resizable()
+                    .scaledToFit()
             }
             
             VStack(alignment: .leading, spacing: 16) {
@@ -54,7 +58,6 @@ struct VisaPromptPage: View {
                             DatePicker("", selection: $endDate, in: startDate..., displayedComponents: .date)
                                 .datePickerStyle(.compact)
                                 .labelsHidden()
-                                .foregroundStyle(Color(.primaryBlue))
                         }
                         
                     }
@@ -67,7 +70,7 @@ struct VisaPromptPage: View {
                         
                         Picker(selection: $passportType) {
                             VStack {
-                                Image("passport")
+                                Image("Passport")
                                 Text("Regular Passport")
                             }.tag("Regular Passport")
                             

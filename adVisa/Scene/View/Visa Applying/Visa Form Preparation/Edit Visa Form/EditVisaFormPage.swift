@@ -1,5 +1,5 @@
 //
-//  VisaFormPage.swift
+//  EditVisaFormPage.swift
 //  adVisa
 //
 //  Created by Dixon Willow on 20/08/24.
@@ -7,14 +7,18 @@
 
 import SwiftUI
 
-struct VisaFormPage: View {
+struct EditVisaFormPage: View {
     var body: some View {
         VStack(spacing: 20) {
             ZStack{
                 Image("visa_header")
+                    .resizable()
+                    .scaledToFit()
                 
                 VStack(spacing: 20) {
                     Image("step_2")
+                        .resizable()
+                        .scaledToFit()
                     
                     VStack(spacing: 8) {
                         Text("VISA FORM")
@@ -155,5 +159,5 @@ struct VisaFormPage: View {
 }
 
 #Preview {
-    VisaFormPage()
+    EditVisaFormPage()
 }

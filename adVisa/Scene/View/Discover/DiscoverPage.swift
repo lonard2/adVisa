@@ -22,11 +22,13 @@ struct DiscoverPage: View {
             VStack(spacing: 0){
                 ZStack{
                     Image("discover_header")
-                    Text("Prepare peacefully, holiday happily")
+                        .resizable()
+                        .scaledToFit()
+                    Text("Discover what you need to travel.")
                         .foregroundStyle(Color(.white))
                         .font(.system(size: 16))
                         .bold()
-                        .offset(y:-30)
+                        .offset(y: -48)
                 }
                 
                 VStack {

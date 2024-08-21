@@ -277,13 +277,13 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         
         screenRect = UIScreen.main.bounds
         
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.bounds
-        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        
-        previewLayer.connection?.videoRotationAngle = 90
-        
         DispatchQueue.main.async { [weak self] in
+            self!.previewLayer = AVCaptureVideoPreviewLayer(session: self!.captureSession)
+            self!.previewLayer.frame = self!.view.bounds
+            self!.previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            
+            self!.previewLayer.connection?.videoRotationAngle = 90
+            
             self!.view.layer.insertSublayer(self!.previewLayer, at: 0)
         }
     }
