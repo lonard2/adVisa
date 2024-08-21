@@ -45,7 +45,6 @@ struct EditVisaFormPage: View {
                 .background(Color(.primaryWhite))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
                 
                 HStack {
                     Text("Visit Details")
@@ -64,7 +63,6 @@ struct EditVisaFormPage: View {
                 .background(Color(.primaryWhite))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
                 
                 HStack {
                     Text("Occupancy Details")
@@ -83,7 +81,6 @@ struct EditVisaFormPage: View {
                 .background(Color(.primaryWhite))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
                 
                 HStack {
                     Text("Guarantor/Inviter Details")
@@ -102,7 +99,6 @@ struct EditVisaFormPage: View {
                 .background(Color(.primaryWhite))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
                 
                 HStack {
                     Text("Criminal History")
@@ -121,7 +117,6 @@ struct EditVisaFormPage: View {
                 .background(Color(.primaryWhite))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .black.opacity(0.25) ,radius: 4)
-                .frame(width: .infinity, height: .infinity)
                 
                 
                 

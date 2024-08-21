@@ -59,7 +59,6 @@ struct ItineraryDetailsPage: View {
                     .padding(.horizontal, 10)
                     .background(Color.primaryBlue.opacity(0.15))
                     .clipShape(RoundedRectangle(cornerRadius: 40))
-                    .frame(width:.infinity, height: .infinity)
                 }
                 
                 ScrollView {
@@ -93,9 +92,5 @@ struct ItineraryDetailsPage: View {
 }
 
 #Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Itinerary.self, configurations: config)
-    
-    return ItineraryDetailsPage()
-        .modelContainer(container)
+    ItineraryDetailsPage()
 }

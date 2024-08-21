@@ -54,7 +54,6 @@ struct ItineraryCard: View {
         .background(Color(.blueTint))
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(color: .black.opacity(0.25) ,radius: 4)
-        .frame(width: .infinity, height: .infinity)
     }
 }
 
