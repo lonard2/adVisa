@@ -107,7 +107,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             selectedDocumentWidth = 250
             selectedDocumentHeight = 250
         case .none:
-            selectedDocumentFile = "passport_bio_camera_guide.png"
+            selectedDocumentFile = "passport_endorsement_camera_guide.png"
             selectedDocumentWidth = 250
             selectedDocumentHeight = 250
         }
@@ -449,19 +449,19 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     cropWidth = 960
                     cropHeight = 1400
                 case .passport_endorsement:
-                    cropWidth = 960
-                    cropHeight = 1400
+                    cropWidth = 1150
+                    cropHeight = 780
                 case .ktp:
                     cropWidth = 960
                     cropHeight = 1400
                 case .self_portrait:
                     return
                 case .generic:
-                    cropWidth = 960
-                    cropHeight = 1400
+                    cropWidth = 1150
+                    cropHeight = 780
                 case .none:
-                    cropWidth = 960
-                    cropHeight = 1400
+                    cropWidth = 1150
+                    cropHeight = 780
                 }
                 
                 if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: CGFloat(cropWidth), cropHeight: CGFloat(cropHeight)) {
