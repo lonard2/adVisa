@@ -26,8 +26,8 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     private var topLayer = UIView()
     private var backButton = UIButton(type: .system)
     
-//    private var capturedImageView: UIImageView!
-//    private var capturedImage: UIImage?
+    private var capturedImageView: UIImageView!
+    private var capturedImage: UIImage?
     
     
     private var instructionGuidelineImage = UIImage()
@@ -51,14 +51,14 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         view = UIView()
         view.backgroundColor = .white
         
-//        capturedImageView = UIImageView()
-//        capturedImageView.translatesAutoresizingMaskIntoConstraints = false
-//        capturedImageView.contentMode = .scaleAspectFill
-//        capturedImageView.clipsToBounds = true
-//        capturedImageView.isHidden = true
-//        capturedImageView.transform = CGAffineTransform(rotationAngle: .pi/2)
-//        
-//        view.addSubview(capturedImageView)
+        capturedImageView = UIImageView()
+        capturedImageView.translatesAutoresizingMaskIntoConstraints = false
+        capturedImageView.contentMode = .scaleAspectFit
+        capturedImageView.clipsToBounds = true
+        capturedImageView.isHidden = true
+        capturedImageView.transform = CGAffineTransform(rotationAngle: .pi/2)
+        
+        view.addSubview(capturedImageView)
         
         instructions = UILabel()
         instructions.translatesAutoresizingMaskIntoConstraints = false
@@ -151,10 +151,10 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             topLayer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             topLayer.topAnchor.constraint(equalTo: view.topAnchor),
             
-//            capturedImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            capturedImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            capturedImageView.topAnchor.constraint(equalTo: view.topAnchor),
-//            capturedImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            capturedImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            capturedImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            capturedImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            capturedImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             backButton.leadingAnchor.constraint(equalTo: topLayer.leadingAnchor, constant: 16),
             backButton.bottomAnchor.constraint(equalTo: topLayer.bottomAnchor, constant: -16),
@@ -264,7 +264,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         
         do {
             try preferredCamera.lockForConfiguration()
-            preferredCamera.videoZoomFactor = 2
+            preferredCamera.videoZoomFactor = 1
             preferredCamera.autoFocusRangeRestriction = .none
             preferredCamera.unlockForConfiguration()
         } catch {
@@ -347,34 +347,34 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         DispatchQueue.main.async {
             self.processCapturedImage(ciImage)
         }
-//        if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
-//            let ciImage = CIImage(cvPixelBuffer: imageBuffer)
-//            
-//            let context = CIContext()
-//            
-//            let imageOrientation: UIImage.Orientation
-//            switch UIDevice.current.orientation {
-//            case .portrait:
-//                imageOrientation = .right
-//            case .landscapeLeft:
-//                imageOrientation = .up
-//            case .landscapeRight:
-//                imageOrientation = .down
-//            case .portraitUpsideDown:
-//                imageOrientation = .left
-//            default:
-//                imageOrientation = .up
-//            }
-//            
-//            let rect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(imageBuffer), height: CVPixelBufferGetHeight(imageBuffer))
-//            print("CI Image Extent : \(ciImage.extent)")
-//            if let cgImage = context.createCGImage(ciImage, from: rect) {
-//                var image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .up)
-////                displayCapturedImage(image)
-//                
-//                
-//            }
-//        }
+        if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+            let ciImage = CIImage(cvPixelBuffer: imageBuffer)
+            
+            let context = CIContext()
+            
+            let imageOrientation: UIImage.Orientation
+            switch UIDevice.current.orientation {
+            case .portrait:
+                imageOrientation = .up
+            case .landscapeLeft:
+                imageOrientation = .right
+            case .landscapeRight:
+                imageOrientation = .left
+            case .portraitUpsideDown:
+                imageOrientation = .down
+            default:
+                imageOrientation = .up
+            }
+            
+            let rect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(imageBuffer), height: CVPixelBufferGetHeight(imageBuffer))
+            print("CI Image Extent : \(ciImage.extent)")
+            if let cgImage = context.createCGImage(ciImage, from: rect) {
+                var image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .up)
+                displayCapturedImage(image)
+                
+                
+            }
+        }
         isCapturingImage = false
     }
     
@@ -391,24 +391,24 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         return normalizedImage
     }
     
-//    private func convertPixelBufferToUIImage(_ pixelBuffer: CVPixelBuffer) -> UIImage {
-//        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-//        let context = CIContext()
-//
-//        if let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
-//            return UIImage(cgImage: cgImage)
-//        } else {
-//            return UIImage()
-//        }
-//    }
+    private func convertPixelBufferToUIImage(_ pixelBuffer: CVPixelBuffer) -> UIImage {
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+        let context = CIContext()
+
+        if let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
+            return UIImage(cgImage: cgImage)
+        } else {
+            return UIImage()
+        }
+    }
     
-//    private func displayCapturedImage(_ image: UIImage) {
-//        DispatchQueue.main.async {
-//            self.capturedImage = image
-//            self.capturedImageView.image = image
-//            self.capturedImageView.isHidden = false
-//        }
-//    }
+    private func displayCapturedImage(_ image: UIImage) {
+        DispatchQueue.main.async {
+            self.capturedImage = image
+            self.capturedImageView.image = image
+            self.capturedImageView.isHidden = false
+        }
+    }
     
     private func cropImage(_ image: CIImage) -> CIImage {
         // Convert instructionGuidelineImageView frame to the previewLayer's coordinate system
