@@ -29,7 +29,6 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     private var capturedImageView: UIImageView!
     private var capturedImage: UIImage?
     
-    
     private var instructionGuidelineImage = UIImage()
     private var instructionGuidelineImageView = UIImageView()
     
@@ -50,6 +49,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
+        view.clipsToBounds = true
         
         capturedImageView = UIImageView()
         capturedImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +57,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         capturedImageView.clipsToBounds = true
         capturedImageView.isHidden = true
         capturedImageView.transform = CGAffineTransform(rotationAngle: .pi/2)
+        capturedImageView.sizeToFit()
         
         view.addSubview(capturedImageView)
         
@@ -411,6 +412,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             self.capturedImage = image
             self.capturedImageView.image = image
             self.capturedImageView.clipsToBounds = true
+            self.capturedImageView.sizeToFit()
             self.capturedImageView.isHidden = false
         }
     }
