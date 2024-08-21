@@ -53,6 +53,13 @@
 		26A1665D2C74DA3B008622D2 /* CrimeRecordForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1665C2C74DA3B008622D2 /* CrimeRecordForm.swift */; };
 		26A166602C74DD60008622D2 /* CheckBoxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1665F2C74DD60008622D2 /* CheckBoxToggleStyle.swift */; };
 		26A166622C74E50C008622D2 /* CrimeDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166612C74E50C008622D2 /* CrimeDetailForm.swift */; };
+		26A166652C75694E008622D2 /* RedirectJavesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166642C75694E008622D2 /* RedirectJavesPage.swift */; };
+		26A166682C757359008622D2 /* SavedDocumentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166672C757359008622D2 /* SavedDocumentPage.swift */; };
+		26A1666A2C757742008622D2 /* SavedDocumentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166692C757742008622D2 /* SavedDocumentCard.swift */; };
+		26A1666C2C7581AD008622D2 /* VisaPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1666B2C7581AD008622D2 /* VisaPromptViewModel.swift */; };
+		26A166712C758361008622D2 /* GeneralInformationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166702C758361008622D2 /* GeneralInformationForm.swift */; };
+		26A166732C7583B4008622D2 /* PersonalInformationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166722C7583B4008622D2 /* PersonalInformationForm.swift */; };
+		26A166752C7587BC008622D2 /* VisaFormConfirmationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166742C7587BC008622D2 /* VisaFormConfirmationPage.swift */; };
 		26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */; };
 		26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85C2C748A9300970A26 /* Itinerary.swift */; };
 		26B4C8602C748C2D00970A26 /* ItineraryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */; };
@@ -145,6 +152,13 @@
 		26A1665C2C74DA3B008622D2 /* CrimeRecordForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeRecordForm.swift; sourceTree = "<group>"; };
 		26A1665F2C74DD60008622D2 /* CheckBoxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxToggleStyle.swift; sourceTree = "<group>"; };
 		26A166612C74E50C008622D2 /* CrimeDetailForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeDetailForm.swift; sourceTree = "<group>"; };
+		26A166642C75694E008622D2 /* RedirectJavesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectJavesPage.swift; sourceTree = "<group>"; };
+		26A166672C757359008622D2 /* SavedDocumentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDocumentPage.swift; sourceTree = "<group>"; };
+		26A166692C757742008622D2 /* SavedDocumentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDocumentCard.swift; sourceTree = "<group>"; };
+		26A1666B2C7581AD008622D2 /* VisaPromptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaPromptViewModel.swift; sourceTree = "<group>"; };
+		26A166702C758361008622D2 /* GeneralInformationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInformationForm.swift; sourceTree = "<group>"; };
+		26A166722C7583B4008622D2 /* PersonalInformationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationForm.swift; sourceTree = "<group>"; };
+		26A166742C7587BC008622D2 /* VisaFormConfirmationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaFormConfirmationPage.swift; sourceTree = "<group>"; };
 		26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDetailsPage.swift; sourceTree = "<group>"; };
 		26B4C85C2C748A9300970A26 /* Itinerary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerary.swift; sourceTree = "<group>"; };
 		26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryCard.swift; sourceTree = "<group>"; };
@@ -278,6 +292,7 @@
 		265655562C737B1F004B2FAA /* VisaPrompt */ = {
 			isa = PBXGroup;
 			children = (
+				26A1666D2C758330008622D2 /* Visa Prompt Form */,
 				265655572C737B53004B2FAA /* VisaPromptPage.swift */,
 			);
 			path = VisaPrompt;
@@ -319,6 +334,32 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		26A166632C75692A008622D2 /* Visa Exemption */ = {
+			isa = PBXGroup;
+			children = (
+				26A166642C75694E008622D2 /* RedirectJavesPage.swift */,
+			);
+			path = "Visa Exemption";
+			sourceTree = "<group>";
+		};
+		26A166662C757342008622D2 /* Saved Documents */ = {
+			isa = PBXGroup;
+			children = (
+				26A166672C757359008622D2 /* SavedDocumentPage.swift */,
+				26A166692C757742008622D2 /* SavedDocumentCard.swift */,
+			);
+			path = "Saved Documents";
+			sourceTree = "<group>";
+		};
+		26A1666D2C758330008622D2 /* Visa Prompt Form */ = {
+			isa = PBXGroup;
+			children = (
+				26A166702C758361008622D2 /* GeneralInformationForm.swift */,
+				26A166722C7583B4008622D2 /* PersonalInformationForm.swift */,
+			);
+			path = "Visa Prompt Form";
+			sourceTree = "<group>";
+		};
 		26B4C8582C74812100970A26 /* Document Preparation */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +392,7 @@
 			children = (
 				26A166432C74A15F008622D2 /* Questions Component */,
 				260A23102C74166C00F034D1 /* VisaFormPage.swift */,
+				26A166742C7587BC008622D2 /* VisaFormConfirmationPage.swift */,
 			);
 			path = "Visa Form";
 			sourceTree = "<group>";
@@ -423,6 +465,8 @@
 		E97932C72C6F97F80065DDD0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				26A166662C757342008622D2 /* Saved Documents */,
+				26A166632C75692A008622D2 /* Visa Exemption */,
 				26A1665E2C74DD43008622D2 /* Components */,
 				260A230D2C740F4E00F034D1 /* Upload Document */,
 				269CE5642C739B730008EF59 /* Visa Applying */,
@@ -447,6 +491,7 @@
 			children = (
 				E97932C52C6F95810065DDD0 /* CameraViewModel.swift */,
 				26A166462C74A1C5008622D2 /* VisaFormViewModel.swift */,
+				26A1666B2C7581AD008622D2 /* VisaPromptViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -617,9 +662,11 @@
 				E9693A7B2C747A4300244F02 /* Document.swift in Sources */,
 				269E2E072C6CEB9700CFEB0E /* InviterRepository.swift in Sources */,
 				269E2DFB2C6CE30300CFEB0E /* PlaneTicketRepository.swift in Sources */,
+				26A1666C2C7581AD008622D2 /* VisaPromptViewModel.swift in Sources */,
 				269CE5662C739B9E0008EF59 /* DocumentRequirementPage.swift in Sources */,
 				260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */,
 				269E2E0D2C6CECB100CFEB0E /* CrimeRemarkRepository.swift in Sources */,
+				26A166652C75694E008622D2 /* RedirectJavesPage.swift in Sources */,
 				26A166572C74AD2C008622D2 /* PreviousVisitForm.swift in Sources */,
 				E90997662C6B710300D6C39F /* IdentityCardData.swift in Sources */,
 				263201A22C733B71006BD06F /* DestinationCard.swift in Sources */,
@@ -638,6 +685,7 @@
 				269E2E012C6CE8CB00CFEB0E /* EmployerRepository.swift in Sources */,
 				265655552C7356A6004B2FAA /* PersonalDocumentGuideCard.swift in Sources */,
 				E95791A72C6C8CF80023305B /* GuarantorData.swift in Sources */,
+				26A1666A2C757742008622D2 /* SavedDocumentCard.swift in Sources */,
 				26A166592C74CF83008622D2 /* GuarantorForm.swift in Sources */,
 				E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */,
 				26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */,
@@ -658,6 +706,7 @@
 				269E2E0B2C6CEC3E00CFEB0E /* MiscRepository.swift in Sources */,
 				26B4C8602C748C2D00970A26 /* ItineraryCard.swift in Sources */,
 				237F71D62C6CB962009CFC1D /* DataRepositoryProtocol.swift in Sources */,
+				26A166682C757359008622D2 /* SavedDocumentPage.swift in Sources */,
 				26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */,
 				26A166472C74A1C5008622D2 /* VisaFormViewModel.swift in Sources */,
 				269E2DFD2C6CE70E00CFEB0E /* DomicileRepository.swift in Sources */,
@@ -666,6 +715,7 @@
 				26A166602C74DD60008622D2 /* CheckBoxToggleStyle.swift in Sources */,
 				26A166622C74E50C008622D2 /* CrimeDetailForm.swift in Sources */,
 				26A1664D2C74A55F008622D2 /* CurrentAddressForm.swift in Sources */,
+				26A166752C7587BC008622D2 /* VisaFormConfirmationPage.swift in Sources */,
 				269E2E032C6CE97000CFEB0E /* OccupationRepository.swift in Sources */,
 				237F71DC2C6CBBD2009CFC1D /* EmptyResponse.swift in Sources */,
 				26D07A9E2C74929900C024A7 /* FormPreviewPage.swift in Sources */,
@@ -675,10 +725,12 @@
 				E9693A772C74784E00244F02 /* DocumentRow.swift in Sources */,
 				E97932C42C6F8EEE0065DDD0 /* CameraView.swift in Sources */,
 				E90997642C6B6EC300D6C39F /* Helper.swift in Sources */,
+				26A166712C758361008622D2 /* GeneralInformationForm.swift in Sources */,
 				E95791B12C6CAF460023305B /* CrimeRemarkData.swift in Sources */,
 				E95791A92C6CACDC0023305B /* InviterData.swift in Sources */,
 				E9693A752C74763000244F02 /* Constants.swift in Sources */,
 				237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */,
+				26A166732C7583B4008622D2 /* PersonalInformationForm.swift in Sources */,
 				235535352C7339BA00973F80 /* TestCameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -857,15 +909,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = BHS88Y2WBP;
+				DEVELOPMENT_TEAM = MRV3669B85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -873,9 +924,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lonard.adVisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -887,15 +942,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = BHS88Y2WBP;
+				DEVELOPMENT_TEAM = MRV3669B85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -903,9 +957,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lonard.adVisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
