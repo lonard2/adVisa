@@ -53,6 +53,8 @@
 		26A166602C74DD60008622D2 /* CheckBoxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1665F2C74DD60008622D2 /* CheckBoxToggleStyle.swift */; };
 		26A166622C74E50C008622D2 /* CrimeDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166612C74E50C008622D2 /* CrimeDetailForm.swift */; };
 		26A166652C75694E008622D2 /* RedirectJavesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166642C75694E008622D2 /* RedirectJavesPage.swift */; };
+		26A166682C757359008622D2 /* SavedDocumentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166672C757359008622D2 /* SavedDocumentPage.swift */; };
+		26A1666A2C757742008622D2 /* SavedDocumentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A166692C757742008622D2 /* SavedDocumentCard.swift */; };
 		26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */; };
 		26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85C2C748A9300970A26 /* Itinerary.swift */; };
 		26B4C8602C748C2D00970A26 /* ItineraryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */; };
@@ -146,6 +148,8 @@
 		26A1665F2C74DD60008622D2 /* CheckBoxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxToggleStyle.swift; sourceTree = "<group>"; };
 		26A166612C74E50C008622D2 /* CrimeDetailForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeDetailForm.swift; sourceTree = "<group>"; };
 		26A166642C75694E008622D2 /* RedirectJavesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectJavesPage.swift; sourceTree = "<group>"; };
+		26A166672C757359008622D2 /* SavedDocumentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDocumentPage.swift; sourceTree = "<group>"; };
+		26A166692C757742008622D2 /* SavedDocumentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDocumentCard.swift; sourceTree = "<group>"; };
 		26B4C8562C747B1300970A26 /* ItineraryDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDetailsPage.swift; sourceTree = "<group>"; };
 		26B4C85C2C748A9300970A26 /* Itinerary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerary.swift; sourceTree = "<group>"; };
 		26B4C85F2C748C2D00970A26 /* ItineraryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryCard.swift; sourceTree = "<group>"; };
@@ -329,6 +333,15 @@
 			path = "Visa Exemption";
 			sourceTree = "<group>";
 		};
+		26A166662C757342008622D2 /* Saved Documents */ = {
+			isa = PBXGroup;
+			children = (
+				26A166672C757359008622D2 /* SavedDocumentPage.swift */,
+				26A166692C757742008622D2 /* SavedDocumentCard.swift */,
+			);
+			path = "Saved Documents";
+			sourceTree = "<group>";
+		};
 		26B4C8582C74812100970A26 /* Document Preparation */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +446,7 @@
 		E97932C72C6F97F80065DDD0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				26A166662C757342008622D2 /* Saved Documents */,
 				26A166632C75692A008622D2 /* Visa Exemption */,
 				26A1665E2C74DD43008622D2 /* Components */,
 				260A230D2C740F4E00F034D1 /* Upload Document */,
@@ -645,6 +659,7 @@
 				269E2E012C6CE8CB00CFEB0E /* EmployerRepository.swift in Sources */,
 				265655552C7356A6004B2FAA /* PersonalDocumentGuideCard.swift in Sources */,
 				E95791A72C6C8CF80023305B /* GuarantorData.swift in Sources */,
+				26A1666A2C757742008622D2 /* SavedDocumentCard.swift in Sources */,
 				26A166592C74CF83008622D2 /* GuarantorForm.swift in Sources */,
 				E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */,
 				26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */,
@@ -665,6 +680,7 @@
 				269E2E0B2C6CEC3E00CFEB0E /* MiscRepository.swift in Sources */,
 				26B4C8602C748C2D00970A26 /* ItineraryCard.swift in Sources */,
 				237F71D62C6CB962009CFC1D /* DataRepositoryProtocol.swift in Sources */,
+				26A166682C757359008622D2 /* SavedDocumentPage.swift in Sources */,
 				26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */,
 				26A166472C74A1C5008622D2 /* VisaFormViewModel.swift in Sources */,
 				269E2DFD2C6CE70E00CFEB0E /* DomicileRepository.swift in Sources */,
