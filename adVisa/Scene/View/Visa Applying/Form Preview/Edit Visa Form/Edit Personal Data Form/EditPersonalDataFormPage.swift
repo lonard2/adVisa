@@ -14,12 +14,12 @@ struct EditPersonalDataFormPage: View {
     var body: some View {
         VStack {
             VStack(spacing: 10){
-                Text("VISA FORM")
+                Text("Personal Data")
                     .foregroundStyle(Color(.primaryWhite))
                     .font(.system(size: 22))
                     .bold()
                 
-                Text("Preview and complete your data")
+                Text("Preview and complete your personal data")
                     .foregroundStyle(Color(.primaryWhite))
                     .font(.system(size: 15))
                 
