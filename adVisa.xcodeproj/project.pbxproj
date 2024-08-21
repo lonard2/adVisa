@@ -22,6 +22,7 @@
 		237F71EB2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */; };
 		237F71EE2C6DB6D8009CFC1D /* Data in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71ED2C6DB6D8009CFC1D /* Data */; };
 		237F71F02C6DB7C9009CFC1D /* Repository in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71EF2C6DB7C9009CFC1D /* Repository */; };
+		23A87FE62C74605600148870 /* AdVisaClassificationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */; };
 		260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */; };
 		260A23112C74166C00F034D1 /* VisaFormPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23102C74166C00F034D1 /* VisaFormPage.swift */; };
 		260A23132C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */; };
@@ -93,7 +94,6 @@
 		E97932C22C6F8E6F0065DDD0 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97932C12C6F8E6F0065DDD0 /* CIImage+Extension.swift */; };
 		E97932C42C6F8EEE0065DDD0 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97932C32C6F8EEE0065DDD0 /* CameraView.swift */; };
 		E97932C62C6F95810065DDD0 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97932C52C6F95810065DDD0 /* CameraViewModel.swift */; };
-		E97932CA2C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E97932C92C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel */; };
 		E97F19DF2C7225A800895F25 /* DocumentScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97F19DE2C7225A800895F25 /* DocumentScannerView.swift */; };
 		E97F19E12C7226CE00895F25 /* TextRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97F19E02C7226CE00895F25 /* TextRecognition.swift */; };
 		E9855F642C6A4BF30019080B /* adVisaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9855F632C6A4BF30019080B /* adVisaApp.swift */; };
@@ -130,6 +130,7 @@
 		237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDataRepositoryTests.swift; sourceTree = "<group>"; };
 		237F71ED2C6DB6D8009CFC1D /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = adVisa/Data; sourceTree = "<group>"; };
 		237F71EF2C6DB7C9009CFC1D /* Repository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Repository; path = adVisa/Data/Repository; sourceTree = "<group>"; };
+		23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AdVisaClassificationModel.mlmodel; sourceTree = "<group>"; };
 		260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentSheet.swift; sourceTree = "<group>"; };
 		260A23102C74166C00F034D1 /* VisaFormPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaFormPage.swift; sourceTree = "<group>"; };
 		260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmUploadDocumentPage.swift; sourceTree = "<group>"; };
@@ -201,7 +202,6 @@
 		E97932C12C6F8E6F0065DDD0 /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
 		E97932C32C6F8EEE0065DDD0 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		E97932C52C6F95810065DDD0 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
-		E97932C92C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AdVisaClassificationModel.mlmodel; sourceTree = "<group>"; };
 		E97F19DE2C7225A800895F25 /* DocumentScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScannerView.swift; sourceTree = "<group>"; };
 		E97F19E02C7226CE00895F25 /* TextRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognition.swift; sourceTree = "<group>"; };
 		E9855F602C6A4BF30019080B /* adVisa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adVisa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -591,8 +591,8 @@
 				E90997622C6B6EB900D6C39F /* Helper */,
 				E909975E2C6B6CE200D6C39F /* Data */,
 				E9855F632C6A4BF30019080B /* adVisaApp.swift */,
+				23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */,
 				E9855F672C6A4BF60019080B /* Assets.xcassets */,
-				E97932C92C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel */,
 				E9855F692C6A4BF70019080B /* Preview Content */,
 			);
 			path = adVisa;
@@ -776,6 +776,7 @@
 				26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */,
 				26A166472C74A1C5008622D2 /* VisaFormViewModel.swift in Sources */,
 				269E2DFD2C6CE70E00CFEB0E /* DomicileRepository.swift in Sources */,
+				23A87FE62C74605600148870 /* AdVisaClassificationModel.mlmodel in Sources */,
 				235535372C733A1200973F80 /* ImagePicker.swift in Sources */,
 				26A166602C74DD60008622D2 /* CheckBoxToggleStyle.swift in Sources */,
 				26A166622C74E50C008622D2 /* CrimeDetailForm.swift in Sources */,
@@ -987,8 +988,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -996,9 +996,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lonard.adVisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1017,8 +1021,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1026,9 +1029,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lonard.adVisa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

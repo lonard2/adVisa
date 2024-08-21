@@ -10,9 +10,9 @@ import CoreImage
 import AVFoundation
 
 extension PassportData {
-    func getPlaceOfBirth() -> String {
-        return "\(self.city), \(self.state), \(self.country)"
-    }
+//    func getPlaceOfBirth() -> String {
+//        return "\(self.city), \(self.state), \(self.country)"
+//    }
 }
 
 extension TravelHistoryData {

@@ -13,10 +13,13 @@ class IdentityCardData {
     @Attribute(.unique) var id: String = UUID().uuidString
     var identityId: String
     var maritalStatus: MaritalStatusEnum
+    var state: String
     
-    init(identityId: String, martialStatus: MaritalStatusEnum) {
+    init(id: String, identityId: String, maritalStatus: MaritalStatusEnum, state: String) {
+        self.id = id
         self.identityId = identityId
-        self.maritalStatus = martialStatus
+        self.maritalStatus = maritalStatus
+        self.state = state
     }
 }
 

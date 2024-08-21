@@ -52,7 +52,6 @@ public class PassportRepository: DataRepositoryProtocol {
                         givenName: param.givenName,
                         dateOfBirth: param.dateOfBirth,
                         city: param.city,
-                        state: param.state,
                         country: param.country,
                         gender: param.gender,
                         nationality: param.nationality,
@@ -90,7 +89,6 @@ public class PassportRepository: DataRepositoryProtocol {
                     do {
                         if let entity = try self.container?.mainContext.fetch(fetchDescriptor).first {
                             entity.city = param.city
-                            entity.state = param.state
                             entity.country = param.country
                             entity.dateOfBirth = param.dateOfBirth
                             entity.dateOfExpiry = param.dateOfExpiry

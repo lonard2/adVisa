@@ -1,10 +1,3 @@
-//
-//  TestCameraView.swift
-//  adVisa
-//
-//  Created by hendra on 19/08/24.
-//
-
 import SwiftUI
 import AVFoundation
 import CoreML
@@ -48,60 +41,45 @@ struct TestCameraView: View {
     private func processImage() {
         guard let image = image else { return }
         
-        let model = try! VNCoreMLModel(for: AdVisaClassificationModel().model)
-        let request = VNRecognizeTextRequest { request, error in
-            guard let observations = request.results as? [VNRecognizedTextObservation], error == nil else {
-                print("Text recognition error: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-            
-            // Extract recognized text
-            let recognizedTexts = observations.compactMap { $0.topCandidates(1).first?.string }
-            self.extractIdentityCardData(from: recognizedTexts)
-        }
-
-        // Set the recognition level to accurate
-        request.recognitionLevel = .accurate
+        // Convert the image to CIImage for processing
         guard let ciImage = CIImage(image: image) else {
             fatalError("Could not convert UIImage to CIImage.")
         }
         
-        let handler = VNImageRequestHandler(ciImage: ciImage)
-        DispatchQueue.global(qos: .userInteractive).async {
-            do {
-                try handler.perform([request])
-            } catch {
-                print("Failed to perform classification.\n\(error.localizedDescription)")
-            }
-        }
-    }
-    
-    private func extractIdentityCardData(from recognizedTexts: [String]) {
-        // Extract NIK and Marital Status from recognized texts
-        var identityId: String?
-        var maritalStatus: MaritalStatusEnum?
+        // Create a VNCoreMLModel with the AdVisaClassificationModel
+        let model = try! VNCoreMLModel(for: AdVisaClassificationModel().model)
         
-        for text in recognizedTexts {
-            if text.contains("NIK") || text.range(of: #"\d{16}"#, options: .regularExpression) != nil {
-                identityId = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        // Create a VNCoreMLRequest to classify the image
+        let classificationRequest = VNCoreMLRequest(model: model) { request, error in
+            if let error = error {
+                print("Classification error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.classifiedText = "Classification failed."
+                }
+                return
             }
             
-            if text.uppercased().contains("BELUM KAWIN") {
-                maritalStatus = .single
-            } else if text.uppercased().contains("KAWIN") {
-                maritalStatus = .married
+            guard let results = request.results as? [VNClassificationObservation],
+                  let topResult = results.first else {
+                DispatchQueue.main.async {
+                    self.classifiedText = "No classification result."
+                }
+                return
+            }
+            
+            // Update classifiedText with the top result's identifier
+            DispatchQueue.main.async {
+                self.classifiedText = "\(topResult.identifier) with \(topResult.confidence)"
             }
         }
         
-        // Ensure both values are found before creating the IdentityCardData
-        if let identityId = identityId, let maritalStatus = maritalStatus {
-            DispatchQueue.main.async {
-                print("NIK \(identityId)")
-                print("Status \(maritalStatus)")
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.classifiedText = "Could not extract identity data."
+        // Run the classification request on the image
+        let handler = VNImageRequestHandler(ciImage: ciImage)
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                try handler.perform([classificationRequest])
+            } catch {
+                print("Failed to perform classification.\n\(error.localizedDescription)")
             }
         }
     }
