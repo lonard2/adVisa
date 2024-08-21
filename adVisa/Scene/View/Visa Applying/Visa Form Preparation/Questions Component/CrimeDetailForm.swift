@@ -41,6 +41,9 @@ struct CrimeDetailForm: View {
                 .background(Color(.primaryBlue))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         }
+        .onTapGesture {
+            viewModel.resetFormPage()
+        }
     }
 }
 
