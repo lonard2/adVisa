@@ -14,7 +14,7 @@ private enum DocumentType {
     case ktp, passport
 }
 
-class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private var isAuthorized = false
     
     private let captureSession = AVCaptureSession()
@@ -26,6 +26,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     private var topLayer = UIView()
     private var backButton = UIButton(type: .system)
     
+    
     private var capturedImageView: UIImageView!
     private var capturedImage: UIImage?
     
@@ -34,6 +35,9 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     private var flashButton = UIButton(type: .system)
     private var flashButtonBorder = UIView()
+    
+    private var photoPickButton = UIButton(type: .system)
+    private var photoPickButtonBorder = UIView()
     
     private let circularButton = UIButton(type: .system)
     private var circularButtonBorder = UIView()
@@ -126,6 +130,22 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         flashButtonBorder.layer.borderColor = UIColor.gray.cgColor
         flashButtonBorder.translatesAutoresizingMaskIntoConstraints = false
         
+        let photoPickIcon = UIImage(systemName: "photo.badge.plus")
+        photoPickButton.setImage(photoPickIcon, for: .normal)
+        photoPickButton.tintColor = .black
+        photoPickButton.translatesAutoresizingMaskIntoConstraints = false
+        photoPickButton.addTarget(self, action: #selector(pickPhoto), for: .touchUpInside)
+        
+        photoPickButtonBorder = UIView()
+        photoPickButtonBorder.layer.cornerRadius = 21
+        photoPickButtonBorder.clipsToBounds = true
+        
+        photoPickButtonBorder.tintColor = .none
+        photoPickButtonBorder.backgroundColor = .none
+        photoPickButtonBorder.layer.borderWidth = 2
+        photoPickButtonBorder.layer.borderColor = UIColor.gray.cgColor
+        photoPickButtonBorder.translatesAutoresizingMaskIntoConstraints = false
+        
         bottomLayer = UIView()
         bottomLayer.translatesAutoresizingMaskIntoConstraints = false
         bottomLayer.backgroundColor = .white
@@ -135,9 +155,12 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         bottomLayer.addSubview(flashButton)
         bottomLayer.addSubview(flashButtonBorder)
         bottomLayer.addSubview(instructions)
+        bottomLayer.addSubview(photoPickButton)
+        bottomLayer.addSubview(photoPickButtonBorder)
         
         bottomLayer.bringSubviewToFront(flashButton)
         bottomLayer.bringSubviewToFront(circularButton)
+        bottomLayer.bringSubviewToFront(photoPickButton)
 
         view.addSubview(topLayer)
         view.addSubview(instructionGuidelineImageView)
@@ -187,6 +210,16 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             flashButtonBorder.centerYAnchor.constraint(equalTo: flashButton.centerYAnchor),
             flashButtonBorder.widthAnchor.constraint(equalToConstant: 50),
             flashButtonBorder.heightAnchor.constraint(equalToConstant: 50),
+            
+            photoPickButton.bottomAnchor.constraint(equalTo: bottomLayer.bottomAnchor, constant: -40),
+            photoPickButton.leadingAnchor.constraint(equalTo: bottomLayer.leadingAnchor, constant: 32),
+            photoPickButton.widthAnchor.constraint(equalToConstant: 50),
+            photoPickButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            photoPickButtonBorder.centerXAnchor.constraint(equalTo: photoPickButton.centerXAnchor),
+            photoPickButtonBorder.centerYAnchor.constraint(equalTo: photoPickButton.centerYAnchor),
+            photoPickButtonBorder.widthAnchor.constraint(equalToConstant: 50),
+            photoPickButtonBorder.heightAnchor.constraint(equalToConstant: 50),
             
             instructions.bottomAnchor.constraint(equalTo: circularButton.topAnchor, constant: -20),
             instructions.centerXAnchor.constraint(equalTo: bottomLayer.centerXAnchor),
@@ -692,15 +725,36 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         }
     }
     
+    @objc func pickPhoto() {
+        let imagePickerController = UIImagePickerController()
+        
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = false
+        
+        DispatchQueue.main.async {
+            self.present(imagePickerController, animated: true, completion: nil)
+        }
+    }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            print("Image selected: \(selectedImage)")
+            
+            if let ciImage = CIImage(image: selectedImage) {
+                self.processCapturedImage(ciImage)
+                print("Picture from picker processed.")
+            } else {
+                print("Picture from picker couldn't be processed.")
+            }
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
     
-    
-    
-    
-    
-    
-    
-    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController, mediaInfo: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+    }
     
     private func extractNameComponents(from nameText: String) -> (givenName: String, surname: String)? {
         let nameComponents = nameText.split(separator: " ")
