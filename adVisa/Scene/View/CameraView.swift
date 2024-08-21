@@ -10,6 +10,10 @@ import Vision
 import AVFoundation
 import UIKit
 
+private enum DocumentType {
+    case ktp, passport
+}
+
 class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     private var isAuthorized = false
     
@@ -21,6 +25,10 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     private var bottomLayer = UIView()
     private var topLayer = UIView()
     private var backButton = UIButton(type: .system)
+    
+//    private var capturedImageView: UIImageView!
+//    private var capturedImage: UIImage?
+    
     
     private var instructionGuidelineImage = UIImage()
     private var instructionGuidelineImageView = UIImageView()
@@ -42,6 +50,15 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
+        
+//        capturedImageView = UIImageView()
+//        capturedImageView.translatesAutoresizingMaskIntoConstraints = false
+//        capturedImageView.contentMode = .scaleAspectFill
+//        capturedImageView.clipsToBounds = true
+//        capturedImageView.isHidden = true
+//        capturedImageView.transform = CGAffineTransform(rotationAngle: .pi/2)
+//        
+//        view.addSubview(capturedImageView)
         
         instructions = UILabel()
         instructions.translatesAutoresizingMaskIntoConstraints = false
@@ -134,6 +151,11 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             topLayer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             topLayer.topAnchor.constraint(equalTo: view.topAnchor),
             
+//            capturedImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            capturedImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            capturedImageView.topAnchor.constraint(equalTo: view.topAnchor),
+//            capturedImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             backButton.leadingAnchor.constraint(equalTo: topLayer.leadingAnchor, constant: 16),
             backButton.bottomAnchor.constraint(equalTo: topLayer.bottomAnchor, constant: -16),
             
@@ -207,6 +229,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             return
         }
         
+        
         if preferredCamera.supportsSessionPreset(.hd4K3840x2160) {
             captureSession.sessionPreset = .hd4K3840x2160
         } else {
@@ -227,7 +250,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         let videoOutput = AVCaptureVideoDataOutput()
         videoOutput.alwaysDiscardsLateVideoFrames = true
         videoOutput.setSampleBufferDelegate(self, queue: sessionQueue)
-        videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_420YpCbCr8BiPlanarFullRange ]
+        videoOutput.videoSettings = [AVVideoWidthKey: 3840, AVVideoHeightKey: 2160]
         
         guard captureSession.canAddInput(deviceInput) else {
             print("Can't do input adding to the camera session.")
@@ -287,7 +310,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     @objc private func backButtonTapped() {
         self.dismiss(animated: true, completion: nil)
     }
-    
+     
     @objc private func toggleTorch() {
         guard let device = AVCaptureDevice.userPreferredCamera else {
             print("Capture device couldn't be initialized.")
@@ -318,27 +341,191 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard isCapturingImage else { return }
+        
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-
-        // Reset the flag after capturing the image
-        isCapturingImage = false
-
         DispatchQueue.main.async {
             self.processCapturedImage(ciImage)
         }
+//        if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+//            let ciImage = CIImage(cvPixelBuffer: imageBuffer)
+//            
+//            let context = CIContext()
+//            
+//            let imageOrientation: UIImage.Orientation
+//            switch UIDevice.current.orientation {
+//            case .portrait:
+//                imageOrientation = .right
+//            case .landscapeLeft:
+//                imageOrientation = .up
+//            case .landscapeRight:
+//                imageOrientation = .down
+//            case .portraitUpsideDown:
+//                imageOrientation = .left
+//            default:
+//                imageOrientation = .up
+//            }
+//            
+//            let rect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(imageBuffer), height: CVPixelBufferGetHeight(imageBuffer))
+//            print("CI Image Extent : \(ciImage.extent)")
+//            if let cgImage = context.createCGImage(ciImage, from: rect) {
+//                var image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .up)
+////                displayCapturedImage(image)
+//                
+//                
+//            }
+//        }
+        isCapturingImage = false
     }
     
+    func fixOrientation(_ image: UIImage) -> UIImage {
+        if image.imageOrientation == .up {
+            return image
+        }
+
+        UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
+        image.draw(in: CGRect(origin: .zero, size: image.size))
+        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return normalizedImage
+    }
+    
+//    private func convertPixelBufferToUIImage(_ pixelBuffer: CVPixelBuffer) -> UIImage {
+//        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+//        let context = CIContext()
+//
+//        if let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
+//            return UIImage(cgImage: cgImage)
+//        } else {
+//            return UIImage()
+//        }
+//    }
+    
+//    private func displayCapturedImage(_ image: UIImage) {
+//        DispatchQueue.main.async {
+//            self.capturedImage = image
+//            self.capturedImageView.image = image
+//            self.capturedImageView.isHidden = false
+//        }
+//    }
+    
+    private func cropImage(_ image: CIImage) -> CIImage {
+        // Convert instructionGuidelineImageView frame to the previewLayer's coordinate system
+        let guidelineFrameInPreviewLayer = previewLayer.layerRectConverted(fromMetadataOutputRect: instructionGuidelineImageView.frame)
+        
+        // Calculate the normalized cropping rect in the CIImage space
+        let normalizedCropRect = CGRect(
+            x: guidelineFrameInPreviewLayer.origin.x / view.bounds.width,
+            y: guidelineFrameInPreviewLayer.origin.y / view.bounds.height,
+            width: guidelineFrameInPreviewLayer.width / view.bounds.width,
+            height: guidelineFrameInPreviewLayer.height / view.bounds.height
+        )
+        
+        // Convert normalized crop rect to the CIImage's coordinate space
+        let cropRect = normalizedCropRect.applying(CGAffineTransform(scaleX: image.extent.width, y: image.extent.height))
+        
+        // Crop the image
+        return image.cropped(to: cropRect)
+    }
+    
+//    private func cropImage(_ image: CIImage) -> CIImage {
+//        // Convert instructionGuidelineImageView frame to the previewLayer's coordinate system
+//        let guidelineFrame = instructionGuidelineImageView.frame
+//        
+//        // Calculate the normalized cropping rect in the CIImage space
+//        let normalizedCropRect = CGRect(
+//            x: guidelineFrame.origin.x / view.bounds.width,
+//            y: guidelineFrame.origin.y / view.bounds.height,
+//            width: guidelineFrame.width / view.bounds.width,
+//            height: guidelineFrame.height / view.bounds.height
+//        )
+//        
+//        // Convert normalized crop rect to the CIImage's coordinate space
+//        let cropRect = normalizedCropRect.applying(CGAffineTransform(scaleX: image.extent.width, y: image.extent.height))
+//        
+//        // Crop the image
+//        return image.cropped(to: cropRect)
+//    }
+    
     private func processCapturedImage(_ image: CIImage) {
-        let request = VNRecognizeTextRequest { request, error in
+        // Step 1: Attempt to load the model
+        guard let model = try? AdVisaClassificationModel(configuration: .init()).model else {
+            print("Failed to load AdVisaClassificationModel")
+            return
+        }
+        
+        do {
+            // Step 2: Create a Vision request to classify the image
+            let request = try VNCoreMLRequest(model: VNCoreMLModel(for: model)) { [weak self] request, error in
+                guard let results = request.results as? [VNClassificationObservation],
+                      let topResult = results.first else {
+                    print("Model classification error: \(error?.localizedDescription ?? "Unknown error")")
+                    return
+                }
+                
+                let identifier = topResult.identifier
+                let confidence = topResult.confidence
+
+                print("Detected: \(identifier) with confidence: \(confidence * 100)%")
+                
+                DispatchQueue.main.async {
+                    switch topResult.identifier {
+                    case "ktp":
+                        self?.performTextRecognition(on: image, with: .ktp)
+                    case "passport":
+                        self?.performTextRecognition(on: image, with: .passport)
+                    case "hotel", "tiket_pesawat":
+                        print("Detected a \(topResult.identifier). Handling is not implemented yet.")
+                    default:
+                        print("Unhandled document type: \(topResult.identifier)")
+                    }
+                }
+            }
+            
+            // Step 3: Perform the classification request
+            let handler = VNImageRequestHandler(ciImage: image, options: [:])
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    try handler.perform([request])
+                } catch {
+                    print("Failed to perform classification: \(error.localizedDescription)")
+                }
+            }
+        } catch {
+            print("Failed to create VNCoreMLRequest: \(error.localizedDescription)")
+        }
+    }
+    
+    private func performTextRecognition(on image: CIImage, with documentType: DocumentType) {
+        let request = VNRecognizeTextRequest { [weak self] request, error in
             guard let observations = request.results as? [VNRecognizedTextObservation], error == nil else {
                 print("Text recognition error: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
             
-            // Extract recognized text
+            var recognizedTextByPosition = [(text: String, boundingBox: CGRect)]()
+            
+            for observation in observations {
+                if let topCandidate = observation.topCandidates(1).first {
+                    recognizedTextByPosition.append((text: topCandidate.string, boundingBox: observation.boundingBox))
+                }
+            }
+            
+            for (text, boundingBox) in recognizedTextByPosition {
+                print("Recognized Text: \(text)")
+                print("Bounding Box: \(boundingBox)")
+                print("------")
+            }
+            
             let recognizedTexts = observations.compactMap { $0.topCandidates(1).first?.string }
-            self.extractIdentityCardData(from: recognizedTexts)
+            
+            switch documentType {
+            case .ktp:
+                self?.extractIdentityCardData(from: recognizedTexts)
+            case .passport:
+                self?.extractPassportDataWithGeometry(from: recognizedTextByPosition)
+            }
         }
         
         request.recognitionLevel = .accurate
@@ -381,4 +568,157 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         }
     }
     
+    private func extractPassportData(from recognizedTexts: [String]) {
+        var passportNumber: String?
+        var fullName: String?
+        var nationality: String?
+        var dateOfBirth: String?
+
+        for text in recognizedTexts {
+            // Check for passport number (assuming it follows a specific pattern, e.g., 9 alphanumeric characters)
+            if text.range(of: #"[A-Z0-9]{9}"#, options: .regularExpression) != nil {
+                passportNumber = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+
+            // Check for nationality (common keywords to identify it)
+            if text.uppercased().contains("INDONESIA") {
+                nationality = "Indonesia"
+            }
+
+            // Check for full name (this can vary, so you might need a more advanced method based on the location in the text)
+            if text.uppercased().contains("NAME") || (text.range(of: #"[A-Z]+ [A-Z]+"#, options: .regularExpression) != nil && text.count > 5) {
+                fullName = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+
+            // Check for date of birth (common format)
+            if text.range(of: #"\d{2}\s[a-zA-Z]{3}\s\d{4}"#, options: .regularExpression) != nil {
+                dateOfBirth = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+
+        if let passportNumber = passportNumber, let fullName = fullName, let nationality = nationality, let dateOfBirth = dateOfBirth {
+            DispatchQueue.main.async {
+                print("Passport Number: \(passportNumber)")
+                print("Full Name: \(fullName)")
+                print("Nationality: \(nationality)")
+                print("Date of Birth: \(dateOfBirth)")
+            }
+        } else {
+            DispatchQueue.main.async {
+                print("Could not extract passport data.")
+            }
+        }
+    }
+    
+    private func extractPassportDataWithGeometry(from recognizedTextByPosition: [(text: String, boundingBox: CGRect)]) {
+        var passportNumber: String?
+        var fullName: String?
+        var givenName: String?
+        var surname: String?
+        var nationality: String?
+        var dateOfBirth: String?
+        var dateOfIssue: String?
+        var dateOfExpiry: String?
+        var placeOfIssue: String?
+        var city: String?
+        var gender: String?
+        var issuingAuthority: String?
+
+        for (text, boundingBox) in recognizedTextByPosition {
+            if isInNameRegion(boundingBox) {
+                if let components = extractNameComponents(from: text) {
+                    surname = components.surname
+                    givenName = components.givenName
+                }
+            } else if isInNationalityRegion(boundingBox) {
+                nationality = text
+            } else if isInDateOfBirthRegion(boundingBox) {
+                dateOfBirth = text
+            } else if isInDateOfIssueRegion(boundingBox) {
+                dateOfIssue = text
+            } else if isInDateOfExpiryRegion(boundingBox) {
+                dateOfExpiry = text
+            } else if isInCityRegion(boundingBox) {
+                city = text
+            } else if isInGenderRegion(boundingBox) {
+                gender = text
+            } else if isInPassportNumberRegion(boundingBox) {
+                passportNumber = text
+            } else if isInPlaceOfIssueRegion(boundingBox) {
+                placeOfIssue = text
+                issuingAuthority = "Kantor Imigrasi \(placeOfIssue ?? "")"
+            }
+        }
+
+        // Output the recognized information
+        DispatchQueue.main.async {
+            print("Passport Number: \(passportNumber ?? "")")
+            print("Surname: \(surname ?? "")")
+            print("Given Name: \(givenName ?? "")")
+            print("Nationality: \(nationality ?? "")")
+            print("Date of Birth: \(dateOfBirth ?? "")")
+            print("Date of Issue: \(dateOfIssue ?? "")")
+            print("Date of Expiry: \(dateOfExpiry ?? "")")
+            print("City: \(city ?? "")")
+            print("Gender: \(gender ?? "")")
+            print("Place of Issue: \(placeOfIssue ?? "")")
+            print("Issuing Authority: \(issuingAuthority ?? "")")
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    private func extractNameComponents(from nameText: String) -> (givenName: String, surname: String)? {
+        let nameComponents = nameText.split(separator: " ")
+        guard nameComponents.count >= 2 else { return nil }
+        
+        let givenName = nameComponents.dropLast().joined(separator: " ")
+        let surname = nameComponents.last ?? ""
+        return (givenName: givenName, surname: String(surname))
+    }
+
+    // Example geometric region functions
+    private func isInNameRegion(_ boundingBox: CGRect) -> Bool {
+        return boundingBox.origin.y > 0.7 && boundingBox.origin.y < 0.8
+    }
+
+    private func isInNationalityRegion(_ boundingBox: CGRect) -> Bool {
+        return boundingBox.origin.y > 0.6 && boundingBox.origin.y < 0.7
+    }
+
+    private func isInDateOfBirthRegion(_ boundingBox: CGRect) -> Bool {
+        return boundingBox.origin.y > 0.5 && boundingBox.origin.y < 0.6
+    }
+
+    private func isInDateOfIssueRegion(_ boundingBox: CGRect) -> Bool {
+        return boundingBox.origin.y > 0.4 && boundingBox.origin.y < 0.5
+    }
+
+    private func isInDateOfExpiryRegion(_ boundingBox: CGRect) -> Bool {
+        return boundingBox.origin.y > 0.3 && boundingBox.origin.y < 0.4
+    }
+
+    private func isInCityRegion(_ boundingBox: CGRect) -> Bool {
+        return boundingBox.origin.y > 0.2 && boundingBox.origin.y < 0.3
+    }
+
+    private func isInGenderRegion(_ boundingBox: CGRect) -> Bool {
+        return boundingBox.origin.y > 0.1 && boundingBox.origin.y < 0.2
+    }
+
+    private func isInPassportNumberRegion(_ boundingBox: CGRect) -> Bool {
+        return boundingBox.origin.y > 0.9 && boundingBox.origin.y < 1.0
+    }
+
+    private func isInPlaceOfIssueRegion(_ boundingBox: CGRect) -> Bool {
+        return boundingBox.origin.y > 0.0 && boundingBox.origin.y < 0.1
+    }
 }

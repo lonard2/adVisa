@@ -45,7 +45,7 @@ internal class IdentityCardRepository: DataRepositoryProtocol {
         return Future<Bool, DataError> { promise in
             Task { @MainActor in
                 do {
-                    let entity = IdentityCardData(identityId: param.identityId, martialStatus: param.maritalStatus)
+                    let entity = IdentityCardData(id: param.id, identityId: param.identityId, maritalStatus: param.maritalStatus, state: param.state)
                     
                     self.container?.mainContext.insert(entity)
                     
