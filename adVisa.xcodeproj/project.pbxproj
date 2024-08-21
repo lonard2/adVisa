@@ -799,7 +799,6 @@
 				E95791B12C6CAF460023305B /* CrimeRemarkData.swift in Sources */,
 				E95791A92C6CACDC0023305B /* InviterData.swift in Sources */,
 				265D99F72C75D56700A82131 /* EditPersonalDataFormPage.swift in Sources */,
-				E97932CA2C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel in Sources */,
 				E9693A752C74763000244F02 /* Constants.swift in Sources */,
 				237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */,
 				26A166732C7583B4008622D2 /* PersonalInformationForm.swift in Sources */,
@@ -981,7 +980,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = VPGX5Q423F;
+				DEVELOPMENT_TEAM = MRV3669B85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -1015,7 +1014,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = VPGX5Q423F;
+				DEVELOPMENT_TEAM = MRV3669B85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";

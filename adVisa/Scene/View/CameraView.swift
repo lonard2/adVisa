@@ -11,7 +11,11 @@ import AVFoundation
 import UIKit
 
 private enum DocumentType {
-    case ktp, passport
+    case ktp, passport, hotel, tiket_pesawat, none
+}
+
+private enum DocumentTypeDetailed {
+    case ktp, passport_bio, passport_endorsement, self_portrait, generic, none
 }
 
 class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -50,6 +54,14 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     var addToPreviewStream: ((CGImage) -> Void)?
     
+    private var selectedDocument: DocumentTypeDetailed = .none
+    var selectedDocumentFile: String = ""
+    var selectedDocumentWidth: Int = 200
+    var selectedDocumentHeight: Int = 200
+    
+    var cropWidth: Int = 720
+    var cropHeight: Int = 1200
+    
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
@@ -73,12 +85,39 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         instructions.textColor = .black
         instructions.numberOfLines = 0
         
-        instructionGuidelineImage = UIImage(named: "passport_bio_camera_guide.png")!
+        switch(selectedDocument) {
+        case .passport_bio:
+            selectedDocumentFile = "passport_bio_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .passport_endorsement:
+            selectedDocumentFile = "passport_endorsement_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .ktp:
+            selectedDocumentFile = "identity_card_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .self_portrait:
+            selectedDocumentFile = "self_portrait_guideline_camera.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .generic:
+            selectedDocumentFile = "generic_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .none:
+            selectedDocumentFile = "passport_bio_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        }
+        
+        instructionGuidelineImage = UIImage(named: selectedDocumentFile)!
         
         instructionGuidelineImageView = UIImageView(image: instructionGuidelineImage)
         instructionGuidelineImageView.translatesAutoresizingMaskIntoConstraints = false
         instructionGuidelineImageView.tintColor = .white
-        instructionGuidelineImageView.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
+        instructionGuidelineImageView.frame = CGRect(x: 0, y: 0, width: selectedDocumentWidth, height: selectedDocumentHeight)
         
         circularButton.backgroundColor = .blue
         
@@ -404,9 +443,28 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             print("CI Image Extent : \(ciImage.extent)")
             if let cgImage = context.createCGImage(ciImage, from: rect) {
                 var image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .up)
-                let desiredHeight: CGFloat = 250
                 
-                if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: 960, cropHeight: 1400) {
+                switch(selectedDocument) {
+                case .passport_bio:
+                    cropWidth = 960
+                    cropHeight = 1400
+                case .passport_endorsement:
+                    cropWidth = 960
+                    cropHeight = 1400
+                case .ktp:
+                    cropWidth = 960
+                    cropHeight = 1400
+                case .self_portrait:
+                    return
+                case .generic:
+                    cropWidth = 960
+                    cropHeight = 1400
+                case .none:
+                    cropWidth = 960
+                    cropHeight = 1400
+                }
+                
+                if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: CGFloat(cropWidth), cropHeight: CGFloat(cropHeight)) {
                     displayCapturedImage(croppedImage)
                 } else {
                     return
@@ -534,8 +592,10 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                         self?.performTextRecognition(on: image, with: .ktp)
                     case "passport":
                         self?.performTextRecognition(on: image, with: .passport)
-                    case "hotel", "tiket_pesawat":
-                        print("Detected a \(topResult.identifier). Handling is not implemented yet.")
+                    case "hotel":
+                        self?.performTextRecognition(on: image, with: .hotel)
+                    case "tiket_pesawat":
+                        self?.performTextRecognition(on: image, with: .tiket_pesawat)
                     default:
                         print("Unhandled document type: \(topResult.identifier)")
                     }
@@ -584,6 +644,12 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                 self?.extractIdentityCardData(from: recognizedTexts)
             case .passport:
                 self?.extractPassportDataWithGeometry(from: recognizedTextByPosition)
+            case .hotel:
+                self?.extractAccomodationData(from: recognizedTexts)
+            case .tiket_pesawat:
+                self?.extractFlightTicketData(from: recognizedTexts)
+            case .none:
+                self?.extractIdentityCardData(from: recognizedTexts)
             }
         }
         
@@ -723,6 +789,14 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             print("Place of Issue: \(placeOfIssue ?? "")")
             print("Issuing Authority: \(issuingAuthority ?? "")")
         }
+    }
+    
+    private func extractAccomodationData(from recognizedTexts: [String]) {
+        
+    }
+    
+    private func extractFlightTicketData(from recognizedTexts: [String]) {
+        
     }
     
     @objc func pickPhoto() {
