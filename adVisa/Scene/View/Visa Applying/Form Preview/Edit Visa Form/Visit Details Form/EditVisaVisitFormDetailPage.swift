@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditVisaVisitDetailFormPage: View {
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var viewModel = EditVisaFormViewModel()
     
     var body: some View {
@@ -35,11 +36,26 @@ struct EditVisaVisitDetailFormPage: View {
                     EditVisitMeansForm(viewModel: viewModel)
                     
                 case 2:
-                    EditPassportDataForm(viewModel: viewModel)
+                    EditStayingPlaceForm(viewModel: viewModel)
+                    
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Continue")
+                            .padding(.vertical, 7)
+                            .frame(maxWidth: .infinity)
+                            .font(.system(size: 15))
+                            .foregroundStyle(Color(.primaryWhite))
+                            .background(Color(.primaryBlue))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    .padding(12)
                     
                 default:
                     Text("Page Error to Load...")
                         .font(.title)
+                    
+                    Spacer()
                 }
             }
             .padding(.vertical, 20)

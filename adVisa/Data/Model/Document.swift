@@ -9,11 +9,15 @@ import Foundation
 
 class Document: Identifiable {
     let id = UUID().uuidString
-    let icon: String
-    let title: String
+    var icon: String
+    var imageName: String
+    var documentName: String
+    var explanation: String
     
-    init(icon: String, title: String) {
+    init(icon: String, imageName: String, documentName: String, explanation: String) {
         self.icon = icon
-        self.title = title
+        self.imageName = imageName
+        self.documentName = documentName
+        self.explanation = explanation
     }
 }

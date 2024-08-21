@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ItineraryCard: View {
     
-    var itinerary: Itinerary
+    @Binding var itinerary: Itinerary
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {

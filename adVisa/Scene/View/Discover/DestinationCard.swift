@@ -10,13 +10,16 @@ import SwiftUI
 struct DestinationCard: View {
     
     @State var countryName: String
+    @State var countryImage: String
+    @State var rank: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack {
-                Image("identity_card_guide")
+                Image(countryImage)
                     .resizable()
-                    .scaledToFill()
+                    .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                    .frame(width: 132)
                     .clipped()
             }
             
@@ -26,7 +29,7 @@ struct DestinationCard: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(Color(.primaryBlack))
                 
-                Text("1st Most Visited")
+                Text("\(rank) Most Visited")
                     .font(.system(size: 11))
                     .foregroundStyle(Color(.darkerGray))
             }
@@ -41,5 +44,5 @@ struct DestinationCard: View {
 }
 
 #Preview {
-    DestinationCard(countryName: "Japan")
+    DestinationCard(countryName: "Japan", countryImage: "japan_image", rank: "2nd")
 }

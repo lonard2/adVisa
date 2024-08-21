@@ -84,7 +84,8 @@ struct CrimeRecordForm: View {
             }
         } else {
             NavigationLink {
-                Text("Test")
+                ItineraryDetailsPage()
+                    .navigationBarBackButtonHidden(true)
             } label: {
                 Text("Continue")
                     .padding(.vertical, 7)

@@ -22,7 +22,7 @@ struct GeneralInformationForm: View {
                 .fontWeight(.semibold)
             
             HStack() {
-                DatePicker("", selection: $viewModel.startDate, displayedComponents: .date)
+                DatePicker("", selection: $viewModel.startDate, in: Date()...,  displayedComponents: .date)
                     .datePickerStyle(.compact)
                     .labelsHidden()
                     .onChange(of: viewModel.startDate, {

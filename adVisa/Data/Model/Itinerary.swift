@@ -9,9 +9,9 @@ import Foundation
 
 class Itinerary: Identifiable {
     let id = UUID().uuidString
-    let date: Date
-    let placeToVisit: String
-    let placeToStay: String
+    var date: Date
+    var placeToVisit: String
+    var placeToStay: String
     
     init(date: Date, placeToVisit: String, placeToStay: String) {
         self.date = date

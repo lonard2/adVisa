@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AppointmentPreparationPage: View {
+    
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         VStack(spacing: 20) {
             VStack(spacing: 10) {
@@ -76,20 +79,16 @@ struct AppointmentPreparationPage: View {
             Spacer()
             
             VStack(spacing: 20) {
-                NavigationLink {
-                    
-                } label: {
-                    Text("Book Appointment")
-                        .padding(.vertical, 7)
-                        .frame(maxWidth: .infinity)
-                        .font(.system(size: 15))
-                        .foregroundStyle(Color(.primaryWhite))
-                        .background(Color.primaryBlue)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                }
+                Link("Book Appointment", destination: URL(string: "https://visa.vfsglobal.com/idn/en/nld/book-an-appointment")!)
+                    .padding(.vertical, 7)
+                    .frame(maxWidth: .infinity)
+                    .font(.system(size: 15))
+                    .foregroundStyle(Color(.primaryWhite))
+                    .background(Color.primaryBlue)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                 
-                NavigationLink {
-                    
+                Button {
+                    dismiss()
                 } label: {
                     Text("Book Later")
                         .padding(.vertical, 7)

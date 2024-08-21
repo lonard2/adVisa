@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ItineraryFormConfirmationPage: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
                 VStack{
-                    Text("Visa Application Form")
+                    Text("Itinerary Form")
                         .foregroundStyle(Color(.primaryWhite))
                         .font(.system(size: 22))
                         .bold()
@@ -37,8 +39,8 @@ struct ItineraryFormConfirmationPage: View {
                 Spacer()
                 
                 VStack(spacing: 20) {
-                    NavigationLink {
-                        
+                    Button {
+                        dismiss()
                     } label: {
                         Text("Confirm")
                             .padding(.vertical, 7)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DocumentRow: View {
     let document: Document
-    @Binding var isDone: Bool
+    @State var isUploaded: Bool = false
     
     var body: some View {
         HStack {
@@ -19,7 +19,7 @@ struct DocumentRow: View {
                     .font(.system(size: 20))
                     .fontWeight(.semibold)
                 
-                Text(document.title)
+                Text(document.documentName)
                     .foregroundStyle(Color(.primaryBlack))
                     .font(.system(size: 22))
                     .fontWeight(.semibold)
@@ -27,14 +27,14 @@ struct DocumentRow: View {
             
             Spacer()
             
-            Image(systemName: isDone ? "checkmark.circle.fill" : "circle.fill")
-                .foregroundStyle(Color(isDone ? .accentGreen : .defaultGray))
+            Image(systemName: isUploaded ? "checkmark.circle.fill" : "circle.fill")
+                .foregroundStyle(Color(isUploaded ? .accentGreen : .defaultGray))
                 .font(.system(size: 22))
         }
         .padding(16)
         .background(Color(.primaryWhite))
         .clipShape(RoundedRectangle(cornerRadius: 8))
-        .shadow(color: Color(isDone ? .accentGreen : .black.opacity(0.25)), radius: 4)
+        .shadow(color: Color(isUploaded ? .accentGreen : .black.opacity(0.25)), radius: 4)
     }
 }
 

@@ -9,79 +9,81 @@ import SwiftUI
 
 struct DiscoverPage: View {
     
-    let countries = ["Turkey", "Hongkong", "Japan"]
+    @Binding var selectedBar : Int
+    
+    let countries = [
+        TopDestination(countryName: "Turkey", countryImage: "template", rank: "1st"),
+        TopDestination(countryName: "Japan", countryImage: "japan_image", rank: "2nd"),
+        TopDestination(countryName: "Hongkong", countryImage: "template", rank: "3rd"),
+    ]
+    
     @State private var searchText = ""
     @State private var hasDocument = false
     
-    var searchResults: [String] {
-        return countries.filter { $0.contains(searchText) }
-    }
-    
     var body: some View {
-        ZStack {
-            VStack(spacing: 0){
-                ZStack{
-                    Image("discover_header")
-                        .resizable()
-                        .scaledToFit()
-                    Text("Discover what you need to travel.")
-                        .foregroundStyle(Color(.white))
-                        .font(.system(size: 16))
-                        .bold()
-                        .offset(y: -48)
-                }
-                
-                VStack {
-                    NavigationStack {
-//                        List {
-//                            ForEach(searchResults, id: \.self) { country in
-//                                NavigationLink {
-//                                    Text(country)
-//                                } label: {
-//                                    Text(country)
-//                                }
-//                            }
-//                        }
-//                        .listStyle(PlainListStyle())
+        NavigationStack {
+            ZStack {
+                VStack(spacing: 0){
+                    ZStack{
+                        Image("discover_header")
+                            .resizable()
+                            .scaledToFit()
+                        Text("Discover what you need to travel.")
+                            .foregroundStyle(Color(.white))
+                            .font(.system(size: 16))
+                            .bold()
+                            .offset(y: -48)
+                    }
+                    
+                    VStack(spacing: 24) {
                         
-                        VStack(alignment: .leading) {
+                        TextField("\(Image(systemName: "magnifyingglass")) Search Country", text: $searchText)
+                            .textFieldStyle(PlainTextFieldStyle())
+                            .padding(7)
+                            .background(Color(.tertiarySystemFill))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                        
+                        VStack(alignment: .leading, spacing: 24) {
                             Text("Popular Destination")
                                 .font(.system(size:25))
                                 .fontWeight(.semibold)
                             
                             ScrollView(.horizontal, showsIndicators: false) {
-                                HStack {
-                                    ForEach(countries, id: \.self) { country in
+                                HStack(spacing: 12) {
+                                    ForEach(countries) { country in
                                         NavigationLink {
-                                            Text(country)
+                                            if country.countryName == "Japan" {
+                                                VisaPromptPage()
+                                            } else {
+                                                Text(country.countryName)
+                                            }
                                         } label: {
-                                            DestinationCard(countryName: country)
-                                                .padding(.horizontal, 16)
-                                                .padding(.vertical)
+                                            DestinationCard(countryName: country.countryName, countryImage: country.countryImage, rank: country.rank)
+                                                .padding(.vertical, 2)
                                         }
                                     }
                                 }
                             }
                         }
-                        .padding(.horizontal, 16)
                         
                         if !hasDocument {
-                            PersonalDocumentGuideCard()
+                            PersonalDocumentGuideCard(selectedBar: $selectedBar)
                         } else {
                             EmptyView()
                         }
                         
                         Spacer()
                     }
-                    .searchable(text: $searchText, prompt: "Search Country")
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 20)
+                    .background(Color(.primaryWhite))
                 }
-                .background(Color(.primaryWhite))
             }
+            .background(Color(.primaryBlue))
         }
-        .background(Color(.primaryBlue))
     }
 }
 
-#Preview {
-    DiscoverPage()
-}
+//#Preview {
+//    DiscoverPage()
+//}
