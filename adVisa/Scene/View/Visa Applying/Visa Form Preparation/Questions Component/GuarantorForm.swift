@@ -36,8 +36,8 @@ struct GuarantorForm: View {
                                 .fontWeight(.semibold)
                             
                             Picker(selection: $viewModel.guarantorGender) {
-                                Text("Male").tag("Male")
-                                Text("Female").tag("Female")
+                                Text("Male").tag(GenderEnum.male)
+                                Text("Female").tag(GenderEnum.female)
                                 
                             } label: {
                                 Text("guarantorGender")
@@ -46,7 +46,7 @@ struct GuarantorForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.guarantorGender == "Male" ? "his" : "her") Name?")
+                            Text("What is \(viewModel.guarantorGender == GenderEnum.male ? "his" : "her") Name?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -58,7 +58,7 @@ struct GuarantorForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Where does \(viewModel.guarantorGender == "Male" ? "he" : "she") live?")
+                            Text("Where does \(viewModel.guarantorGender == GenderEnum.male ? "he" : "she") live?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -70,7 +70,7 @@ struct GuarantorForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("When does \(viewModel.guarantorGender == "Male" ? "he" : "she") born?")
+                            Text("When does \(viewModel.guarantorGender == GenderEnum.male ? "he" : "she") born?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -80,7 +80,7 @@ struct GuarantorForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is your relationship \(viewModel.guarantorGender == "Male" ? "him" : "her")?")
+                            Text("What is your relationship \(viewModel.guarantorGender == GenderEnum.male ? "him" : "her")?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -92,7 +92,7 @@ struct GuarantorForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.guarantorGender == "Male" ? "his" : "her") job?")
+                            Text("What is \(viewModel.guarantorGender == GenderEnum.male ? "his" : "her") job?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -104,7 +104,7 @@ struct GuarantorForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.guarantorGender == "Male" ? "his" : "her") position in that job?")
+                            Text("What is \(viewModel.guarantorGender == GenderEnum.male ? "his" : "her") position in that job?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -116,7 +116,7 @@ struct GuarantorForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.guarantorGender == "Male" ? "his" : "her") nationality?")
+                            Text("What is \(viewModel.guarantorGender == GenderEnum.male ? "his" : "her") nationality?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
