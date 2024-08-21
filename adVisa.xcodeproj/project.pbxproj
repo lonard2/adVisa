@@ -22,6 +22,7 @@
 		237F71EB2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */; };
 		237F71EE2C6DB6D8009CFC1D /* Data in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71ED2C6DB6D8009CFC1D /* Data */; };
 		237F71F02C6DB7C9009CFC1D /* Repository in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71EF2C6DB7C9009CFC1D /* Repository */; };
+		23A87FE62C74605600148870 /* AdVisaClassificationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */; };
 		260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */; };
 		260A23112C74166C00F034D1 /* VisaFormPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23102C74166C00F034D1 /* VisaFormPage.swift */; };
 		260A23132C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */; };
@@ -57,7 +58,6 @@
 		E97932C22C6F8E6F0065DDD0 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97932C12C6F8E6F0065DDD0 /* CIImage+Extension.swift */; };
 		E97932C42C6F8EEE0065DDD0 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97932C32C6F8EEE0065DDD0 /* CameraView.swift */; };
 		E97932C62C6F95810065DDD0 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97932C52C6F95810065DDD0 /* CameraViewModel.swift */; };
-		E97932CA2C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E97932C92C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel */; };
 		E97F19DF2C7225A800895F25 /* DocumentScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97F19DE2C7225A800895F25 /* DocumentScannerView.swift */; };
 		E97F19E12C7226CE00895F25 /* TextRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97F19E02C7226CE00895F25 /* TextRecognition.swift */; };
 		E9855F642C6A4BF30019080B /* adVisaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9855F632C6A4BF30019080B /* adVisaApp.swift */; };
@@ -94,6 +94,7 @@
 		237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDataRepositoryTests.swift; sourceTree = "<group>"; };
 		237F71ED2C6DB6D8009CFC1D /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = adVisa/Data; sourceTree = "<group>"; };
 		237F71EF2C6DB7C9009CFC1D /* Repository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Repository; path = adVisa/Data/Repository; sourceTree = "<group>"; };
+		23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AdVisaClassificationModel.mlmodel; sourceTree = "<group>"; };
 		260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentSheet.swift; sourceTree = "<group>"; };
 		260A23102C74166C00F034D1 /* VisaFormPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaFormPage.swift; sourceTree = "<group>"; };
 		260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmUploadDocumentPage.swift; sourceTree = "<group>"; };
@@ -129,7 +130,6 @@
 		E97932C12C6F8E6F0065DDD0 /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
 		E97932C32C6F8EEE0065DDD0 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		E97932C52C6F95810065DDD0 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
-		E97932C92C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AdVisaClassificationModel.mlmodel; sourceTree = "<group>"; };
 		E97F19DE2C7225A800895F25 /* DocumentScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScannerView.swift; sourceTree = "<group>"; };
 		E97F19E02C7226CE00895F25 /* TextRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognition.swift; sourceTree = "<group>"; };
 		E9855F602C6A4BF30019080B /* adVisa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adVisa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,8 +363,8 @@
 				E90997622C6B6EB900D6C39F /* Helper */,
 				E909975E2C6B6CE200D6C39F /* Data */,
 				E9855F632C6A4BF30019080B /* adVisaApp.swift */,
+				23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */,
 				E9855F672C6A4BF60019080B /* Assets.xcassets */,
-				E97932C92C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel */,
 				E9855F692C6A4BF70019080B /* Preview Content */,
 			);
 			path = adVisa;
@@ -526,6 +526,7 @@
 				269E2E0B2C6CEC3E00CFEB0E /* MiscRepository.swift in Sources */,
 				237F71D62C6CB962009CFC1D /* DataRepositoryProtocol.swift in Sources */,
 				269E2DFD2C6CE70E00CFEB0E /* DomicileRepository.swift in Sources */,
+				23A87FE62C74605600148870 /* AdVisaClassificationModel.mlmodel in Sources */,
 				235535372C733A1200973F80 /* ImagePicker.swift in Sources */,
 				269E2E032C6CE97000CFEB0E /* OccupationRepository.swift in Sources */,
 				237F71DC2C6CBBD2009CFC1D /* EmptyResponse.swift in Sources */,
@@ -536,7 +537,6 @@
 				E90997642C6B6EC300D6C39F /* Helper.swift in Sources */,
 				E95791B12C6CAF460023305B /* CrimeRemarkData.swift in Sources */,
 				E95791A92C6CACDC0023305B /* InviterData.swift in Sources */,
-				E97932CA2C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel in Sources */,
 				237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */,
 				235535352C7339BA00973F80 /* TestCameraView.swift in Sources */,
 			);
@@ -716,7 +716,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = MRV3669B85;
+				DEVELOPMENT_TEAM = BHS88Y2WBP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -746,7 +746,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = MRV3669B85;
+				DEVELOPMENT_TEAM = BHS88Y2WBP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";

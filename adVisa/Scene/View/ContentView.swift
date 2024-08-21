@@ -44,8 +44,11 @@ struct ContentView: View {
                     }
             }
         }
-        
+        .task {
+            SwiftDataContextManager()
+        }
     }
+    
 }
 
 #Preview {
