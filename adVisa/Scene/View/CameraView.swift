@@ -370,9 +370,13 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             print("CI Image Extent : \(ciImage.extent)")
             if let cgImage = context.createCGImage(ciImage, from: rect) {
                 var image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .up)
-                displayCapturedImage(image)
+                let desiredHeight: CGFloat = 250
                 
-                
+                if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: 960, cropHeight: 1400) {
+                    displayCapturedImage(croppedImage)
+                } else {
+                    return
+                }
             }
         }
         isCapturingImage = false
@@ -406,8 +410,28 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         DispatchQueue.main.async {
             self.capturedImage = image
             self.capturedImageView.image = image
+            self.capturedImageView.clipsToBounds = true
             self.capturedImageView.isHidden = false
         }
+    }
+    
+    private func cropMiddlePartOfImage(image: UIImage, cropWidth: CGFloat, cropHeight: CGFloat) -> UIImage? {
+        let originalWidth = image.size.width
+        let originalHeight = image.size.height
+
+        let cropWidth = min(cropWidth, originalWidth)
+        let cropHeight = min(cropHeight, originalHeight)
+        
+        let xOffset = (originalWidth - cropWidth) / 2
+        let yOffset = (originalHeight - cropHeight) / 2
+        
+        let cropRect = CGRect(x: xOffset, y: yOffset, width: cropWidth, height: cropHeight)
+        
+        guard let cgImage = image.cgImage?.cropping(to: cropRect) else {
+            return nil
+        }
+        
+        return UIImage(cgImage: cgImage)
     }
     
     private func cropImage(_ image: CIImage) -> CIImage {
