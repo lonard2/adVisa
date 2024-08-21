@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import AVFoundation
 import CoreML
 import Vision
@@ -11,14 +12,15 @@ struct TestCameraView: View {
     var body: some View {
         VStack {
             if let image = image {
+                
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 300, height: 300)
+                    .frame(width: 250, height: 250)
             } else {
                 Rectangle()
                     .fill(Color.gray)
-                    .frame(width: 300, height: 300)
+                    .frame(width: 250, height: 250)
                     .overlay(
                         Text("Tap to Capture Image")
                             .foregroundColor(.white)
@@ -33,6 +35,9 @@ struct TestCameraView: View {
                     .padding()
             }
         }
+        .onChange(of: image, initial: false, {
+            print("image size \(image?.size)")
+        })
         .sheet(isPresented: $showingImagePicker, onDismiss: processImage) {
             ImagePicker(image: $image)
         }

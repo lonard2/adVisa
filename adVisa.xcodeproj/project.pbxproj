@@ -528,6 +528,8 @@
 			dependencies = (
 			);
 			name = adVisa;
+			packageProductDependencies = (
+			);
 			productName = adVisa;
 			productReference = E9855F602C6A4BF30019080B /* adVisa.app */;
 			productType = "com.apple.product-type.application";
@@ -560,6 +562,9 @@
 				Base,
 			);
 			mainGroup = E9855F572C6A4BF30019080B;
+			packageReferences = (
+				2380B6A92C75A3C500CF487A /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+			);
 			productRefGroup = E9855F612C6A4BF30019080B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -672,7 +677,6 @@
 				E90997642C6B6EC300D6C39F /* Helper.swift in Sources */,
 				E95791B12C6CAF460023305B /* CrimeRemarkData.swift in Sources */,
 				E95791A92C6CACDC0023305B /* InviterData.swift in Sources */,
-				E97932CA2C6F9ABC0065DDD0 /* AdVisaClassificationModel.mlmodel in Sources */,
 				E9693A752C74763000244F02 /* Constants.swift in Sources */,
 				237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */,
 				235535352C7339BA00973F80 /* TestCameraView.swift in Sources */,
@@ -936,6 +940,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2380B6A92C75A3C500CF487A /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = E9855F582C6A4BF30019080B /* Project object */;
 }
