@@ -107,7 +107,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             selectedDocumentWidth = 250
             selectedDocumentHeight = 250
         case .none:
-            selectedDocumentFile = "passport_endorsement_camera_guide.png"
+            selectedDocumentFile = "generic_camera_guide.png"
             selectedDocumentWidth = 250
             selectedDocumentHeight = 250
         }
@@ -460,7 +460,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     cropWidth = 1150
                     cropHeight = 780
                 case .none:
-                    cropWidth = 1150
+                    cropWidth = 1080
                     cropHeight = 780
                 }
                 
