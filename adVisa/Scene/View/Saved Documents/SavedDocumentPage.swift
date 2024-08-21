@@ -33,10 +33,6 @@ struct SavedDocumentPage: View {
     }
 }
 
-#Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Document.self, configurations: config)
-    
-    return SavedDocumentPage()
-        .modelContainer(container)
+#Preview {    
+    SavedDocumentPage()
 }
