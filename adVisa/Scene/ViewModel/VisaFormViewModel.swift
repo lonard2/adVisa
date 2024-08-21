@@ -35,7 +35,7 @@ class VisaFormViewModel: ObservableObject {
     @Published var dayCountInJapanBefore = 0
     
     @Published var hasGuarantor = false
-    @Published var guarantorGender = "Male"
+    @Published var guarantorGender: GenderEnum = .male
     @Published var guarantorName = ""
     @Published var guarantorAddress = ""
     @Published var guarantorBirthDate = Date()
@@ -46,7 +46,7 @@ class VisaFormViewModel: ObservableObject {
     
     @Published var hasInviter = false
     @Published var inviterSameAsGuarantor = true
-    @Published var inviterGender = "Male"
+    @Published var inviterGender: GenderEnum = .male
     @Published var inviterName = ""
     @Published var inviterAddress = ""
     @Published var inviterBirthDate = Date()
@@ -65,6 +65,10 @@ class VisaFormViewModel: ObservableObject {
     @Published var crimeDetails = ""
     
     func nextForm() {
-        pageStep += 1
+        self.pageStep += 1
+    }
+    
+    func resetFormPage() {
+        self.pageStep = 1
     }
 }

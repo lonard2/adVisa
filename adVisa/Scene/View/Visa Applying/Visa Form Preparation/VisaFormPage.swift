@@ -39,7 +39,7 @@ struct VisaFormPage: View {
                 }
                 .background(Color(.primaryBlue))
                 
-                VStack(spacing: 20) {
+                VStack {
                     
                     switch(viewModel.pageStep) {
                         

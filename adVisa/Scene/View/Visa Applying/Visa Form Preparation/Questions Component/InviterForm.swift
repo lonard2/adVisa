@@ -53,8 +53,8 @@ struct InviterForm: View {
                                 .fontWeight(.semibold)
                             
                             Picker(selection: $viewModel.inviterGender) {
-                                Text("Male").tag("Male")
-                                Text("Female").tag("Female")
+                                Text("Male").tag(GenderEnum.male)
+                                Text("Female").tag(GenderEnum.female)
                                 
                             } label: {
                                 Text("inviterGender")
@@ -63,7 +63,7 @@ struct InviterForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.inviterGender == "Male" ? "his" : "her") Name?")
+                            Text("What is \(viewModel.inviterGender == GenderEnum.male ? "his" : "her") Name?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -75,7 +75,7 @@ struct InviterForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Where does \(viewModel.inviterGender == "Male" ? "he" : "she") live?")
+                            Text("Where does \(viewModel.inviterGender == GenderEnum.male ? "he" : "she") live?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -87,7 +87,7 @@ struct InviterForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("When does \(viewModel.inviterGender == "Male" ? "he" : "she") born?")
+                            Text("When does \(viewModel.inviterGender == GenderEnum.male ? "he" : "she") born?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -97,7 +97,7 @@ struct InviterForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is your relationship \(viewModel.inviterGender == "Male" ? "him" : "her")?")
+                            Text("What is your relationship \(viewModel.inviterGender == GenderEnum.male ? "him" : "her")?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -109,7 +109,7 @@ struct InviterForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.inviterGender == "Male" ? "his" : "her") job?")
+                            Text("What is \(viewModel.inviterGender == GenderEnum.male ? "his" : "her") job?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -121,7 +121,7 @@ struct InviterForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.inviterGender == "Male" ? "his" : "her") position in that job?")
+                            Text("What is \(viewModel.inviterGender == GenderEnum.male ? "his" : "her") position in that job?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -133,7 +133,7 @@ struct InviterForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.inviterGender == "Male" ? "his" : "her") nationality?")
+                            Text("What is \(viewModel.inviterGender == GenderEnum.male ? "his" : "her") nationality?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             

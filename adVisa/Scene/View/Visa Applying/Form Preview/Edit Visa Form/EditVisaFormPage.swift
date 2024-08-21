@@ -9,30 +9,21 @@ import SwiftUI
 
 struct EditVisaFormPage: View {
     var body: some View {
-        VStack(spacing: 20) {
-            ZStack{
-                Image("visa_header")
-                    .resizable()
-                    .scaledToFit()
+        VStack {
+            VStack(spacing: 10){
+                Text("VISA FORM")
+                    .foregroundStyle(Color(.primaryWhite))
+                    .font(.system(size: 22))
+                    .bold()
                 
-                VStack(spacing: 20) {
-                    Image("step_2")
-                        .resizable()
-                        .scaledToFit()
-                    
-                    VStack(spacing: 8) {
-                        Text("VISA FORM")
-                            .foregroundStyle(Color(.primaryWhite))
-                            .font(.system(size: 22))
-                            .bold()
-                        
-                        Text("Preview and complete your data")
-                            .foregroundStyle(Color(.primaryWhite))
-                            .font(.system(size: 15))
-                    }
-                }
-                .offset(y: -36)
+                Text("Preview and complete your data")
+                    .foregroundStyle(Color(.primaryWhite))
+                    .font(.system(size: 15))
+                
             }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 16)
+            .frame(maxWidth: .infinity)
             .background(Color(.primaryBlue))
             
             VStack(spacing: 12) {
@@ -149,8 +140,8 @@ struct EditVisaFormPage: View {
                 }
                 
             }
-            .padding(.vertical, 20)
             .padding(.horizontal, 16)
+            .padding(.vertical, 20)
             .background(Color(.primaryWhite))
             
             Spacer()
