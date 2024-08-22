@@ -669,9 +669,6 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                         switch completion {
                         case .finished:
                             print("Save successful")
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                self.navigationManager?.shouldNavigate = true
-                            }
                         case .failure(let error):
                             // Handle the error
                             DispatchQueue.main.async {
