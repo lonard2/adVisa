@@ -17,7 +17,7 @@ struct VisaFormConfirmationPage: View {
                     Text("Visa Application Form")
                         .foregroundStyle(Color(.primaryWhite))
                         .font(.system(size: 22))
-                        .bold()
+                        .fontWeight(.bold)
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 16)

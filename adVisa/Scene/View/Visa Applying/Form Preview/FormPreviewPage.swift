@@ -25,7 +25,7 @@ struct FormPreviewPage: View {
                             Text("FORMS PREVIEW")
                                 .foregroundStyle(Color(.primaryWhite))
                                 .font(.system(size: 22))
-                                .bold()
+                                .fontWeight(.bold)
                             
                             Text("Preview and confirm your generated forms.")
                                 .foregroundStyle(Color(.primaryWhite))

@@ -30,7 +30,7 @@ struct AppointmentPreparationPage: View {
                     +
                     
                     Text("you still need to bring these documents in person to the nearest VFS Global office. ")
-                        .bold()
+                        .fontWeight(.bold)
                     
                     +
                     
@@ -41,7 +41,7 @@ struct AppointmentPreparationPage: View {
                 
                 Text("You need to bring these documents in their original form:")
                     .font(.system(size: 17))
-                    .bold()
+                    .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                 
                 VStack(spacing: 12) {

@@ -17,7 +17,7 @@ struct EditVisaVisitDetailFormPage: View {
                 Text("Visit Details")
                     .foregroundStyle(Color(.primaryWhite))
                     .font(.system(size: 22))
-                    .bold()
+                    .fontWeight(.bold)
                 
                 Text("Preview and complete your visit details")
                     .foregroundStyle(Color(.primaryWhite))

@@ -31,7 +31,7 @@ struct DiscoverPage: View {
                         Text("Discover what you need to travel.")
                             .foregroundStyle(Color(.white))
                             .font(.system(size: 16))
-                            .bold()
+                            .fontWeight(.bold)
                             .offset(y: -48)
                     }
                     

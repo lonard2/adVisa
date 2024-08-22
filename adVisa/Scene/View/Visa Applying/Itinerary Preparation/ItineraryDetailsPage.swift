@@ -31,7 +31,7 @@ struct ItineraryDetailsPage: View {
                             Text("ITINERARY DETAILS")
                                 .foregroundStyle(Color(.primaryWhite))
                                 .font(.system(size: 22))
-                                .bold()
+                                .fontWeight(.bold)
                             
                             Text("Tell more about your plans in there")
                                 .foregroundStyle(Color(.primaryWhite))
