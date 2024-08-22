@@ -17,10 +17,10 @@ struct DocumentRequirementPage: View {
     @State private var selectedDocumentType: DocumentTypeDetailed = .none
     
     let documents: [Document] = [
-        Document(icon: "airplane.departure", imageName: "template", documentName: "Away Flight Booking", explanation: "Kindly provide your away flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
-        Document(icon: "airplane.arrival", imageName: "template", documentName: "Return Flight Booking", explanation: "Kindly provide your return flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
-        Document(icon: "building.2", imageName: "template", documentName: "Hotel Bookings", explanation: "Kindly provide your hotel booking confirmation or a screenshot of your hotel booking details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
-        Document(icon: "creditcard", imageName: "template", documentName: "Bank Statement", explanation: "A photo or scan of your bank statements/bank copy from the latest 3 months. Make sure that it mentioned your account’s name, number, and the bank’s name. ")
+        Document(icon: "airplane.departure", imageName: "flight_booking_guide_1", documentName: "Away Flight Booking", explanation: "Kindly provide your away flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
+        Document(icon: "airplane.arrival", imageName: "flight_booking_guide_2", documentName: "Return Flight Booking", explanation: "Kindly provide your return flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
+        Document(icon: "building.2", imageName: "accomodation_guide", documentName: "Hotel Bookings", explanation: "Kindly provide your hotel booking confirmation or a screenshot of your hotel booking details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
+        Document(icon: "creditcard", imageName: "bank_statement_guide", documentName: "Bank Statement", explanation: "A photo or scan of your bank statements/bank copy from the latest 3 months. Make sure that it mentioned your account’s name, number, and the bank’s name. ")
     ]
     
     var body: some View {
