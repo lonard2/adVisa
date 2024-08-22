@@ -19,7 +19,7 @@ struct SavedDocumentPage: View {
         NavigationStack {
             VStack(spacing: 20) {
                 ForEach(viewModel.cardData) { data in
-                    SavedDocumentCard(imageName: data.imageName, documentName: data.documentName, lastUpdated: "12.30")
+                    SavedDocumentCard(imageName:"template" , documentName: data.documentName, lastUpdated: "12.30")
                         .onTapGesture {
                             selectedDocument = data
                             

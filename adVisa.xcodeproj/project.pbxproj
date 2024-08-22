@@ -32,6 +32,7 @@
 		260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */; };
 		260A23112C74166C00F034D1 /* VisaFormPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23102C74166C00F034D1 /* VisaFormPage.swift */; };
 		260A23132C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */; };
+		2612A7B02C774C2700CA30FB /* HistoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612A7AF2C774C2700CA30FB /* HistoryPage.swift */; };
 		263201A02C731F9F006BD06F /* DiscoverPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632019F2C731F9F006BD06F /* DiscoverPage.swift */; };
 		263201A22C733B71006BD06F /* DestinationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263201A12C733B71006BD06F /* DestinationCard.swift */; };
 		265655552C7356A6004B2FAA /* PersonalDocumentGuideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265655542C7356A6004B2FAA /* PersonalDocumentGuideCard.swift */; };
@@ -148,6 +149,7 @@
 		260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentSheet.swift; sourceTree = "<group>"; };
 		260A23102C74166C00F034D1 /* VisaFormPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaFormPage.swift; sourceTree = "<group>"; };
 		260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmUploadDocumentPage.swift; sourceTree = "<group>"; };
+		2612A7AF2C774C2700CA30FB /* HistoryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPage.swift; sourceTree = "<group>"; };
 		2632019F2C731F9F006BD06F /* DiscoverPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPage.swift; sourceTree = "<group>"; };
 		263201A12C733B71006BD06F /* DestinationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationCard.swift; sourceTree = "<group>"; };
 		265655542C7356A6004B2FAA /* PersonalDocumentGuideCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDocumentGuideCard.swift; sourceTree = "<group>"; };
@@ -320,6 +322,14 @@
 				260A23122C741BCE00F034D1 /* ConfirmUploadDocumentPage.swift */,
 			);
 			path = "Upload Document";
+			sourceTree = "<group>";
+		};
+		2612A7AE2C774C1600CA30FB /* History */ = {
+			isa = PBXGroup;
+			children = (
+				2612A7AF2C774C2700CA30FB /* HistoryPage.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		265655532C735221004B2FAA /* Discover */ = {
@@ -560,6 +570,7 @@
 		E97932C72C6F97F80065DDD0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2612A7AE2C774C1600CA30FB /* History */,
 				2380B6BF2C762D2D00CF487A /* PDF Preview */,
 				26A166662C757342008622D2 /* Saved Documents */,
 				26A166632C75692A008622D2 /* Visa Exemption */,
@@ -845,6 +856,7 @@
 				E9693A752C74763000244F02 /* Constants.swift in Sources */,
 				237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */,
 				26A166732C7583B4008622D2 /* PersonalInformationForm.swift in Sources */,
+				2612A7B02C774C2700CA30FB /* HistoryPage.swift in Sources */,
 				235535352C7339BA00973F80 /* TestCameraView.swift in Sources */,
 				2664B5492C77367800D47AF9 /* SavedDocumentViewModel.swift in Sources */,
 			);

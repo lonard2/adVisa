@@ -92,6 +92,7 @@ struct DataPolicySheet: View {
         }
         .padding(.horizontal, 16)
         .padding(.top, 32)
+        .interactiveDismissDisabled()
         
     }
 }
