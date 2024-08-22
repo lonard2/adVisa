@@ -8,8 +8,40 @@
 import SwiftUI
 
 struct HistoryPage: View {
+    
+    @State private var searchText = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ZStack {
+                VStack(spacing: 0){
+                    
+                    TextField("\(Image(systemName: "magnifyingglass")) Search Country", text: $searchText)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .padding(7)
+                        .background(Color(.tertiarySystemFill))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                    Spacer()
+                    
+                    VStack(spacing: 10) {
+                        Image("history_empty")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 35)
+                        
+                        Text("You have no history")
+                            .font(.system(size: 16))
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.lighterGray)
+                    }
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 16)
+            }
+            .navigationTitle("History")
+        }
     }
 }
 

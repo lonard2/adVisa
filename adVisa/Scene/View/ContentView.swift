@@ -38,7 +38,7 @@ struct ContentView: View {
                         Label("Discover", systemImage: "map.circle.fill")
                     }.tag(1)
                 
-                Text("History Page")
+                HistoryPage()
                     .tabItem {
                         Label("History", systemImage: "clock.fill")
                     }.tag(2)
