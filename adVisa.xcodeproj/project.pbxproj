@@ -805,7 +805,6 @@
 				E97932C02C6F8A780065DDD0 /* CameraManager.swift in Sources */,
 				E95791A32C6C88250023305B /* EmployerData.swift in Sources */,
 				2380B6BC2C75E7AE00CF487A /* String+Extension.swift in Sources */,
-				2353DC772C6FA6D400E57375 /* DataPolicy.swift in Sources */,
 				265D9A052C75F45200A82131 /* EditStayingPlaceForm.swift in Sources */,
 				E957919F2C6C874D0023305B /* DomicileData.swift in Sources */,
 				269E2E0B2C6CEC3E00CFEB0E /* MiscRepository.swift in Sources */,
@@ -1022,7 +1021,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = BHS88Y2WBP;
+				DEVELOPMENT_TEAM = VPGX5Q423F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = AdVisa;
@@ -1058,7 +1057,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = BHS88Y2WBP;
+				DEVELOPMENT_TEAM = VPGX5Q423F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = AdVisa;
