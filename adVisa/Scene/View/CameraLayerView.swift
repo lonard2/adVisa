@@ -11,11 +11,17 @@ import SwiftUI
 import AVFoundation
 
 struct CameraLayerView: UIViewControllerRepresentable {
+    
+    var selectedDocument: DocumentTypeDetailed
+    
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        
+
     }
     
     func makeUIViewController(context: Context) -> UIViewController {
+        let cameraViewController = CameraViewController()
+        cameraViewController.selectedDocument = selectedDocument
+        return cameraViewController
         let controller = CameraViewController()
         controller.identityCardRepository = IdentityCardRepository()
         controller.passportRepository = PassportRepository()

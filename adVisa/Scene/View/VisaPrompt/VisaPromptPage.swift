@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VisaPromptPage: View {
     
-    @ObservedObject var viewModel = VisaPromptViewModel()
+    @StateObject var viewModel = VisaPromptViewModel()
     
     var body: some View {
         NavigationStack {
@@ -43,6 +43,9 @@ struct VisaPromptPage: View {
             }
             .ignoresSafeArea(edges: .top)
         }
+        .onDisappear(perform: {
+            viewModel.resetFormPage()
+        })
     }
 }
 

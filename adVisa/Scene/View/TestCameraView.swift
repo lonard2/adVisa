@@ -40,6 +40,7 @@ struct TestCameraView: View {
         })
         .sheet(isPresented: $showingImagePicker, onDismiss: processImage) {
             ImagePicker(image: $image)
+                .presentationDragIndicator(.visible)
         }
     }
     

@@ -84,7 +84,8 @@ struct CrimeRecordForm: View {
             }
         } else {
             NavigationLink {
-                Text("Test")
+                ItineraryDetailsPage()
+                    .navigationBarBackButtonHidden(true)
             } label: {
                 Text("Continue")
                     .padding(.vertical, 7)
@@ -93,6 +94,9 @@ struct CrimeRecordForm: View {
                     .foregroundStyle(Color(.primaryWhite))
                     .background(Color(.primaryBlue))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+            .onTapGesture {
+                viewModel.resetFormPage()
             }
         }
     }

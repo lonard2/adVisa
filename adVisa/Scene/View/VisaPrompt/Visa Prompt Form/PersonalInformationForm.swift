@@ -45,9 +45,8 @@ struct PersonalInformationForm: View {
         Spacer()
         
         NavigationLink {
-            
-            
-            
+            DocumentRequirementPage()
+                .navigationBarBackButtonHidden(true)
         } label: {
             Text("Continue")
                 .padding(.vertical, 7)

@@ -11,79 +11,112 @@ import SwiftData
 struct DocumentRequirementPage: View {
     
     @State private var isDone: Bool = false
+    @State private var showSheet: Bool = false
+    @State private var selectedDocument: Document = Document(icon: "", imageName: "", documentName: "", explanation: "")
+    
+    @State private var selectedDocumentType: DocumentTypeDetailed = .none
     
     let documents: [Document] = [
-        Document(icon: "airplane.departure", title: "Away Flight Booking"),
-        Document(icon: "airplane.arrival", title: "Return Flight Booking"),
-        Document(icon: "building.2", title: "Hotel Bookings"),
-        Document(icon: "creditcard", title: "Bank Statement")
+        Document(icon: "airplane.departure", imageName: "template", documentName: "Away Flight Booking", explanation: "Kindly provide your away flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
+        Document(icon: "airplane.arrival", imageName: "template", documentName: "Return Flight Booking", explanation: "Kindly provide your return flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
+        Document(icon: "building.2", imageName: "template", documentName: "Hotel Bookings", explanation: "Kindly provide your hotel booking confirmation or a screenshot of your hotel booking details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
+        Document(icon: "creditcard", imageName: "template", documentName: "Bank Statement", explanation: "A photo or scan of your bank statements/bank copy from the latest 3 months. Make sure that it mentioned your account’s name, number, and the bank’s name. ")
     ]
     
     var body: some View {
-        VStack(spacing: 20) {
-            ZStack{
-                Image("visa_header")
-                    .resizable()
-                    .scaledToFit()
-                
-                VStack(spacing: 20) {
-                    Image("step_1")
+        NavigationStack {
+            VStack(spacing: 20) {
+                ZStack{
+                    Image("visa_header")
                         .resizable()
                         .scaledToFit()
                     
-                    VStack(spacing: 8) {
-                        Text("DOCUMENT REQUIREMENT")
-                            .foregroundStyle(Color(.primaryWhite))
-                            .font(.system(size: 22))
-                            .bold()
+                    VStack(spacing: 20) {
+                        Image("step_1")
+                            .resizable()
+                            .scaledToFit()
                         
-                        Text("Prepare and input your document")
-                            .foregroundStyle(Color(.primaryWhite))
-                            .font(.system(size: 15))
+                        VStack(spacing: 8) {
+                            Text("DOCUMENT REQUIREMENT")
+                                .foregroundStyle(Color(.primaryWhite))
+                                .font(.system(size: 22))
+                                .bold()
+                            
+                            Text("Prepare and input your document")
+                                .foregroundStyle(Color(.primaryWhite))
+                                .font(.system(size: 15))
+                        }
                     }
+                    .offset(y: -36)
                 }
-                .offset(y: -36)
-            }
-            .background(Color(.primaryBlue))
-            
-            VStack(spacing: 20) {
+                .background(Color(.primaryBlue))
                 
-                ForEach(documents) { document in
-                    DocumentRow(document: document, isDone: $isDone)
+                VStack(spacing: 20) {
+                    
+                    ForEach(documents) { document in
+                        DocumentRow(document: document)
+                            .onTapGesture {
+                                selectedDocument = document
+                                
+                                switch(selectedDocument.documentName) {
+                                case "Passport (Bio Page)":
+                                    selectedDocumentType = .passport_bio
+                                case "Passport (Endorsement Page)":
+                                    selectedDocumentType = .passport_endorsement
+                                case "Identity Card (KTP)":
+                                    selectedDocumentType = .ktp
+                                case "Self Portrait":
+                                    selectedDocumentType = .self_portrait
+                                case "Bank Statement":
+                                    selectedDocumentType = .generic
+                                case "Return Flight Bookings":
+                                    selectedDocumentType = .generic
+                                case "Away Flight Booking":
+                                    selectedDocumentType = .generic
+                                case "Hotel Bookings":
+                                    selectedDocumentType = .generic
+                                case "none":
+                                    selectedDocumentType = .passport_bio
+                                default:
+                                    selectedDocumentType = .none
+                                }
+                                
+                                showSheet = true
+                            }
+                    }
+                    
+                    Spacer()
+                    
+                    NavigationLink {
+                        
+                        VisaFormPage()
+                            .navigationBarBackButtonHidden(true)
+                        
+                    } label: {
+                        Text("Continue")
+                            .padding(.vertical, 7)
+                            .frame(maxWidth: .infinity)
+                            .font(.system(size: 15))
+                            .foregroundStyle(Color(isDone ? .primaryWhite : .defaultGray))
+                            .background(Color(isDone ? .primaryBlue : .lighterGray))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    .disabled(isDone ? false : true)
+                    
                 }
+                .padding(.vertical, 20)
+                .padding(.horizontal, 16)
+                .background(Color(.primaryWhite))
                 
                 Spacer()
-                
-                Button {
-                    
-                    isDone.toggle()
-                    
-                } label: {
-                    Text("Continue")
-                        .padding(.vertical, 7)
-                        .frame(maxWidth: .infinity)
-                        .font(.system(size: 15))
-                        .foregroundStyle(Color(isDone ? .primaryWhite : .defaultGray))
-                        .background(Color(isDone ? .primaryBlue : .lighterGray))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                }
-                .disabled(isDone ? false : true)
-                
             }
-            .padding(.vertical, 20)
-            .padding(.horizontal, 16)
-            .background(Color(.primaryWhite))
-            
-            Spacer()
         }
+        .sheet(isPresented: $showSheet, content: {
+            UploadDocumentSheet(document: $selectedDocument, selectedDocumentType: $selectedDocumentType)
+        })
     }
-    
 }
 
 #Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Document.self, configurations: config)
-    
-    return DocumentRequirementPage()
-        .modelContainer(container)
+    DocumentRequirementPage()
 }

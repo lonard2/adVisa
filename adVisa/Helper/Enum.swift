@@ -22,3 +22,11 @@ enum PassportTypeEnum: String, Codable {
 enum DocumentRequirementConstants {
     case awayTicket, boardingTicket, accomodation, bankStatement
 }
+
+enum DocumentType {
+    case ktp, passport, hotel, tiket_pesawat, none
+}
+
+enum DocumentTypeDetailed {
+    case ktp, passport_bio, passport_endorsement, self_portrait, generic, none
+}

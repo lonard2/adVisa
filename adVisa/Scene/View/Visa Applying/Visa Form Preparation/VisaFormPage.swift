@@ -13,7 +13,7 @@ struct VisaFormPage: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
+            VStack(spacing: 0) {
                 ZStack{
                     Image("visa_header")
                         .resizable()
@@ -28,7 +28,7 @@ struct VisaFormPage: View {
                             Text("VISA FORM")
                                 .foregroundStyle(Color(.primaryWhite))
                                 .font(.system(size: 22))
-                                .bold()
+                                .fontWeight(.bold)
                             
                             Text("We want to confirm some things...")
                                 .foregroundStyle(Color(.primaryWhite))
@@ -39,7 +39,7 @@ struct VisaFormPage: View {
                 }
                 .background(Color(.primaryBlue))
                 
-                VStack(spacing: 20) {
+                VStack {
                     
                     switch(viewModel.pageStep) {
                         

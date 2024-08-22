@@ -31,7 +31,8 @@ struct CrimeDetailForm: View {
         Spacer()
         
         NavigationLink {
-            Text("Test")
+            ItineraryDetailsPage()
+                .navigationBarBackButtonHidden(true)
         } label: {
             Text("Continue")
                 .padding(.vertical, 7)
@@ -40,6 +41,9 @@ struct CrimeDetailForm: View {
                 .foregroundStyle(Color(.primaryWhite))
                 .background(Color(.primaryBlue))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+        .onTapGesture {
+            viewModel.resetFormPage()
         }
     }
 }

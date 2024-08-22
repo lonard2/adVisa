@@ -9,22 +9,24 @@ import SwiftUI
 
 struct UploadDocumentSheet: View {
     
-    @State var documentName: String
-    @State var documentImageName: String
-    @State var documentExplanation: String
+    @Binding var document: Document
+    
+    @State private var openCamera = false
+    
+    @Binding var selectedDocumentType : DocumentTypeDetailed
     
     var body: some View {
         
         VStack(spacing: 3) {
             
             VStack(spacing: 24) {
-                Text(documentName)
+                Text(document.documentName)
                     .font(.system(size: 22))
                     .fontWeight(.bold)
                 
-                Image(documentImageName)
+                Image(document.imageName)
                 
-                Text(documentExplanation)
+                Text(document.explanation)
                     .font(.system(size: 17))
                     .multilineTextAlignment(.center)
             }
@@ -35,6 +37,8 @@ struct UploadDocumentSheet: View {
             
             VStack(spacing: 20) {
                 Button {
+                    openCamera.toggle()
+                    
                     
                 } label: {
                     Text("Take Picture")
@@ -44,6 +48,10 @@ struct UploadDocumentSheet: View {
                         .foregroundStyle(Color(.primaryWhite))
                         .background(Color.primaryBlue)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+                .fullScreenCover(isPresented: $openCamera) {
+                    CameraLayerView(selectedDocument: selectedDocumentType)
+                        .ignoresSafeArea()
                 }
                 
                 Button {
@@ -65,6 +73,6 @@ struct UploadDocumentSheet: View {
     }
 }
 
-#Preview {
-    UploadDocumentSheet(documentName: "Passport (Bio Page)", documentImageName: "passport_bio_guide", documentExplanation: "It’s the 2nd page of your Passport. It should be looked like the picture above. Use a solid background to take the photo.")
-}
+//#Preview {
+//    UploadDocumentSheet()
+//}

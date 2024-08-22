@@ -25,6 +25,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     var identityCardRepository: IdentityCardRepository?
     
     private var cancellables: Set<AnyCancellable> = []
+class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private var isAuthorized = false
     
     private let captureSession = AVCaptureSession()
@@ -36,15 +37,18 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     private var topLayer = UIView()
     private var backButton = UIButton(type: .system)
     
+    
     private var capturedImageView: UIImageView!
     private var capturedImage: UIImage?
-    
     
     private var instructionGuidelineImage = UIImage()
     private var instructionGuidelineImageView = UIImageView()
     
     private var flashButton = UIButton(type: .system)
     private var flashButtonBorder = UIView()
+    
+    private var photoPickButton = UIButton(type: .system)
+    private var photoPickButtonBorder = UIView()
     
     private let circularButton = UIButton(type: .system)
     private var circularButtonBorder = UIView()
@@ -57,9 +61,18 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     var addToPreviewStream: ((CGImage) -> Void)?
     
+    var selectedDocument: DocumentTypeDetailed = .none
+    var selectedDocumentFile: String = ""
+    var selectedDocumentWidth: Int = 200
+    var selectedDocumentHeight: Int = 200
+    
+    var cropWidth: Int = 720
+    var cropHeight: Int = 1200
+    
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
+        view.clipsToBounds = true
         
         capturedImageView = UIImageView()
         capturedImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,6 +80,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         capturedImageView.clipsToBounds = true
         capturedImageView.isHidden = true
         capturedImageView.transform = CGAffineTransform(rotationAngle: .pi/2)
+        capturedImageView.sizeToFit()
         
         view.addSubview(capturedImageView)
         
@@ -78,12 +92,39 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         instructions.textColor = .black
         instructions.numberOfLines = 0
         
-        instructionGuidelineImage = UIImage(named: "passport_bio_camera_guide.png")!
+        switch(selectedDocument) {
+        case .passport_bio:
+            selectedDocumentFile = "passport_bio_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .passport_endorsement:
+            selectedDocumentFile = "passport_endorsement_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .ktp:
+            selectedDocumentFile = "identity_card_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .self_portrait:
+            selectedDocumentFile = "self_portrait_guideline_camera.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .generic:
+            selectedDocumentFile = "generic_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .none:
+            selectedDocumentFile = "generic_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        }
+        
+        instructionGuidelineImage = UIImage(named: selectedDocumentFile)!
         
         instructionGuidelineImageView = UIImageView(image: instructionGuidelineImage)
         instructionGuidelineImageView.translatesAutoresizingMaskIntoConstraints = false
         instructionGuidelineImageView.tintColor = .white
-        instructionGuidelineImageView.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
+        instructionGuidelineImageView.frame = CGRect(x: 0, y: 0, width: selectedDocumentWidth, height: selectedDocumentHeight)
         
         circularButton.backgroundColor = .blue
         
@@ -135,6 +176,22 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         flashButtonBorder.layer.borderColor = UIColor.gray.cgColor
         flashButtonBorder.translatesAutoresizingMaskIntoConstraints = false
         
+        let photoPickIcon = UIImage(systemName: "photo.badge.plus")
+        photoPickButton.setImage(photoPickIcon, for: .normal)
+        photoPickButton.tintColor = .black
+        photoPickButton.translatesAutoresizingMaskIntoConstraints = false
+        photoPickButton.addTarget(self, action: #selector(pickPhoto), for: .touchUpInside)
+        
+        photoPickButtonBorder = UIView()
+        photoPickButtonBorder.layer.cornerRadius = 21
+        photoPickButtonBorder.clipsToBounds = true
+        
+        photoPickButtonBorder.tintColor = .none
+        photoPickButtonBorder.backgroundColor = .none
+        photoPickButtonBorder.layer.borderWidth = 2
+        photoPickButtonBorder.layer.borderColor = UIColor.gray.cgColor
+        photoPickButtonBorder.translatesAutoresizingMaskIntoConstraints = false
+        
         bottomLayer = UIView()
         bottomLayer.translatesAutoresizingMaskIntoConstraints = false
         bottomLayer.backgroundColor = .white
@@ -144,9 +201,12 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         bottomLayer.addSubview(flashButton)
         bottomLayer.addSubview(flashButtonBorder)
         bottomLayer.addSubview(instructions)
+        bottomLayer.addSubview(photoPickButton)
+        bottomLayer.addSubview(photoPickButtonBorder)
         
         bottomLayer.bringSubviewToFront(flashButton)
         bottomLayer.bringSubviewToFront(circularButton)
+        bottomLayer.bringSubviewToFront(photoPickButton)
 
         view.addSubview(topLayer)
         view.addSubview(instructionGuidelineImageView)
@@ -196,6 +256,16 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             flashButtonBorder.centerYAnchor.constraint(equalTo: flashButton.centerYAnchor),
             flashButtonBorder.widthAnchor.constraint(equalToConstant: 50),
             flashButtonBorder.heightAnchor.constraint(equalToConstant: 50),
+            
+            photoPickButton.bottomAnchor.constraint(equalTo: bottomLayer.bottomAnchor, constant: -40),
+            photoPickButton.leadingAnchor.constraint(equalTo: bottomLayer.leadingAnchor, constant: 32),
+            photoPickButton.widthAnchor.constraint(equalToConstant: 50),
+            photoPickButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            photoPickButtonBorder.centerXAnchor.constraint(equalTo: photoPickButton.centerXAnchor),
+            photoPickButtonBorder.centerYAnchor.constraint(equalTo: photoPickButton.centerYAnchor),
+            photoPickButtonBorder.widthAnchor.constraint(equalToConstant: 50),
+            photoPickButtonBorder.heightAnchor.constraint(equalToConstant: 50),
             
             instructions.bottomAnchor.constraint(equalTo: circularButton.topAnchor, constant: -20),
             instructions.centerXAnchor.constraint(equalTo: bottomLayer.centerXAnchor),
@@ -363,18 +433,29 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             let rect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(imageBuffer), height: CVPixelBufferGetHeight(imageBuffer))
             if let cgImage = context.createCGImage(ciImage, from: rect) {
                 var image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .up)
-                let desiredHeight: CGFloat = 250
                 
-                if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: 960, cropHeight: 1400) {
-//                    displayCapturedImage(croppedImage)
-                    guard let ciImage = CIImage(image: croppedImage) else {
-                            return
-                        }
-                        
-                        // Now you can process the CIImage
-                        DispatchQueue.main.async {
-                            self.processCapturedImage(ciImage)
-                        }
+                switch(selectedDocument) {
+                case .passport_bio:
+                    cropWidth = 960
+                    cropHeight = 1400
+                case .passport_endorsement:
+                    cropWidth = 1150
+                    cropHeight = 780
+                case .ktp:
+                    cropWidth = 960
+                    cropHeight = 1400
+                case .self_portrait:
+                    return
+                case .generic:
+                    cropWidth = 1150
+                    cropHeight = 780
+                case .none:
+                    cropWidth = 1080
+                    cropHeight = 780
+                }
+                
+                if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: CGFloat(cropWidth), cropHeight: CGFloat(cropHeight)) {
+                    displayCapturedImage(croppedImage)
                 } else {
                     return
                 }
@@ -495,15 +576,15 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                         self?.performTextRecognition(on: image, with: .ktp)
                     case "passport":
                         self?.performTextRecognition(on: image, with: .passport)
-                    case "hotel", "tiket_pesawat":
-                        print("Detected a \(topResult.identifier). Handling is not implemented yet.")
+                    case "hotel":
+                        self?.performTextRecognition(on: image, with: .hotel)
+                    case "tiket_pesawat":
+                        self?.performTextRecognition(on: image, with: .tiket_pesawat)
                     default:
                         print("Unhandled document type: \(topResult.identifier)")
                     }
                 }
             }
-            
-            
             
             // Step 3: Perform the classification request
             let handler = VNImageRequestHandler(ciImage: image, options: [:])
@@ -547,6 +628,12 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                 self?.extractIdentityCardData(from: recognizedTexts)
             case .passport:
                 self?.extractPassportDataWithGeometry(from: recognizedTextByPosition)
+            case .hotel:
+                self?.extractAccomodationData(from: recognizedTexts)
+            case .tiket_pesawat:
+                self?.extractFlightTicketData(from: recognizedTexts)
+            case .none:
+                self?.extractIdentityCardData(from: recognizedTexts)
             }
         }
         
@@ -708,6 +795,45 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             // Handle the case where required values are nil
             print("Required data is missing or invalid.")
         }
+    }
+    
+    private func extractAccomodationData(from recognizedTexts: [String]) {
+        
+    }
+    
+    private func extractFlightTicketData(from recognizedTexts: [String]) {
+        
+    }
+    
+    @objc func pickPhoto() {
+        let imagePickerController = UIImagePickerController()
+        
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = false
+        
+        DispatchQueue.main.async {
+            self.present(imagePickerController, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            print("Image selected: \(selectedImage)")
+            
+            if let ciImage = CIImage(image: selectedImage) {
+                self.processCapturedImage(ciImage)
+                print("Picture from picker processed.")
+            } else {
+                print("Picture from picker couldn't be processed.")
+            }
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController, mediaInfo: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
     }
     
     func extractDate(from text: String) -> String? {
