@@ -105,7 +105,9 @@ struct RedirectJavesPage: View {
             VStack {
                 Spacer()
                 
-                Image("template")
+                Image("javes_homepage")
+                    .resizable()
+                    .frame(width: 300, height: 200)
                 
                 Spacer()
             }

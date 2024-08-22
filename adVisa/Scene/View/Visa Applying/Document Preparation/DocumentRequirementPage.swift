@@ -14,6 +14,8 @@ struct DocumentRequirementPage: View {
     @State private var showSheet: Bool = false
     @State private var selectedDocument: Document = Document(icon: "", imageName: "", documentName: "", explanation: "")
     
+    @State private var selectedDocumentType: DocumentTypeDetailed = .none
+    
     let documents: [Document] = [
         Document(icon: "airplane.departure", imageName: "template", documentName: "Away Flight Booking", explanation: "Kindly provide your away flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
         Document(icon: "airplane.arrival", imageName: "template", documentName: "Return Flight Booking", explanation: "Kindly provide your return flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
@@ -55,6 +57,30 @@ struct DocumentRequirementPage: View {
                         DocumentRow(document: document)
                             .onTapGesture {
                                 selectedDocument = document
+                                
+                                switch(selectedDocument.documentName) {
+                                case "Passport (Bio Page)":
+                                    selectedDocumentType = .passport_bio
+                                case "Passport (Endorsement Page)":
+                                    selectedDocumentType = .passport_endorsement
+                                case "Identity Card (KTP)":
+                                    selectedDocumentType = .ktp
+                                case "Self Portrait":
+                                    selectedDocumentType = .self_portrait
+                                case "Bank Statement":
+                                    selectedDocumentType = .generic
+                                case "Return Flight Bookings":
+                                    selectedDocumentType = .generic
+                                case "Away Flight Booking":
+                                    selectedDocumentType = .generic
+                                case "Hotel Bookings":
+                                    selectedDocumentType = .generic
+                                case "none":
+                                    selectedDocumentType = .passport_bio
+                                default:
+                                    selectedDocumentType = .none
+                                }
+                                
                                 showSheet = true
                             }
                     }
@@ -86,7 +112,7 @@ struct DocumentRequirementPage: View {
             }
         }
         .sheet(isPresented: $showSheet, content: {
-            UploadDocumentSheet(document: $selectedDocument)
+            UploadDocumentSheet(document: $selectedDocument, selectedDocumentType: $selectedDocumentType)
         })
     }
 }
