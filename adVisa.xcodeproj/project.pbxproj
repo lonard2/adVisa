@@ -985,8 +985,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = AdVisa;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera will be used for capturing required documents for your visa application preparation, which are later processed. The captured picture will only be saved locally and will not be shared with other people & apps.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "The photo library will be used for picking images to be processed by the app. The image will not be shared with other people & apps.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1021,8 +1021,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = AdVisa;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera will be used for capturing required documents for your visa application preparation, which are later processed. The captured picture will only be saved locally and will not be shared with other people & apps.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "The photo library will be used for picking images to be processed by the app. The image will not be shared with other people & apps.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
