@@ -16,20 +16,20 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geo in
             TabView(selection: $selectedBar) {
-                    ZStack {
-                        VStack {
-                            Button {
-                                openCamera.toggle()
-                            } label: {
-                                Text("Open camera")
-                            }
-                        }
-                    }
-                    .frame(width: geo.size.width, height: geo.size.height)
-                    .fullScreenCover(isPresented: $openCamera) {
-                        CameraLayerView(selectedDocument: .ktp)
-                            .ignoresSafeArea()
-                    }
+//                    ZStack {
+//                        VStack {
+//                            Button {
+//                                openCamera.toggle()
+//                            } label: {
+//                                Text("Open camera")
+//                            }
+//                        }
+//                    }
+//                    .frame(width: geo.size.width, height: geo.size.height)
+//                    .fullScreenCover(isPresented: $openCamera) {
+//                        CameraLayerView(selectedDocument: .ktp)
+//                            .ignoresSafeArea()
+//                    }
                 
                 DiscoverPage(selectedBar: $selectedBar)
                     .tabItem {

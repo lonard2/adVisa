@@ -107,7 +107,7 @@ struct RedirectJavesPage: View {
                 
                 Image("javes_homepage")
                     .resizable()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 400, height: 300)
                 
                 Spacer()
             }
