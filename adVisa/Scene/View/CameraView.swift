@@ -11,21 +11,16 @@ import AVFoundation
 import UIKit
 import Combine
 
-private enum DocumentType {
-    case ktp, passport
-}
-
 protocol CameraViewControllerProtocol {
     var passportRepository: PassportRepository? { get set }
     var identityCardRepository: IdentityCardRepository? { get set }
 }
 
-class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, CameraViewControllerProtocol {
+class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, CameraViewControllerProtocol, UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
     var passportRepository: PassportRepository?
     var identityCardRepository: IdentityCardRepository?
     
     private var cancellables: Set<AnyCancellable> = []
-class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private var isAuthorized = false
     
     private let captureSession = AVCaptureSession()
@@ -453,9 +448,10 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     cropWidth = 1080
                     cropHeight = 780
                 }
-                
                 if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: CGFloat(cropWidth), cropHeight: CGFloat(cropHeight)) {
-                    displayCapturedImage(croppedImage)
+                    if let image = CIImage(image: croppedImage) {
+                        self.processCapturedImage(image)
+                    }
                 } else {
                     return
                 }
