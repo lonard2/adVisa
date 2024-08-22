@@ -17,7 +17,7 @@ struct ItineraryFormConfirmationPage: View {
                     Text("Itinerary Form")
                         .foregroundStyle(Color(.primaryWhite))
                         .font(.system(size: 22))
-                        .bold()
+                        .fontWeight(.bold)
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 16)

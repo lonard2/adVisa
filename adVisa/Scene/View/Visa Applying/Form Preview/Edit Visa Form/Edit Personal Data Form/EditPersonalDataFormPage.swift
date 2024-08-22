@@ -17,7 +17,7 @@ struct EditPersonalDataFormPage: View {
                 Text("Personal Data")
                     .foregroundStyle(Color(.primaryWhite))
                     .font(.system(size: 22))
-                    .bold()
+                    .fontWeight(.bold)
                 
                 Text("Preview and complete your personal data")
                     .foregroundStyle(Color(.primaryWhite))

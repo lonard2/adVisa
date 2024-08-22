@@ -60,6 +60,7 @@ struct ConfirmUploadDocumentPage: View {
             .background(Color(.primaryWhite))
             
         }
+        .background(Color.primaryWhite)
     }
 }
 
