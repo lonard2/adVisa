@@ -13,8 +13,7 @@ struct UploadDocumentSheet: View {
     
     @State private var openCamera = false
     
-    var selectedDocument = "Passport (Bio Page)"
-    @State var documentType : DocumentTypeDetailed
+    @Binding var selectedDocumentType : DocumentTypeDetailed
     
     var body: some View {
         
@@ -40,28 +39,7 @@ struct UploadDocumentSheet: View {
                 Button {
                     openCamera.toggle()
                     
-                    switch(selectedDocument) {
-                    case "Passport (Bio Page)":
-                        documentType = .passport_bio
-                    case "Passport (Endorsement Page)":
-                        documentType = .passport_endorsement
-                    case "Identity Card (KTP)":
-                        documentType = .ktp
-                    case "Self Portrait":
-                        documentType = .self_portrait
-                    case "Bank Statement":
-                        documentType = .generic
-                    case "Return Flight Bookings":
-                        documentType = .generic
-                    case "Away Flight Booking":
-                        documentType = .generic
-                    case "Hotel Bookings":
-                        documentType = .generic
-                    case "none":
-                        documentType = .passport_bio
-                    default:
-                        documentType = .none
-                    }
+                    
                 } label: {
                     Text("Take Picture")
                         .padding(.vertical, 7)
@@ -72,7 +50,7 @@ struct UploadDocumentSheet: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 .fullScreenCover(isPresented: $openCamera) {
-                    CameraLayerView(selectedDocument: documentType)
+                    CameraLayerView(selectedDocument: selectedDocumentType)
                         .ignoresSafeArea()
                 }
                 
