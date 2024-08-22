@@ -13,16 +13,13 @@ internal class TravelHistoryRepository: DataRepositoryProtocol {
     
     typealias T = TravelHistoryData
     
-    private let container = SwiftDataContextManager.shared.travelHistoryContainer
+    private let container = SwiftDataContextManager.shared.container
     
-    func fetchById(id: String) -> AnyPublisher<TravelHistoryData?, DataError> {
+    func fetchFirst() -> AnyPublisher<TravelHistoryData?, DataError> {
         return Future<TravelHistoryData?, DataError> { promise in
             Task { @MainActor in
-                let fetchDescriptor = FetchDescriptor<TravelHistoryData>(
-                    predicate: #Predicate<TravelHistoryData> {
-                        $0.id == id
-                    }
-                )
+                
+                let fetchDescriptor = FetchDescriptor<TravelHistoryData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -36,7 +33,6 @@ internal class TravelHistoryRepository: DataRepositoryProtocol {
                     promise(.failure(.genericError(error: error)))
                 }
             }
-        
         }
         .eraseToAnyPublisher()
     }

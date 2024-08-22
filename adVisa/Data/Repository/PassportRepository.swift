@@ -13,17 +13,13 @@ public class PassportRepository: DataRepositoryProtocol {
     
     typealias T = PassportData
     
-    private let container = SwiftDataContextManager.shared.passportContainer
+    private let container = SwiftDataContextManager.shared.container
     
-    func fetchById(id: String) -> AnyPublisher<PassportData?, DataError> {
+    func fetchFirst() -> AnyPublisher<PassportData?, DataError> {
         return Future<PassportData?, DataError> { promise in
             Task { @MainActor in
                 
-                let fetchDescriptor = FetchDescriptor<PassportData>(
-                    predicate: #Predicate<PassportData> {
-                        $0.id == id
-                    }
-                )
+                let fetchDescriptor = FetchDescriptor<PassportData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -37,7 +33,6 @@ public class PassportRepository: DataRepositoryProtocol {
                     promise(.failure(.genericError(error: error)))
                 }
             }
-        
         }
         .eraseToAnyPublisher()
     }
@@ -52,6 +47,7 @@ public class PassportRepository: DataRepositoryProtocol {
                         givenName: param.givenName,
                         dateOfBirth: param.dateOfBirth,
                         city: param.city,
+                        state: param.state,
                         country: param.country,
                         gender: param.gender,
                         nationality: param.nationality,

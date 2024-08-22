@@ -10,31 +10,19 @@ import SwiftData
 
 public class SwiftDataContextManager {
     public static var shared = SwiftDataContextManager()
-    var passportContainer: ModelContainer?
-    var identityCardContainer: ModelContainer?
-    var planeTicketContainer: ModelContainer?
-    var domicileContainer: ModelContainer?
-    var travelHistoryContainer: ModelContainer?
-    var employerContainer: ModelContainer?
-    var occupationContainer: ModelContainer?
-    var guarantorContainer: ModelContainer?
-    var inviterContainer: ModelContainer?
-    var miscContainer: ModelContainer?
-    var crimeRemarkContainer: ModelContainer?
+    
+    var container: ModelContainer?
     
     var context: ModelContext?
 
     init() {
-        initializePassportContainer()
-        initializeIdentityCardContainer()
-        initializePlaneTicketContainer()
-        initializeDomicileContainer()
-        initializeTravelHistoryContainer()
-        initializeEmployerContainer()
-        initializeOccupationContainer()
-        initializeGuarantorContainer()
-        initializeInviterContainer()
-        initializeMiscContainer()
-        initializeCrimeRemarkContainer()
+        do {
+            container = try ModelContainer(for: PassportData.self, IdentityCardData.self, PlaneTicketData.self, DomicileData.self, TravelHistoryData.self, EmployerData.self, OccupationData.self, GuarantorData.self, InviterData.self, MiscData.self, CrimeRemarkData.self)
+            if let container {
+                context = ModelContext(container)
+            }
+        } catch {
+            debugPrint("Error initializing database container:", error)
+        }
     }
 }

@@ -19,7 +19,6 @@ final class PassportDataRepositoryTests: XCTestCase {
         super.setUp()
         
         let contextManager = SwiftDataContextManager.shared
-        contextManager.initializePassportContainer()
         repository = PassportRepository()
     }
     
@@ -40,7 +39,7 @@ final class PassportDataRepositoryTests: XCTestCase {
             surname: "Doe",
             givenName: "John",
             dateOfBirth: Date(timeIntervalSince1970: 315532800), // 1980-01-01
-            city: "New York",
+            city: "New York", state: "AAAA",
             country: "USA",
             gender: .male,
             nationality: "American",
@@ -69,7 +68,7 @@ final class PassportDataRepositoryTests: XCTestCase {
                 saveExpectation.fulfill()
                 
                 // Now fetch the saved data by ID
-                self.repository.fetchById(id: example.id)
+                self.repository.fetchFirst()
                     .sink(receiveCompletion: { completion in
                         switch completion {
                         case .failure(let error):

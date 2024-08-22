@@ -13,16 +13,13 @@ internal class CrimeRemarkRepository: DataRepositoryProtocol {
     
     typealias T = CrimeRemarkData
     
-    private let container = SwiftDataContextManager.shared.crimeRemarkContainer
+    private let container = SwiftDataContextManager.shared.container
     
-    func fetchById(id: String) -> AnyPublisher<CrimeRemarkData?, DataError> {
+    func fetchFirst() -> AnyPublisher<CrimeRemarkData?, DataError> {
         return Future<CrimeRemarkData?, DataError> { promise in
             Task { @MainActor in
-                let fetchDescriptor = FetchDescriptor<CrimeRemarkData>(
-                    predicate: #Predicate<CrimeRemarkData> {
-                        $0.id == id
-                    }
-                )
+                
+                let fetchDescriptor = FetchDescriptor<CrimeRemarkData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -36,7 +33,6 @@ internal class CrimeRemarkRepository: DataRepositoryProtocol {
                     promise(.failure(.genericError(error: error)))
                 }
             }
-        
         }
         .eraseToAnyPublisher()
     }

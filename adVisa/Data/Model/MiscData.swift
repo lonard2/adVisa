@@ -13,25 +13,14 @@ class MiscData {
     @Attribute(.unique) var id: String = UUID().uuidString
     var visitPurpose: String
     var specialRemark: String
+    var durationStay: String
     var dateOfApplication: Date
     
-    init(visitPurpose: String, specialRemark: String, dateOfApplication: Date) {
+    init(id: String, visitPurpose: String, specialRemark: String, durationStay: String, dateOfApplication: Date) {
+        self.id = id
         self.visitPurpose = visitPurpose
         self.specialRemark = specialRemark
+        self.durationStay = durationStay
         self.dateOfApplication = dateOfApplication
-    }
-}
-
-extension SwiftDataContextManager {
-    func initializeMiscContainer() {
-        do {
-            miscContainer = try ModelContainer(for: MiscData.self)
-            if let miscContainer {
-                context = ModelContext(miscContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing misc container:", error)
-        }
     }
 }

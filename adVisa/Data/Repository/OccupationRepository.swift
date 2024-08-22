@@ -13,16 +13,13 @@ internal class OccupationRepository: DataRepositoryProtocol {
     
     typealias T = OccupationData
     
-    private let container = SwiftDataContextManager.shared.occupationContainer
+    private let container = SwiftDataContextManager.shared.container
     
-    func fetchById(id: String) -> AnyPublisher<OccupationData?, DataError> {
+    func fetchFirst() -> AnyPublisher<OccupationData?, DataError> {
         return Future<OccupationData?, DataError> { promise in
             Task { @MainActor in
-                let fetchDescriptor = FetchDescriptor<OccupationData>(
-                    predicate: #Predicate<OccupationData> {
-                        $0.id == id
-                    }
-                )
+                
+                let fetchDescriptor = FetchDescriptor<OccupationData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -36,7 +33,6 @@ internal class OccupationRepository: DataRepositoryProtocol {
                     promise(.failure(.genericError(error: error)))
                 }
             }
-        
         }
         .eraseToAnyPublisher()
     }

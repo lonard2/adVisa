@@ -13,26 +13,10 @@ class IdentityCardData {
     @Attribute(.unique) var id: String = UUID().uuidString
     var identityId: String
     var maritalStatus: MaritalStatusEnum
-    var state: String
     
-    init(id: String, identityId: String, maritalStatus: MaritalStatusEnum, state: String) {
+    init(id: String, identityId: String, maritalStatus: MaritalStatusEnum) {
         self.id = id
         self.identityId = identityId
         self.maritalStatus = maritalStatus
-        self.state = state
-    }
-}
-
-extension SwiftDataContextManager {
-    func initializeIdentityCardContainer() {
-        do {
-            identityCardContainer = try ModelContainer(for: IdentityCardData.self)
-            if let identityCardContainer {
-                context = ModelContext(identityCardContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing identity card container:", error)
-        }
     }
 }
