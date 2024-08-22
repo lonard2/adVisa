@@ -27,6 +27,7 @@
 		2380B6C32C770AAD00CF487A /* PdfPreviewVisaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380B6C22C770AAD00CF487A /* PdfPreviewVisaViewModel.swift */; };
 		2380B6C52C772F9400CF487A /* AccomodationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380B6C42C772F9400CF487A /* AccomodationData.swift */; };
 		2380B6C72C772FF500CF487A /* AccomodationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380B6C62C772FF500CF487A /* AccomodationRepository.swift */; };
+		2380B6CF2C7745B000CF487A /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380B6CE2C7745B000CF487A /* NavigationManager.swift */; };
 		23A87FE62C74605600148870 /* AdVisaClassificationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */; };
 		260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */; };
 		260A23112C74166C00F034D1 /* VisaFormPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23102C74166C00F034D1 /* VisaFormPage.swift */; };
@@ -143,6 +144,7 @@
 		2380B6C22C770AAD00CF487A /* PdfPreviewVisaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfPreviewVisaViewModel.swift; sourceTree = "<group>"; };
 		2380B6C42C772F9400CF487A /* AccomodationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationData.swift; sourceTree = "<group>"; };
 		2380B6C62C772FF500CF487A /* AccomodationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationRepository.swift; sourceTree = "<group>"; };
+		2380B6CE2C7745B000CF487A /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AdVisaClassificationModel.mlmodel; sourceTree = "<group>"; };
 		260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentSheet.swift; sourceTree = "<group>"; };
 		260A23102C74166C00F034D1 /* VisaFormPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaFormPage.swift; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 			children = (
 				E97932C82C6F97FC0065DDD0 /* ViewModel */,
 				E97932C72C6F97F80065DDD0 /* View */,
+				2380B6CE2C7745B000CF487A /* NavigationManager.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 				E957919F2C6C874D0023305B /* DomicileData.swift in Sources */,
 				269E2E0B2C6CEC3E00CFEB0E /* MiscRepository.swift in Sources */,
 				26B4C8602C748C2D00970A26 /* ItineraryCard.swift in Sources */,
+				2380B6CF2C7745B000CF487A /* NavigationManager.swift in Sources */,
 				237F71D62C6CB962009CFC1D /* DataRepositoryProtocol.swift in Sources */,
 				26A166682C757359008622D2 /* SavedDocumentPage.swift in Sources */,
 				26B4C85D2C748A9300970A26 /* Itinerary.swift in Sources */,
