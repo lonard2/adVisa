@@ -39,7 +39,7 @@ final class PassportDataRepositoryTests: XCTestCase {
             surname: "Doe",
             givenName: "John",
             dateOfBirth: Date(timeIntervalSince1970: 315532800), // 1980-01-01
-            city: "New York",
+            city: "New York", state: "AAAA",
             country: "USA",
             gender: .male,
             nationality: "American",
