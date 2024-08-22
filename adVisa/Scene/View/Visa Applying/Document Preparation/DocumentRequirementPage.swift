@@ -10,7 +10,7 @@ import SwiftData
 
 struct DocumentRequirementPage: View {
     
-    @State private var isDone: Bool = false
+    @State private var isDone: Bool = true
     @State private var showSheet: Bool = false
     @State private var selectedDocument: Document = Document(icon: "", imageName: "", documentName: "", explanation: "")
     

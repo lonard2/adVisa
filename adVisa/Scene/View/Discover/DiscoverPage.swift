@@ -12,9 +12,7 @@ struct DiscoverPage: View {
     @Binding var selectedBar : Int
     
     let countries = [
-        TopDestination(countryName: "Turkey", countryImage: "template", rank: "1st"),
         TopDestination(countryName: "Japan", countryImage: "japan_image", rank: "2nd"),
-        TopDestination(countryName: "Hongkong", countryImage: "template", rank: "3rd"),
     ]
     
     @State private var searchText = ""
