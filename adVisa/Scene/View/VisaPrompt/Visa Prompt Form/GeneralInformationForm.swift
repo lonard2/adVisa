@@ -78,18 +78,33 @@ struct GeneralInformationForm: View {
         
         Spacer()
         
-        Button {
-            
-            viewModel.nextForm()
-            
-        } label: {
-            Text("Continue")
-                .padding(.vertical, 7)
-                .frame(maxWidth: .infinity)
-                .font(.system(size: 15))
-                .foregroundStyle(Color(.primaryWhite))
-                .background(Color.primaryBlue)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+        if viewModel.countTotalDays() > 15 || viewModel.passportType == "Regular Passport" {
+            Button {
+                
+                viewModel.nextForm()
+                
+            } label: {
+                Text("Continue")
+                    .padding(.vertical, 7)
+                    .frame(maxWidth: .infinity)
+                    .font(.system(size: 15))
+                    .foregroundStyle(Color(.primaryWhite))
+                    .background(Color.primaryBlue)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+        } else {
+            NavigationLink {
+                RedirectJavesPage()
+                    .navigationBarBackButtonHidden(true)
+            } label: {
+                Text("Continue")
+                    .padding(.vertical, 7)
+                    .frame(maxWidth: .infinity)
+                    .font(.system(size: 15))
+                    .foregroundStyle(Color(.primaryWhite))
+                    .background(Color.primaryBlue)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
         }
     }
 }

@@ -43,6 +43,9 @@ struct VisaPromptPage: View {
             }
             .ignoresSafeArea(edges: .top)
         }
+        .onDisappear(perform: {
+            viewModel.resetFormPage()
+        })
     }
 }
 
