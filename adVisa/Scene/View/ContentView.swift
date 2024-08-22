@@ -29,7 +29,7 @@ struct ContentView: View {
                         Label("Discover", systemImage: "map.circle.fill")
                     }
                     .fullScreenCover(isPresented: $openCamera) {
-                        CameraLayerView()
+                        CameraLayerView(selectedDocument: .ktp)
                             .ignoresSafeArea()
                     }
                 

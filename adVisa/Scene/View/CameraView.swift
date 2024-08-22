@@ -10,14 +10,6 @@ import Vision
 import AVFoundation
 import UIKit
 
-private enum DocumentType {
-    case ktp, passport, hotel, tiket_pesawat, none
-}
-
-private enum DocumentTypeDetailed {
-    case ktp, passport_bio, passport_endorsement, self_portrait, generic, none
-}
-
 class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private var isAuthorized = false
     
@@ -54,7 +46,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     var addToPreviewStream: ((CGImage) -> Void)?
     
-    private var selectedDocument: DocumentTypeDetailed = .none
+    var selectedDocument: DocumentTypeDetailed = .none
     var selectedDocumentFile: String = ""
     var selectedDocumentWidth: Int = 200
     var selectedDocumentHeight: Int = 200
