@@ -53,7 +53,7 @@ struct ContentView: View {
         .task {
             SwiftDataContextManager()
         }
-        .sheet(isPresented: .constant(true), content: {
+        .sheet(isPresented: $agreementViewModel.showSheet, content: {
             DataPolicySheet(viewModel: agreementViewModel)
                 .presentationDragIndicator(.visible)
         })

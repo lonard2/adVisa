@@ -10,4 +10,6 @@ import Foundation
 class DataPolicyViewModel: ObservableObject {
     @Published var isAgreeToTerms: Bool = false
     @Published var isAgreeToPrivacy: Bool = false
+    
+    @Published var showSheet: Bool = true
 }
