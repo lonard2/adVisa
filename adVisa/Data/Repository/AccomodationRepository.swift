@@ -1,25 +1,25 @@
 //
-//  GuarantorRepository.swift
+//  AccomodationRepository.swift
 //  adVisa
 //
-//  Created by Dixon Willow on 14/08/24.
+//  Created by hendra on 22/08/24.
 //
 
 import Foundation
 import Combine
 import SwiftData
 
-internal class GuarantorRepository: DataRepositoryProtocol {
+internal class AccomodationRepository: DataRepositoryProtocol {
     
-    typealias T = GuarantorData
+    typealias T = AccomodationData
     
     private let container = SwiftDataContextManager.shared.container
     
-    func fetchFirst() -> AnyPublisher<GuarantorData?, DataError> {
-        return Future<GuarantorData?, DataError> { promise in
+    func fetchFirst() -> AnyPublisher<AccomodationData?, DataError> {
+        return Future<AccomodationData?, DataError> { promise in
             Task { @MainActor in
                 
-                let fetchDescriptor = FetchDescriptor<GuarantorData>()
+                let fetchDescriptor = FetchDescriptor<AccomodationData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -37,22 +37,11 @@ internal class GuarantorRepository: DataRepositoryProtocol {
         .eraseToAnyPublisher()
     }
     
-    func save(param: GuarantorData) -> AnyPublisher<Bool, DataError> {
+    func save(param: AccomodationData) -> AnyPublisher<Bool, DataError> {
         return Future<Bool, DataError> { promise in
             Task { @MainActor in
                 do {
-                    let entity = GuarantorData(
-                        guarantorName: param.guarantorName,
-                        guarantorTelephoneNum: param.guarantorTelephoneNum,
-                        guarantorAddress: param.guarantorAddress,
-                        guarantorDoB: param.guarantorDoB,
-                        guarantorGender: param.guarantorGender,
-                        guarantorRelationship: param.guarantorRelationship,
-                        guarantorOccupation: param.guarantorOccupation,
-                        guarantorPosition: param.guarantorPosition,
-                        guarantorNationality: param.guarantorNationality,
-                        guarantorImmigrationStatus: param.guarantorImmigrationStatus
-                    )
+                    let entity = AccomodationData(id: param.id, name: param.name, address: param.address, telephoneNum: param.telephoneNum)
                     
                     self.container?.mainContext.insert(entity)
                     
@@ -66,12 +55,12 @@ internal class GuarantorRepository: DataRepositoryProtocol {
         .eraseToAnyPublisher()
     }
     
-    func update(param: GuarantorData) -> AnyPublisher<EmptyResponse, DataError> {
+    func update(param: AccomodationData) -> AnyPublisher<EmptyResponse, DataError> {
         return Future<EmptyResponse, DataError> { promise in
             Task { @MainActor in
                 let id = param.id
-                let fetchDescriptor = FetchDescriptor<GuarantorData>(
-                    predicate: #Predicate<GuarantorData> {
+                let fetchDescriptor = FetchDescriptor<AccomodationData>(
+                    predicate: #Predicate<AccomodationData> {
                         $0.id == id
                     }
                 )
@@ -79,17 +68,9 @@ internal class GuarantorRepository: DataRepositoryProtocol {
                 let result = Result {
                     do {
                         if let entity = try self.container?.mainContext.fetch(fetchDescriptor).first {
-                            entity.guarantorName = param.guarantorName
-                            entity.guarantorTelephoneNum = param.guarantorTelephoneNum
-                            entity.guarantorAddress = param.guarantorAddress
-                            entity.guarantorDoB = param.guarantorDoB
-                            entity.guarantorGender = param.guarantorGender
-                            entity.guarantorRelationship = param.guarantorRelationship
-                            entity.guarantorOccupation = param.guarantorOccupation
-                            entity.guarantorPosition = param.guarantorPosition
-                            entity.guarantorNationality = param.guarantorNationality
-                            entity.guarantorImmigrationStatus = param.guarantorImmigrationStatus
-                            
+                            entity.name = param.name
+                            entity.address = param.address
+                            entity.telephoneNum = param.telephoneNum
                             try self.container?.mainContext.save()
                             return EmptyResponse()
                         }
@@ -116,7 +97,7 @@ internal class GuarantorRepository: DataRepositoryProtocol {
         return Future<EmptyResponse, DataError> { promise in
             Task { @MainActor in
                 do {
-                    let fetchDescriptor = FetchDescriptor<GuarantorData>(
+                    let fetchDescriptor = FetchDescriptor<AccomodationData>(
                         predicate: #Predicate {
                             $0.id == id
                         }
@@ -148,3 +129,4 @@ internal class GuarantorRepository: DataRepositoryProtocol {
         .eraseToAnyPublisher()
     }
 }
+

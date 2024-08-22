@@ -22,17 +22,3 @@ class DomicileData {
         self.currentEmail = currentEmail
     }
 }
-
-extension SwiftDataContextManager {
-    func initializeDomicileContainer() {
-        do {
-            domicileContainer = try ModelContainer(for: DomicileData.self)
-            if let domicileContainer {
-                context = ModelContext(domicileContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing domicile container:", error)
-        }
-    }
-}

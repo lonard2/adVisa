@@ -21,17 +21,3 @@ class OccupationData {
         self.employerName = employerName
     }
 }
-
-extension SwiftDataContextManager {
-    func initializeOccupationContainer() {
-        do {
-            occupationContainer = try ModelContainer(for: OccupationData.self)
-            if let occupationContainer {
-                context = ModelContext(occupationContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing occupation container:", error)
-        }
-    }
-}

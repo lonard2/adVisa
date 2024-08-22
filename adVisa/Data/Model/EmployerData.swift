@@ -11,27 +11,14 @@ import SwiftData
 @Model
 class EmployerData {
     @Attribute(.unique) var id: String = UUID().uuidString
-    var employerName: Date
+    var employerName: String
     var employerTelephoneNum: String
     var employerAddress: String
     
-    init(employerName: Date, employerTelephoneNum: String, employerAddress: String) {
+    init(id: String, employerName: String, employerTelephoneNum: String, employerAddress: String) {
+        self.id = id
         self.employerName = employerName
         self.employerTelephoneNum = employerTelephoneNum
         self.employerAddress = employerAddress
-    }
-}
-
-extension SwiftDataContextManager {
-    func initializeEmployerContainer() {
-        do {
-            employerContainer = try ModelContainer(for: EmployerData.self)
-            if let employerContainer {
-                context = ModelContext(employerContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing employer container:", error)
-        }
     }
 }

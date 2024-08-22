@@ -21,16 +21,3 @@ class TravelHistoryData {
     }
 }
 
-extension SwiftDataContextManager {
-    func initializeTravelHistoryContainer() {
-        do {
-            travelHistoryContainer = try ModelContainer(for: TravelHistoryData.self)
-            if let travelHistoryContainer {
-                context = ModelContext(travelHistoryContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing travel history container:", error)
-        }
-    }
-}

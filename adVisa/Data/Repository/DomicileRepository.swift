@@ -13,16 +13,13 @@ internal class DomicileRepository: DataRepositoryProtocol {
     
     typealias T = DomicileData
     
-    private let container = SwiftDataContextManager.shared.domicileContainer
+    private let container = SwiftDataContextManager.shared.container
     
-    func fetchById(id: String) -> AnyPublisher<DomicileData?, DataError> {
+    func fetchFirst() -> AnyPublisher<DomicileData?, DataError> {
         return Future<DomicileData?, DataError> { promise in
             Task { @MainActor in
-                let fetchDescriptor = FetchDescriptor<DomicileData>(
-                    predicate: #Predicate<DomicileData> {
-                        $0.id == id
-                    }
-                )
+                
+                let fetchDescriptor = FetchDescriptor<DomicileData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -36,7 +33,6 @@ internal class DomicileRepository: DataRepositoryProtocol {
                     promise(.failure(.genericError(error: error)))
                 }
             }
-        
         }
         .eraseToAnyPublisher()
     }

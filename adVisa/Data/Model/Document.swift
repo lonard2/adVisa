@@ -19,17 +19,3 @@ class Document {
         self.title = title
     }
 }
-
-extension SwiftDataContextManager {
-    func initializeDocument() {
-        do {
-            documentContainer = try ModelContainer(for: Document.self)
-            if let documentContainer {
-                context = ModelContext(documentContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing document container:", error)
-        }
-    }
-}

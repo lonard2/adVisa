@@ -13,16 +13,13 @@ internal class MiscRepository: DataRepositoryProtocol {
     
     typealias T = MiscData
     
-    private let container = SwiftDataContextManager.shared.miscContainer
+    private let container = SwiftDataContextManager.shared.container
     
-    func fetchById(id: String) -> AnyPublisher<MiscData?, DataError> {
+    func fetchFirst() -> AnyPublisher<MiscData?, DataError> {
         return Future<MiscData?, DataError> { promise in
             Task { @MainActor in
-                let fetchDescriptor = FetchDescriptor<MiscData>(
-                    predicate: #Predicate<MiscData> {
-                        $0.id == id
-                    }
-                )
+                
+                let fetchDescriptor = FetchDescriptor<MiscData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -36,7 +33,6 @@ internal class MiscRepository: DataRepositoryProtocol {
                     promise(.failure(.genericError(error: error)))
                 }
             }
-        
         }
         .eraseToAnyPublisher()
     }
@@ -46,8 +42,10 @@ internal class MiscRepository: DataRepositoryProtocol {
             Task { @MainActor in
                 do {
                     let entity = MiscData(
+                        id: param.id,
                         visitPurpose: param.visitPurpose,
                         specialRemark: param.specialRemark,
+                        durationStay: param.durationStay,
                         dateOfApplication: param.dateOfApplication
                     )
                     

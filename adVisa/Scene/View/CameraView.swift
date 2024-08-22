@@ -9,12 +9,22 @@ import SwiftUI
 import Vision
 import AVFoundation
 import UIKit
+import Combine
 
 private enum DocumentType {
     case ktp, passport
 }
 
-class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+protocol CameraViewControllerProtocol {
+    var passportRepository: PassportRepository? { get set }
+    var identityCardRepository: IdentityCardRepository? { get set }
+}
+
+class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, CameraViewControllerProtocol {
+    var passportRepository: PassportRepository?
+    var identityCardRepository: IdentityCardRepository?
+    
+    private var cancellables: Set<AnyCancellable> = []
     private var isAuthorized = false
     
     private let captureSession = AVCaptureSession()
@@ -344,36 +354,27 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-        DispatchQueue.main.async {
-            self.processCapturedImage(ciImage)
-        }
+        
         if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
             let ciImage = CIImage(cvPixelBuffer: imageBuffer)
             
             let context = CIContext()
             
-            let imageOrientation: UIImage.Orientation
-            switch UIDevice.current.orientation {
-            case .portrait:
-                imageOrientation = .up
-            case .landscapeLeft:
-                imageOrientation = .right
-            case .landscapeRight:
-                imageOrientation = .left
-            case .portraitUpsideDown:
-                imageOrientation = .down
-            default:
-                imageOrientation = .up
-            }
-            
             let rect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(imageBuffer), height: CVPixelBufferGetHeight(imageBuffer))
-            print("CI Image Extent : \(ciImage.extent)")
             if let cgImage = context.createCGImage(ciImage, from: rect) {
                 var image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .up)
                 let desiredHeight: CGFloat = 250
                 
                 if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: 960, cropHeight: 1400) {
-                    displayCapturedImage(croppedImage)
+//                    displayCapturedImage(croppedImage)
+                    guard let ciImage = CIImage(image: croppedImage) else {
+                            return
+                        }
+                        
+                        // Now you can process the CIImage
+                        DispatchQueue.main.async {
+                            self.processCapturedImage(ciImage)
+                        }
                 } else {
                     return
                 }
@@ -406,14 +407,14 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         }
     }
     
-    private func displayCapturedImage(_ image: UIImage) {
-        DispatchQueue.main.async {
-            self.capturedImage = image
-            self.capturedImageView.image = image
-            self.capturedImageView.clipsToBounds = true
-            self.capturedImageView.isHidden = false
-        }
-    }
+//    private func displayCapturedImage(_ image: UIImage) {
+//        DispatchQueue.main.async {
+//            self.capturedImage = image
+//            self.capturedImageView.image = image
+//            self.capturedImageView.clipsToBounds = true
+//            self.capturedImageView.isHidden = false
+//        }
+//    }
     
     private func cropMiddlePartOfImage(image: UIImage, cropWidth: CGFloat, cropHeight: CGFloat) -> UIImage? {
         let originalWidth = image.size.width
@@ -488,11 +489,6 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     return
                 }
                 
-                let identifier = topResult.identifier
-                let confidence = topResult.confidence
-
-                print("Detected: \(identifier) with confidence: \(confidence * 100)%")
-                
                 DispatchQueue.main.async {
                     switch topResult.identifier {
                     case "ktp":
@@ -506,6 +502,8 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     }
                 }
             }
+            
+            
             
             // Step 3: Perform the classification request
             let handler = VNImageRequestHandler(ciImage: image, options: [:])
@@ -581,10 +579,21 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         }
         
         if let identityId = identityId, let maritalStatus = maritalStatus {
-            DispatchQueue.main.async {
-                print("NIK \(identityId)")
-                print("Status \(maritalStatus)")
-            }
+            identityCardRepository?.save(param: IdentityCardData(id: UUID().uuidString, identityId: identityId, maritalStatus: maritalStatus))
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                        case .finished:
+                            print("Save successful")
+                        case .failure(let error):
+                            // Handle the error
+                            DispatchQueue.main.async {
+                                print("Error saving identity card: \(error.localizedDescription)")
+                            }
+                        }
+                    }, receiveValue: { success in
+                        // Handle the success case if needed (though here it is not strictly necessary)
+                    })
+                    .store(in: &cancellables) // Store the cancellable in a Set<AnyCancellable>
         } else {
             DispatchQueue.main.async {
                 print("Could not extract identity data.")
@@ -592,51 +601,8 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         }
     }
     
-    private func extractPassportData(from recognizedTexts: [String]) {
-        var passportNumber: String?
-        var fullName: String?
-        var nationality: String?
-        var dateOfBirth: String?
-
-        for text in recognizedTexts {
-            // Check for passport number (assuming it follows a specific pattern, e.g., 9 alphanumeric characters)
-            if text.range(of: #"[A-Z0-9]{9}"#, options: .regularExpression) != nil {
-                passportNumber = text.trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-
-            // Check for nationality (common keywords to identify it)
-            if text.uppercased().contains("INDONESIA") {
-                nationality = "Indonesia"
-            }
-
-            // Check for full name (this can vary, so you might need a more advanced method based on the location in the text)
-            if text.uppercased().contains("NAME") || (text.range(of: #"[A-Z]+ [A-Z]+"#, options: .regularExpression) != nil && text.count > 5) {
-                fullName = text.trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-
-            // Check for date of birth (common format)
-            if text.range(of: #"\d{2}\s[a-zA-Z]{3}\s\d{4}"#, options: .regularExpression) != nil {
-                dateOfBirth = text.trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-        }
-
-        if let passportNumber = passportNumber, let fullName = fullName, let nationality = nationality, let dateOfBirth = dateOfBirth {
-            DispatchQueue.main.async {
-                print("Passport Number: \(passportNumber)")
-                print("Full Name: \(fullName)")
-                print("Nationality: \(nationality)")
-                print("Date of Birth: \(dateOfBirth)")
-            }
-        } else {
-            DispatchQueue.main.async {
-                print("Could not extract passport data.")
-            }
-        }
-    }
-    
     private func extractPassportDataWithGeometry(from recognizedTextByPosition: [(text: String, boundingBox: CGRect)]) {
         var passportNumber: String?
-        var fullName: String?
         var givenName: String?
         var surname: String?
         var nationality: String?
@@ -644,37 +610,41 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         var dateOfIssue: String?
         var dateOfExpiry: String?
         var placeOfIssue: String?
+        var state: String?
         var city: String?
-        var gender: String?
+        var gender: GenderEnum?
         var issuingAuthority: String?
-
+        
         for (text, boundingBox) in recognizedTextByPosition {
             if isInNameRegion(boundingBox) {
                 if let components = extractNameComponents(from: text) {
                     surname = components.surname
                     givenName = components.givenName
                 }
-            } else if isInNationalityRegion(boundingBox) {
-                nationality = text
-            } else if isInDateOfBirthRegion(boundingBox) {
-                dateOfBirth = text
-            } else if isInDateOfIssueRegion(boundingBox) {
-                dateOfIssue = text
-            } else if isInDateOfExpiryRegion(boundingBox) {
-                dateOfExpiry = text
-            } else if isInCityRegion(boundingBox) {
-                city = text
-            } else if isInGenderRegion(boundingBox) {
-                gender = text
-            } else if isInPassportNumberRegion(boundingBox) {
-                passportNumber = text
             } else if isInPlaceOfIssueRegion(boundingBox) {
                 placeOfIssue = text
                 issuingAuthority = "Kantor Imigrasi \(placeOfIssue ?? "")"
             }
+            else if isInPassportNumberRegion(boundingBox) {
+                passportNumber = text
+                    .replacingOccurrences(of: ".", with: "")
+                    .replacingOccurrences(of: " ", with: "")
+            } else if isInNationalityRegion(text: text) {
+                nationality = "INDONESIAN"
+            } else if isInDateOfBirthRegion(boundingBox) {
+                dateOfBirth = extractDate(from: text)
+            } else if isInDateOfIssueRegion(boundingBox) {
+                dateOfIssue = extractDate(from: text)
+            } else if isInDateOfExpiryRegion(boundingBox) {
+                dateOfExpiry = extractDate(from: text)
+            } else if isInCityRegion(boundingBox) {
+                city = text
+                state = text
+            } else if isInGenderRegion(boundingBox) || text.contains("P/F") || text.contains("L/M") {
+                gender = text.genderFromText()
+            }
         }
-
-        // Output the recognized information
+        
         DispatchQueue.main.async {
             print("Passport Number: \(passportNumber ?? "")")
             print("Surname: \(surname ?? "")")
@@ -684,65 +654,115 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             print("Date of Issue: \(dateOfIssue ?? "")")
             print("Date of Expiry: \(dateOfExpiry ?? "")")
             print("City: \(city ?? "")")
-            print("Gender: \(gender ?? "")")
+            print("State: \(state ?? "")")
+            print("Gender: \(gender?.rawValue ?? "")")
             print("Place of Issue: \(placeOfIssue ?? "")")
             print("Issuing Authority: \(issuingAuthority ?? "")")
         }
+
+        // Output the recognized information
+        if let dateOfBirth = dateOfBirth?.convertToDate(),
+           let dateOfIssue = dateOfIssue?.convertToDate(),
+           let dateOfExpiry = dateOfExpiry?.convertToDate(),
+           let surname = surname,
+           let givenName = givenName,
+           let city = city,
+           let state = state,
+           let gender = gender,
+           let nationality = nationality,
+           let passportNumber = passportNumber,
+           let placeOfIssue = placeOfIssue,
+           let issuingAuthority = issuingAuthority {
+            passportRepository?.save(param: PassportData(
+                id: UUID().uuidString,
+                surname: surname,
+                givenName: givenName,
+                dateOfBirth: dateOfBirth,
+                city: city, 
+                state: state,
+                country: "INDONESIA",
+                gender: gender,
+                nationality: nationality,
+                passportType: .ordinary,
+                passportID: passportNumber,
+                placeOfIssue: placeOfIssue,
+                dateOfIssue: dateOfIssue,
+                issuingAuthority: issuingAuthority,
+                dateOfExpiry: dateOfExpiry
+            ))
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    // Handle successful completion, if needed
+                    print("Save successful")
+                case .failure(let error):
+                    // Handle the error, for example by logging it
+                    print("Failed to save passport data: \(error.localizedDescription)")
+                }
+            }, receiveValue: { success in
+                // Handle the success case, if needed
+                print("Save operation result: \(success)")
+            })
+            .store(in: &cancellables)
+        } else {
+            // Handle the case where required values are nil
+            print("Required data is missing or invalid.")
+        }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func extractDate(from text: String) -> String? {
+        let dateRegex = #"\b\d{2} (JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC) \d{4}\b"#
+        if let match = text.range(of: dateRegex, options: .regularExpression) {
+            let date = String(text[match])
+            return date
+        }
+        return nil
+    }
+
     private func extractNameComponents(from nameText: String) -> (givenName: String, surname: String)? {
         let nameComponents = nameText.split(separator: " ")
         guard nameComponents.count >= 2 else { return nil }
         
-        let givenName = nameComponents.dropLast().joined(separator: " ")
-        let surname = nameComponents.last ?? ""
+        // Surname is the first name, given name is the rest
+        let surname = nameComponents.first ?? ""
+        let givenName = nameComponents.dropFirst().joined(separator: " ")
         return (givenName: givenName, surname: String(surname))
     }
 
-    // Example geometric region functions
+    // Adjusted geometric region functions
     private func isInNameRegion(_ boundingBox: CGRect) -> Bool {
-        return boundingBox.origin.y > 0.7 && boundingBox.origin.y < 0.8
+        return boundingBox.origin.y > 0.3 && boundingBox.origin.y < 0.4 && boundingBox.origin.x > 0.25 && boundingBox.origin.x < 0.35
     }
 
-    private func isInNationalityRegion(_ boundingBox: CGRect) -> Bool {
-        return boundingBox.origin.y > 0.6 && boundingBox.origin.y < 0.7
+    private func isInNationalityRegion(text: String) -> Bool {
+        return text.contains("IDN") || text.uppercased().contains("INDONESIA")
     }
 
     private func isInDateOfBirthRegion(_ boundingBox: CGRect) -> Bool {
-        return boundingBox.origin.y > 0.5 && boundingBox.origin.y < 0.6
+        return boundingBox.origin.y > 0.3 && boundingBox.origin.y < 0.4 && boundingBox.origin.x > 0.45 && boundingBox.origin.x < 0.55
     }
 
     private func isInDateOfIssueRegion(_ boundingBox: CGRect) -> Bool {
-        return boundingBox.origin.y > 0.4 && boundingBox.origin.y < 0.5
+        return boundingBox.origin.y > 0.3 && boundingBox.origin.y < 0.4 && boundingBox.origin.x > 0.55 && boundingBox.origin.x < 0.65
     }
 
     private func isInDateOfExpiryRegion(_ boundingBox: CGRect) -> Bool {
-        return boundingBox.origin.y > 0.3 && boundingBox.origin.y < 0.4
+        return boundingBox.origin.y > 0.7 && boundingBox.origin.y < 0.8 && boundingBox.origin.x > 0.5 && boundingBox.origin.x < 0.65
     }
 
     private func isInCityRegion(_ boundingBox: CGRect) -> Bool {
-        return boundingBox.origin.y > 0.2 && boundingBox.origin.y < 0.3
+        return boundingBox.origin.y > 0.75 && boundingBox.origin.y < 0.85 && boundingBox.origin.x > 0.4 && boundingBox.origin.x < 0.55
     }
 
     private func isInGenderRegion(_ boundingBox: CGRect) -> Bool {
-        return boundingBox.origin.y > 0.1 && boundingBox.origin.y < 0.2
+        return boundingBox.origin.y > 0.8 && boundingBox.origin.y < 0.9 && boundingBox.origin.x > 0.2 && boundingBox.origin.x < 0.35
     }
 
     private func isInPassportNumberRegion(_ boundingBox: CGRect) -> Bool {
-        return boundingBox.origin.y > 0.9 && boundingBox.origin.y < 1.0
+        return boundingBox.origin.y > 0.7 && boundingBox.origin.y < 0.9 && boundingBox.origin.x > 0.15 && boundingBox.origin.x < 0.25
     }
 
     private func isInPlaceOfIssueRegion(_ boundingBox: CGRect) -> Bool {
-        return boundingBox.origin.y > 0.0 && boundingBox.origin.y < 0.1
+        return boundingBox.origin.y > 0.5 && boundingBox.origin.y < 0.7 && boundingBox.origin.x > 0.6 && boundingBox.origin.x < 0.75
     }
 }

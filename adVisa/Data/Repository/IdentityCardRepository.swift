@@ -13,16 +13,13 @@ internal class IdentityCardRepository: DataRepositoryProtocol {
     
     typealias T = IdentityCardData
     
-    private let container = SwiftDataContextManager.shared.identityCardContainer
+    private let container = SwiftDataContextManager.shared.container
     
-    func fetchById(id: String) -> AnyPublisher<IdentityCardData?, DataError> {
+    func fetchFirst() -> AnyPublisher<IdentityCardData?, DataError> {
         return Future<IdentityCardData?, DataError> { promise in
             Task { @MainActor in
-                let fetchDescriptor = FetchDescriptor<IdentityCardData>(
-                    predicate: #Predicate<IdentityCardData> {
-                        $0.id == id
-                    }
-                )
+                
+                let fetchDescriptor = FetchDescriptor<IdentityCardData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -36,7 +33,6 @@ internal class IdentityCardRepository: DataRepositoryProtocol {
                     promise(.failure(.genericError(error: error)))
                 }
             }
-        
         }
         .eraseToAnyPublisher()
     }
@@ -45,7 +41,7 @@ internal class IdentityCardRepository: DataRepositoryProtocol {
         return Future<Bool, DataError> { promise in
             Task { @MainActor in
                 do {
-                    let entity = IdentityCardData(id: param.id, identityId: param.identityId, maritalStatus: param.maritalStatus, state: param.state)
+                    let entity = IdentityCardData(id: param.id, identityId: param.identityId, maritalStatus: param.maritalStatus)
                     
                     self.container?.mainContext.insert(entity)
                     

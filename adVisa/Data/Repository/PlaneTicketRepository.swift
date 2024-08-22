@@ -13,16 +13,13 @@ internal class PlaneTicketRepository: DataRepositoryProtocol {
     
     typealias T = PlaneTicketData
     
-    private let container = SwiftDataContextManager.shared.planeTicketContainer
+    private let container = SwiftDataContextManager.shared.container
     
-    func fetchById(id: String) -> AnyPublisher<PlaneTicketData?, DataError> {
+    func fetchFirst() -> AnyPublisher<PlaneTicketData?, DataError> {
         return Future<PlaneTicketData?, DataError> { promise in
             Task { @MainActor in
-                let fetchDescriptor = FetchDescriptor<PlaneTicketData>(
-                    predicate: #Predicate<PlaneTicketData> {
-                        $0.id == id
-                    }
-                )
+                
+                let fetchDescriptor = FetchDescriptor<PlaneTicketData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -36,7 +33,6 @@ internal class PlaneTicketRepository: DataRepositoryProtocol {
                     promise(.failure(.genericError(error: error)))
                 }
             }
-        
         }
         .eraseToAnyPublisher()
     }

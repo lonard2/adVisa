@@ -13,16 +13,13 @@ internal class EmployerRepository: DataRepositoryProtocol {
     
     typealias T = EmployerData
     
-    private let container = SwiftDataContextManager.shared.employerContainer
+    private let container = SwiftDataContextManager.shared.container
     
-    func fetchById(id: String) -> AnyPublisher<EmployerData?, DataError> {
+    func fetchFirst() -> AnyPublisher<EmployerData?, DataError> {
         return Future<EmployerData?, DataError> { promise in
             Task { @MainActor in
-                let fetchDescriptor = FetchDescriptor<EmployerData>(
-                    predicate: #Predicate<EmployerData> {
-                        $0.id == id
-                    }
-                )
+                
+                let fetchDescriptor = FetchDescriptor<EmployerData>()
                 let result = Result {
                     do {
                         return try self.container?.mainContext.fetch(fetchDescriptor).first
@@ -36,7 +33,6 @@ internal class EmployerRepository: DataRepositoryProtocol {
                     promise(.failure(.genericError(error: error)))
                 }
             }
-        
         }
         .eraseToAnyPublisher()
     }
@@ -46,6 +42,7 @@ internal class EmployerRepository: DataRepositoryProtocol {
             Task { @MainActor in
                 do {
                     let entity = EmployerData(
+                        id: param.id,
                         employerName: param.employerName,
                         employerTelephoneNum: param.employerTelephoneNum,
                         employerAddress: param.employerAddress

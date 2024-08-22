@@ -21,17 +21,3 @@ class Itinerary {
         self.placeToStay = placeToStay
     }
 }
-
-extension SwiftDataContextManager {
-    func initializeItinerary() {
-        do {
-            itineraryContainer = try ModelContainer(for: Itinerary.self)
-            if let itineraryContainer {
-                context = ModelContext(itineraryContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing itinerary container:", error)
-        }
-    }
-}

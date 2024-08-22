@@ -29,17 +29,3 @@ class CrimeRemarkData {
         self.relevantDetails = relevantDetails
     }
 }
-
-extension SwiftDataContextManager {
-    func initializeCrimeRemarkContainer() {
-        do {
-            crimeRemarkContainer = try ModelContainer(for: CrimeRemarkData.self)
-            if let crimeRemarkContainer {
-                context = ModelContext(crimeRemarkContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing crime remark container:", error)
-        }
-    }
-}

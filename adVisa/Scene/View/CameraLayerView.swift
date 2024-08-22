@@ -16,6 +16,10 @@ struct CameraLayerView: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> UIViewController {
-        return CameraViewController()
+        let controller = CameraViewController()
+        controller.identityCardRepository = IdentityCardRepository()
+        controller.passportRepository = PassportRepository()
+        
+        return controller
     }
 }

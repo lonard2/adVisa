@@ -22,6 +22,12 @@
 		237F71EB2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */; };
 		237F71EE2C6DB6D8009CFC1D /* Data in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71ED2C6DB6D8009CFC1D /* Data */; };
 		237F71F02C6DB7C9009CFC1D /* Repository in Frameworks */ = {isa = PBXBuildFile; fileRef = 237F71EF2C6DB7C9009CFC1D /* Repository */; };
+		2380B6BC2C75E7AE00CF487A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380B6BB2C75E7AE00CF487A /* String+Extension.swift */; };
+		2380B6BE2C762BE900CF487A /* visa.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2380B6BD2C762BE900CF487A /* visa.pdf */; };
+		2380B6C12C762D3D00CF487A /* PDFPreviewVisa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380B6C02C762D3D00CF487A /* PDFPreviewVisa.swift */; };
+		2380B6C32C770AAD00CF487A /* PdfPreviewVisaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380B6C22C770AAD00CF487A /* PdfPreviewVisaViewModel.swift */; };
+		2380B6C52C772F9400CF487A /* AccomodationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380B6C42C772F9400CF487A /* AccomodationData.swift */; };
+		2380B6C72C772FF500CF487A /* AccomodationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380B6C62C772FF500CF487A /* AccomodationRepository.swift */; };
 		23A87FE62C74605600148870 /* AdVisaClassificationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */; };
 		260A230F2C740F6C00F034D1 /* UploadDocumentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */; };
 		260A23112C74166C00F034D1 /* VisaFormPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A23102C74166C00F034D1 /* VisaFormPage.swift */; };
@@ -121,6 +127,12 @@
 		237F71EA2C6DB45C009CFC1D /* PassportDataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDataRepositoryTests.swift; sourceTree = "<group>"; };
 		237F71ED2C6DB6D8009CFC1D /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = adVisa/Data; sourceTree = "<group>"; };
 		237F71EF2C6DB7C9009CFC1D /* Repository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Repository; path = adVisa/Data/Repository; sourceTree = "<group>"; };
+		2380B6BB2C75E7AE00CF487A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		2380B6BD2C762BE900CF487A /* visa.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = visa.pdf; sourceTree = "<group>"; };
+		2380B6C02C762D3D00CF487A /* PDFPreviewVisa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreviewVisa.swift; sourceTree = "<group>"; };
+		2380B6C22C770AAD00CF487A /* PdfPreviewVisaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfPreviewVisaViewModel.swift; sourceTree = "<group>"; };
+		2380B6C42C772F9400CF487A /* AccomodationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationData.swift; sourceTree = "<group>"; };
+		2380B6C62C772FF500CF487A /* AccomodationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationRepository.swift; sourceTree = "<group>"; };
 		23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AdVisaClassificationModel.mlmodel; sourceTree = "<group>"; };
 		260A230E2C740F6C00F034D1 /* UploadDocumentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentSheet.swift; sourceTree = "<group>"; };
 		260A23102C74166C00F034D1 /* VisaFormPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisaFormPage.swift; sourceTree = "<group>"; };
@@ -240,6 +252,7 @@
 				269E2E062C6CEB9700CFEB0E /* InviterRepository.swift */,
 				269E2E0A2C6CEC3E00CFEB0E /* MiscRepository.swift */,
 				269E2E0C2C6CECB100CFEB0E /* CrimeRemarkRepository.swift */,
+				2380B6C62C772FF500CF487A /* AccomodationRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -268,6 +281,14 @@
 				237F71ED2C6DB6D8009CFC1D /* Data */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2380B6BF2C762D2D00CF487A /* PDF Preview */ = {
+			isa = PBXGroup;
+			children = (
+				2380B6C02C762D3D00CF487A /* PDFPreviewVisa.swift */,
+			);
+			path = "PDF Preview";
 			sourceTree = "<group>";
 		};
 		260A230D2C740F4E00F034D1 /* Upload Document */ = {
@@ -421,6 +442,7 @@
 				E90997652C6B710300D6C39F /* IdentityCardData.swift */,
 				E90997672C6B712A00D6C39F /* PlaneTicketData.swift */,
 				E957919E2C6C874D0023305B /* DomicileData.swift */,
+				2380B6C42C772F9400CF487A /* AccomodationData.swift */,
 				E95791A02C6C87AB0023305B /* TravelHistoryData.swift */,
 				E95791A22C6C88250023305B /* EmployerData.swift */,
 				E95791A42C6C88990023305B /* OccupationData.swift */,
@@ -440,6 +462,7 @@
 				E90997632C6B6EC300D6C39F /* Helper.swift */,
 				E95791AA2C6CADF10023305B /* Enum.swift */,
 				E9693A742C74763000244F02 /* Constants.swift */,
+				2380B6BB2C75E7AE00CF487A /* String+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -465,6 +488,7 @@
 		E97932C72C6F97F80065DDD0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2380B6BF2C762D2D00CF487A /* PDF Preview */,
 				26A166662C757342008622D2 /* Saved Documents */,
 				26A166632C75692A008622D2 /* Visa Exemption */,
 				26A1665E2C74DD43008622D2 /* Components */,
@@ -492,6 +516,7 @@
 				E97932C52C6F95810065DDD0 /* CameraViewModel.swift */,
 				26A166462C74A1C5008622D2 /* VisaFormViewModel.swift */,
 				26A1666B2C7581AD008622D2 /* VisaPromptViewModel.swift */,
+				2380B6C22C770AAD00CF487A /* PdfPreviewVisaViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -526,6 +551,7 @@
 				E9855F632C6A4BF30019080B /* adVisaApp.swift */,
 				23A87FE52C74605600148870 /* AdVisaClassificationModel.mlmodel */,
 				E9855F672C6A4BF60019080B /* Assets.xcassets */,
+				2380B6BD2C762BE900CF487A /* visa.pdf */,
 				E9855F692C6A4BF70019080B /* Preview Content */,
 			);
 			path = adVisa;
@@ -632,6 +658,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2380B6BE2C762BE900CF487A /* visa.pdf in Resources */,
 				E9855F6B2C6A4BF70019080B /* Preview Assets.xcassets in Resources */,
 				E9855F682C6A4BF60019080B /* Assets.xcassets in Resources */,
 			);
@@ -689,6 +716,7 @@
 				26A166592C74CF83008622D2 /* GuarantorForm.swift in Sources */,
 				E90997612C6B6D7800D6C39F /* PassportData.swift in Sources */,
 				26B4C8572C747B1300970A26 /* ItineraryDetailsPage.swift in Sources */,
+				2380B6C72C772FF500CF487A /* AccomodationRepository.swift in Sources */,
 				E90997682C6B712A00D6C39F /* PlaneTicketData.swift in Sources */,
 				E9855F662C6A4BF30019080B /* ContentView.swift in Sources */,
 				26A166532C74A8D8008622D2 /* ContactInformationForm.swift in Sources */,
@@ -696,11 +724,13 @@
 				26A1665D2C74DA3B008622D2 /* CrimeRecordForm.swift in Sources */,
 				E9855F642C6A4BF30019080B /* adVisaApp.swift in Sources */,
 				E95791AB2C6CADF10023305B /* Enum.swift in Sources */,
+				2380B6C32C770AAD00CF487A /* PdfPreviewVisaViewModel.swift in Sources */,
 				E97932C62C6F95810065DDD0 /* CameraViewModel.swift in Sources */,
 				E95791A52C6C88990023305B /* OccupationData.swift in Sources */,
 				263201A02C731F9F006BD06F /* DiscoverPage.swift in Sources */,
 				E97932C02C6F8A780065DDD0 /* CameraManager.swift in Sources */,
 				E95791A32C6C88250023305B /* EmployerData.swift in Sources */,
+				2380B6BC2C75E7AE00CF487A /* String+Extension.swift in Sources */,
 				2353DC772C6FA6D400E57375 /* DataPolicy.swift in Sources */,
 				E957919F2C6C874D0023305B /* DomicileData.swift in Sources */,
 				269E2E0B2C6CEC3E00CFEB0E /* MiscRepository.swift in Sources */,
@@ -713,6 +743,7 @@
 				23A87FE62C74605600148870 /* AdVisaClassificationModel.mlmodel in Sources */,
 				235535372C733A1200973F80 /* ImagePicker.swift in Sources */,
 				26A166602C74DD60008622D2 /* CheckBoxToggleStyle.swift in Sources */,
+				2380B6C12C762D3D00CF487A /* PDFPreviewVisa.swift in Sources */,
 				26A166622C74E50C008622D2 /* CrimeDetailForm.swift in Sources */,
 				26A1664D2C74A55F008622D2 /* CurrentAddressForm.swift in Sources */,
 				26A166752C7587BC008622D2 /* VisaFormConfirmationPage.swift in Sources */,
@@ -724,6 +755,7 @@
 				269E2DFF2C6CE7D700CFEB0E /* TravelHistoryRepository.swift in Sources */,
 				E9693A772C74784E00244F02 /* DocumentRow.swift in Sources */,
 				E97932C42C6F8EEE0065DDD0 /* CameraView.swift in Sources */,
+				2380B6C52C772F9400CF487A /* AccomodationData.swift in Sources */,
 				E90997642C6B6EC300D6C39F /* Helper.swift in Sources */,
 				26A166712C758361008622D2 /* GeneralInformationForm.swift in Sources */,
 				E95791B12C6CAF460023305B /* CrimeRemarkData.swift in Sources */,
@@ -909,7 +941,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = MRV3669B85;
+				DEVELOPMENT_TEAM = BHS88Y2WBP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -942,7 +974,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"adVisa/Preview Content\"";
-				DEVELOPMENT_TEAM = MRV3669B85;
+				DEVELOPMENT_TEAM = BHS88Y2WBP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
