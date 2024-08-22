@@ -54,19 +54,6 @@ struct EditStayingPlaceForm: View {
         }
         
         Spacer()
-        
-        Button {
-            viewModel.nextForm()
-        } label: {
-            Text("Continue")
-                .padding(.vertical, 7)
-                .frame(maxWidth: .infinity)
-                .font(.system(size: 15))
-                .foregroundStyle(Color(.primaryWhite))
-                .background(Color(.primaryBlue))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-        }
-        .padding(12)
     }
 }
 

@@ -11,10 +11,11 @@ struct ContentView: View {
     
 //    @State private var cameraVm = CameraViewModel()
     @State private var openCamera = false
+    @State var selectedBar = 1
     
     var body: some View {
         GeometryReader { geo in
-            TabView {
+            TabView(selection: $selectedBar) {
                     ZStack {
                         VStack {
                             Button {
@@ -25,24 +26,26 @@ struct ContentView: View {
                         }
                     }
                     .frame(width: geo.size.width, height: geo.size.height)
-                    .tabItem {
-                        Label("Discover", systemImage: "map.circle.fill")
-                    }
                     .fullScreenCover(isPresented: $openCamera) {
                         CameraLayerView(selectedDocument: .ktp)
                             .ignoresSafeArea()
                     }
                 
+                DiscoverPage(selectedBar: $selectedBar)
+                    .tabItem {
+                        Label("Discover", systemImage: "map.circle.fill")
+                    }.tag(1)
+                
                 Text("History Page")
                     .tabItem {
                         Label("History", systemImage: "clock.fill")
-                    }
+                    }.tag(2)
                 
                 
-                Text("Saved Document Page")
+                SavedDocumentPage()
                     .tabItem {
                         Label("Discover", systemImage: "doc")
-                    }
+                    }.tag(3)
             }
         }
         .task {
@@ -55,5 +58,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Document.self)
 }

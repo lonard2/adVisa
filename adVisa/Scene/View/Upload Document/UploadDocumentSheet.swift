@@ -9,9 +9,7 @@ import SwiftUI
 
 struct UploadDocumentSheet: View {
     
-    @State var documentName: String
-    @State var documentImageName: String
-    @State var documentExplanation: String
+    @Binding var document: Document
     
     @State private var openCamera = false
     
@@ -23,13 +21,13 @@ struct UploadDocumentSheet: View {
         VStack(spacing: 3) {
             
             VStack(spacing: 24) {
-                Text(documentName)
+                Text(document.documentName)
                     .font(.system(size: 22))
                     .fontWeight(.bold)
                 
-                Image(documentImageName)
+                Image(document.imageName)
                 
-                Text(documentExplanation)
+                Text(document.explanation)
                     .font(.system(size: 17))
                     .multilineTextAlignment(.center)
             }
@@ -97,6 +95,6 @@ struct UploadDocumentSheet: View {
     }
 }
 
-#Preview {
-    UploadDocumentSheet(documentName: "Passport (Bio Page)", documentImageName: "passport_bio_guide", documentExplanation: "It’s the 2nd page of your Passport. It should be looked like the picture above. Use a solid background to take the photo.", documentType: .none)
-}
+//#Preview {
+//    UploadDocumentSheet()
+//}

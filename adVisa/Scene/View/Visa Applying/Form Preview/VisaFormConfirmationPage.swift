@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct VisaFormConfirmationPage: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -42,8 +44,8 @@ struct VisaFormConfirmationPage: View {
                 Spacer()
                 
                 VStack(spacing: 20) {
-                    NavigationLink {
-                        
+                    Button {
+                        dismiss()
                     } label: {
                         Text("Confirm")
                             .padding(.vertical, 7)
@@ -55,7 +57,8 @@ struct VisaFormConfirmationPage: View {
                     }
                     
                     NavigationLink {
-                        
+                        EditVisaFormPage()
+                            .navigationBarBackButtonHidden(true)
                     } label: {
                         Text("Edit Form")
                             .padding(.vertical, 7)

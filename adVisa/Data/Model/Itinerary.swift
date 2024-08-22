@@ -6,32 +6,16 @@
 //
 
 import Foundation
-import SwiftData
 
-@Model
-class Itinerary {
-    @Attribute(.unique) var id: String = UUID().uuidString
-    let date: Date
-    let placeToVisit: String
-    let placeToStay: String
+class Itinerary: Identifiable {
+    let id = UUID().uuidString
+    var date: Date
+    var placeToVisit: String
+    var placeToStay: String
     
     init(date: Date, placeToVisit: String, placeToStay: String) {
         self.date = date
         self.placeToVisit = placeToVisit
         self.placeToStay = placeToStay
-    }
-}
-
-extension SwiftDataContextManager {
-    func initializeItinerary() {
-        do {
-            itineraryContainer = try ModelContainer(for: Itinerary.self)
-            if let itineraryContainer {
-                context = ModelContext(itineraryContainer)
-            }
-
-        } catch {
-            debugPrint("Error initializing itinerary container:", error)
-        }
     }
 }

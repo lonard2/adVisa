@@ -121,7 +121,7 @@ struct RedirectJavesPage: View {
                     .font(.system(size: 15))
                     .foregroundStyle(Color(.primaryWhite))
                     .background(Color.primaryBlue)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 16)

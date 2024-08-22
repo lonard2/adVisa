@@ -31,7 +31,8 @@ struct CrimeDetailForm: View {
         Spacer()
         
         NavigationLink {
-            Text("Test")
+            ItineraryDetailsPage()
+                .navigationBarBackButtonHidden(true)
         } label: {
             Text("Continue")
                 .padding(.vertical, 7)

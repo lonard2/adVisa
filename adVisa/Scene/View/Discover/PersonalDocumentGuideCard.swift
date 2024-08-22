@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct PersonalDocumentGuideCard: View {
+    
+    @Binding var selectedBar: Int
+    
     var body: some View {
-        NavigationStack {
             VStack(alignment: .trailing, spacing: 12) {
                 VStack(alignment:.leading, spacing: 12) {
                     Text("Input Your Personal Documents")
@@ -21,11 +23,12 @@ struct PersonalDocumentGuideCard: View {
                         .foregroundStyle(Color(.darkerGray))
                 }
                 
-                NavigationLink {
-                    //TODO: Insert Navigation Link
+                Button {
+                    
+                    selectedBar = 3
+                    
                 } label: {
                     Text("Input Documents")
-                        .frame(width: .infinity, height: .infinity)
                         .padding(.vertical, 7)
                         .padding(.horizontal, 14)
                         .background(Color(.primaryBlue))
@@ -37,10 +40,9 @@ struct PersonalDocumentGuideCard: View {
             .padding(12)
             .background(Color(.blueTint))
         .clipShape(RoundedRectangle(cornerRadius: 12))
-        }
     }
 }
 
-#Preview {
-    PersonalDocumentGuideCard()
-}
+//#Preview {
+//    PersonalDocumentGuideCard()
+//}

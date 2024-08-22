@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditPassportDataForm: View {
+    
     @ObservedObject var viewModel: EditVisaFormViewModel
     
     var body: some View {
@@ -89,18 +90,6 @@ struct EditPassportDataForm: View {
         
         Spacer()
         
-        Button {
-            viewModel.nextForm()
-        } label: {
-            Text("Continue")
-                .padding(.vertical, 7)
-                .frame(maxWidth: .infinity)
-                .font(.system(size: 15))
-                .foregroundStyle(Color(.primaryWhite))
-                .background(Color(.primaryBlue))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-        }
-        .padding(12)
     }
 }
 
