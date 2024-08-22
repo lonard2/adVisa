@@ -8,62 +8,94 @@
 import SwiftUI
 
 struct DataPolicySheet: View {
-    @Environment(\.dismiss) var dismiss
-    
-    @EnvironmentObject var viewModel: DataPolicyViewModel
 
+    @ObservedObject var viewModel: DataPolicyViewModel
+    
     var body: some View {
-        GeometryReader{ geometry in
-            let padding:CGFloat = 32
-            let width = geometry.size.width - (padding * 2)
-            let imageHeight = geometry.size.height * 0.2
-            
-            let buttonHeight:CGFloat = 40
-            
-            
-            VStack(spacing: 16) {
-                Image("template")
-                    .resizable()
-                    .frame(width: width, height: imageHeight)
-                    .padding([.horizontal, .top], padding)
+        VStack(spacing: 32) {
+            VStack(spacing: 24) {
                 Text("Data Privacy")
-                    .font(.title3)
+                    .font(.system(size: 22))
                     .fontWeight(.bold)
-                Text("Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam voluptatum repudiandae vel ex unde nostrum tenetur fugiat ea recusandae consequatur. Praesentium eius, quidem atque, laboriosam non aspernatur ad, ab cumque obcaecati ea eum distinctio aliquid omnis! Consequatur dolorum ducimus et nam deleniti fuga perspiciatis perferendis quia asperiores modi possimus architecto ad quisquam enim est tenetur, facilis magni exercitationem! Dolorum, ea explicabo!")
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, padding)
-                HStack {
-                    Toggle(isOn: $viewModel.isAgreeToPrivacy, label: {
-                        Text("Lorem ipsum dolor sit amet consectetur adipisicing elit.")
-                    })
-                }
-                .padding(.horizontal, padding)
-                HStack {
-                    Toggle(isOn: $viewModel.isAgreeToTerms, label: {
-                        Text("Lorem ipsum dolor sit amet consectetur adipisicing elit.")
-                    })
-                }
-                .padding(.horizontal, padding)
                 
-                Spacer()
+                Image("data_privacy_intro")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: 174)
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("CONTINUE")
-                        .foregroundStyle(.white)
-                        .padding([.horizontal], padding)
-                        .frame(width: width, height: buttonHeight)
-                        .background(viewModel.isAgreeToTerms && viewModel.isAgreeToPrivacy ? Color.blue : Color.gray)
-                        .cornerRadius(8)
-                })
-                .disabled(!(viewModel.isAgreeToTerms && viewModel.isAgreeToPrivacy))
-                .padding(.bottom, padding/2)
+                Group {
+                    Text("To proceed, we need you to ")
+                    
+                    +
+                    
+                    Text("upload some personal data. ")
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    
+                    +
+                    
+                    Text("Your privacy and security are our top priorities, and all of your information will be ")
+                    
+                    +
+                    
+                    Text("stored locally on your device, meaning it remains fully under your control. ")
+                        .fontWeight(.bold)
+                    
+                    +
+                    
+                    Text("Our developers and third parties ")
+                    
+                    +
+                    
+                    Text("will not have access to your data")
+                        .fontWeight(.bold)
+                    
+                    +
+                    
+                    Text(", ensuring your sensitive information stays protected throughout your use of the app. ")
+                        
+                }
+                .font(.system(size: 15))
+                .multilineTextAlignment(.center)
             }
             
+            VStack(spacing: 24) {
+                HStack(spacing: 16) {
+                    Toggle(isOn: $viewModel.isAgreeToPrivacy, label: {
+                        Text("I consent to providing my data for AdVisa to assist with my visa forms.")
+                    })
+                    .font(.system(size: 15))
+                }
+                
+                HStack(spacing: 16) {
+                    Toggle(isOn: $viewModel.isAgreeToTerms, label: {
+                        Text("I do not consent to AdVisa accessing my data remotely or using it outside the app.")
+                    })
+                    .font(.system(size: 15))
+                }
+            }
+            
+            Spacer()
+            
+            Button{
+                viewModel.showSheet = false
+            } label: {
+                Text("Continue")
+                    .padding(.vertical, 7)
+                    .frame(maxWidth: .infinity)
+                    .font(.system(size: 15))
+                    .foregroundStyle(Color(.primaryWhite))
+                    .background(viewModel.isAgreeToTerms && viewModel.isAgreeToPrivacy ? Color.primaryBlue : Color.defaultGray)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+            .disabled(!(viewModel.isAgreeToTerms && viewModel.isAgreeToPrivacy))
+            
         }
+        .padding(.horizontal, 16)
+        .padding(.top, 32)
+        
     }
 }
 
 #Preview {
-    DataPolicySheet()
-        .environmentObject(DataPolicyViewModel())  // Provide viewModel for preview
+    DataPolicySheet(viewModel: DataPolicyViewModel())
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditPersonalDataFormPage: View {
     @Environment(\.dismiss) private var dismiss
-    @ObservedObject var viewModel = EditVisaFormViewModel()
+    @StateObject var viewModel = EditVisaFormViewModel()
     
     var body: some View {
         VStack {
