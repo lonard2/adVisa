@@ -10,7 +10,7 @@ import SwiftUI
 struct DataPolicySheet: View {
     @Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject var viewModel: DataPolicyViewModel
+    @ObservedObject var viewModel: DataPolicyViewModel
 
     var body: some View {
         GeometryReader{ geometry in
@@ -64,6 +64,5 @@ struct DataPolicySheet: View {
 }
 
 #Preview {
-    DataPolicySheet()
-        .environmentObject(DataPolicyViewModel())  // Provide viewModel for preview
+    DataPolicySheet(viewModel: DataPolicyViewModel())
 }

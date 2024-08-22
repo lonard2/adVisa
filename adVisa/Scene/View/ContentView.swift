@@ -13,6 +13,8 @@ struct ContentView: View {
     @State private var openCamera = false
     @State var selectedBar = 1
     
+    @StateObject var agreementViewModel = DataPolicyViewModel()
+    
     var body: some View {
         GeometryReader { geo in
             TabView(selection: $selectedBar) {
@@ -51,6 +53,10 @@ struct ContentView: View {
         .task {
             SwiftDataContextManager()
         }
+        .sheet(isPresented: .constant(true), content: {
+            DataPolicySheet(viewModel: agreementViewModel)
+                .presentationDragIndicator(.visible)
+        })
 
     }
     
