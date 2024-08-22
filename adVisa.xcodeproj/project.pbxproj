@@ -39,6 +39,7 @@
 		265D9A032C75F17800A82131 /* EditVisitMeansForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D9A022C75F17800A82131 /* EditVisitMeansForm.swift */; };
 		265D9A052C75F45200A82131 /* EditStayingPlaceForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D9A042C75F45200A82131 /* EditStayingPlaceForm.swift */; };
 		265D9A092C761F1F00A82131 /* TopDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D9A082C761F1F00A82131 /* TopDestination.swift */; };
+		2664B5492C77367800D47AF9 /* SavedDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664B5482C77367800D47AF9 /* SavedDocumentViewModel.swift */; };
 		269CE5662C739B9E0008EF59 /* DocumentRequirementPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269CE5652C739B9E0008EF59 /* DocumentRequirementPage.swift */; };
 		269E2DF92C6CE22700CFEB0E /* IdentityCardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2DF82C6CE22700CFEB0E /* IdentityCardRepository.swift */; };
 		269E2DFB2C6CE30300CFEB0E /* PlaneTicketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E2DFA2C6CE30300CFEB0E /* PlaneTicketRepository.swift */; };
@@ -147,6 +148,7 @@
 		265D9A022C75F17800A82131 /* EditVisitMeansForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVisitMeansForm.swift; sourceTree = "<group>"; };
 		265D9A042C75F45200A82131 /* EditStayingPlaceForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStayingPlaceForm.swift; sourceTree = "<group>"; };
 		265D9A082C761F1F00A82131 /* TopDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDestination.swift; sourceTree = "<group>"; };
+		2664B5482C77367800D47AF9 /* SavedDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDocumentViewModel.swift; sourceTree = "<group>"; };
 		269CE5652C739B9E0008EF59 /* DocumentRequirementPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentRequirementPage.swift; sourceTree = "<group>"; };
 		269E2DF82C6CE22700CFEB0E /* IdentityCardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityCardRepository.swift; sourceTree = "<group>"; };
 		269E2DFA2C6CE30300CFEB0E /* PlaneTicketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneTicketRepository.swift; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				26A1666B2C7581AD008622D2 /* VisaPromptViewModel.swift */,
 				265D99F82C75D66400A82131 /* EditVisaFormViewModel.swift */,
 				2353DC732C6FA6D400E57375 /* DataPolicyViewModel.swift */,
+				2664B5482C77367800D47AF9 /* SavedDocumentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				237F71D02C6CB2A3009CFC1D /* SwiftDataContextManager.swift in Sources */,
 				26A166732C7583B4008622D2 /* PersonalInformationForm.swift in Sources */,
 				235535352C7339BA00973F80 /* TestCameraView.swift in Sources */,
+				2664B5492C77367800D47AF9 /* SavedDocumentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
