@@ -81,6 +81,7 @@ struct NationalityForm: View {
         Spacer()
         
         Button {
+            viewModel.updateMiscData()
             viewModel.nextForm()
         } label: {
             Text("Continue")

@@ -42,11 +42,13 @@ internal class MiscRepository: DataRepositoryProtocol {
             Task { @MainActor in
                 do {
                     let entity = MiscData(
-                        id: param.id,
                         visitPurpose: param.visitPurpose,
-                        specialRemark: param.specialRemark,
                         durationStay: param.durationStay,
-                        dateOfApplication: param.dateOfApplication
+                        otherNames: param.otherNames,
+                        formerNationality: param.formerNationality,
+                        dateOfArrival: param.dateOfArrival,
+                        portOfEntry: param.portOfEntry,
+                        shipAirlineName: param.shipAirlineName
                     )
                     
                     self.container?.mainContext.insert(entity)
@@ -75,8 +77,6 @@ internal class MiscRepository: DataRepositoryProtocol {
                     do {
                         if let entity = try self.container?.mainContext.fetch(fetchDescriptor).first {
                             entity.visitPurpose = param.visitPurpose
-                            entity.specialRemark = param.specialRemark
-                            entity.dateOfApplication = param.dateOfApplication
                             
                             try self.container?.mainContext.save()
                             return EmptyResponse()
