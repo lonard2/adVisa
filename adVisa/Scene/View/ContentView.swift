@@ -54,6 +54,16 @@ struct ContentView: View {
                     }.tag(3)
             }
         }
+        .onAppear(perform: {
+            let appearance = UITabBarAppearance()
+            
+            appearance.configureWithOpaqueBackground()
+            
+            appearance.backgroundColor = .primaryWhite
+            
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        })
         .task {
             SwiftDataContextManager()
         }
