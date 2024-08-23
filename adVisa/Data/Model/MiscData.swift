@@ -11,16 +11,21 @@ import SwiftData
 @Model
 class MiscData {
     @Attribute(.unique) var id: String = UUID().uuidString
-    var visitPurpose: String
-    var specialRemark: String
-    var durationStay: String
-    var dateOfApplication: Date
+    var visitPurpose: String?
+    var durationStay: String?
+    var otherNames: String?
+    var formerNationality: String?
+    var dateOfArrival: Date?
+    var portOfEntry: String?
+    var shipAirlineName: String?
     
-    init(id: String, visitPurpose: String, specialRemark: String, durationStay: String, dateOfApplication: Date) {
-        self.id = id
+    init(visitPurpose: String? = nil, durationStay: String? = nil, otherNames: String? = nil, formerNationality: String? = nil, dateOfArrival: Date? = nil, portOfEntry: String? = nil, shipAirlineName: String? = nil) {
         self.visitPurpose = visitPurpose
-        self.specialRemark = specialRemark
         self.durationStay = durationStay
-        self.dateOfApplication = dateOfApplication
+        self.otherNames = otherNames
+        self.formerNationality = formerNationality
+        self.dateOfArrival = dateOfArrival
+        self.portOfEntry = portOfEntry
+        self.shipAirlineName = shipAirlineName
     }
 }

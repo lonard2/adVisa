@@ -47,6 +47,9 @@ struct PersonalInformationForm: View {
         NavigationLink {
             DocumentRequirementPage()
                 .navigationBarBackButtonHidden(true)
+                .onAppear{
+                    viewModel.saveTraveData()
+                }
         } label: {
             Text("Continue")
                 .padding(.vertical, 7)

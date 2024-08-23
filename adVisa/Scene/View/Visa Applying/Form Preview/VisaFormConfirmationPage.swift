@@ -71,7 +71,7 @@ struct VisaFormConfirmationPage: View {
             print("start")
             await fetchData()
             print("fetch")
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 if pdfPreviewViewModel.crimeRemarkData != nil {
                     // Ensure that the UI updates on the main thread
@@ -134,7 +134,7 @@ struct VisaFormConfirmationPage: View {
                     case "topmostSubform[0].Page1[0].emp_adr[0]":
                         annotation.widgetStringValue = pdfPreviewViewModel.employerData?.employerAddress // Address
                     case "topmostSubform[0].Page1[0].#area[3].emp_tel[0]":
-                        annotation.widgetStringValue = "Femployer" // Telepon
+                        annotation.widgetStringValue = pdfPreviewViewModel.employerData?.employerTelephoneNum // Telepon
                     case "topmostSubform[0].Page1[0].#area[3].emp_name[0]":
                         annotation.widgetStringValue = "" // Name of employer
                     case "topmostSubform[0].Page1[0].#area[4].T14[0]":
@@ -174,7 +174,7 @@ struct VisaFormConfirmationPage: View {
                         indexMarital += 1
 
                     case "topmostSubform[0].Page1[0].T34[0]":
-                        annotation.widgetStringValue = "UNKNOWN" //other nationalities
+                        annotation.widgetStringValue = pdfPreviewViewModel.miscData?.formerNationality //other nationalities
                     case "topmostSubform[0].Page1[0].#area[9].T53[0]":
                         annotation.widgetStringValue = pdfPreviewViewModel.passportData?.dateOfIssue.formatted() // date of issue
                     case "topmostSubform[0].Page1[0].#area[9].T57[1]":
@@ -184,13 +184,13 @@ struct VisaFormConfirmationPage: View {
                     case "topmostSubform[0].Page1[0].T64[0]":
                         annotation.widgetStringValue = pdfPreviewViewModel.travelHistoryData?.travelDuration // dates and duration of previous stays in japan
                     case "topmostSubform[0].Page1[0].T66[0]":
-                        annotation.widgetStringValue = "R" //date of arrivals
+                        annotation.widgetStringValue = pdfPreviewViewModel.miscData?.dateOfArrival?.formatted(.dateTime.year().month().day()) //date of arrivals
                     case "topmostSubform[0].Page1[0].#area[10].T68[0]":
-                        annotation.widgetStringValue = "S" //port of entry into japan
+                        annotation.widgetStringValue = pdfPreviewViewModel.miscData?.portOfEntry //port of entry into japan
                     case "topmostSubform[0].Page1[0].#area[10].T68[1]":
-                        annotation.widgetStringValue = "T" // name ship or airline
+                        annotation.widgetStringValue = pdfPreviewViewModel.miscData?.shipAirlineName // name ship or airline
                     case "topmostSubform[0].Page1[0].T68[2]":
-                        annotation.widgetStringValue = "A" // Purpose of visit to japan
+                        annotation.widgetStringValue = pdfPreviewViewModel.miscData?.visitPurpose // Purpose of visit to japan
                     case "topmostSubform[0].Page1[0].#area[11].T97[0]":
                         annotation.widgetStringValue = pdfPreviewViewModel.domicileData?.currentTelephoneNum // ocurrent place
                     case "topmostSubform[0].Page1[0].#area[11].T3[0]":

@@ -16,6 +16,7 @@ struct DocumentRequirementPage: View {
     
     @State private var selectedDocumentType: DocumentTypeDetailed = .none
     @State private var goConfirmDocument = false
+    @State private var captureComplete = false
     
     let documents: [Document] = [
         Document(icon: "airplane.departure", imageName: "flight_booking_guide_1", documentName: "Away Flight Booking", explanation: "Kindly provide your away flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
@@ -113,10 +114,10 @@ struct DocumentRequirementPage: View {
             }
         }
         .sheet(isPresented: $showSheet, content: {
-            UploadDocumentSheet(document: $selectedDocument, selectedDocumentType: $selectedDocumentType, showDocumentSheet: $showSheet, goConfirmDocument: $goConfirmDocument)
+            UploadDocumentSheet(document: $selectedDocument, selectedDocumentType: $selectedDocumentType, showDocumentSheet: $showSheet, goConfirmDocument: $goConfirmDocument, captureComplete: $captureComplete)
         })
         .fullScreenCover(isPresented: $goConfirmDocument) {
-            ConfirmUploadDocumentPage()
+            ConfirmUploadDocumentPage(captureComplete: $captureComplete)
         }
     }
 }

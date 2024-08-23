@@ -32,24 +32,38 @@ struct ContentView: View {
 //                        CameraLayerView(selectedDocument: .ktp)
 //                            .ignoresSafeArea()
 //                    }
-                
-                DiscoverPage(selectedBar: $selectedBar)
+                ZStack {
+                    DiscoverPage(selectedBar: $selectedBar)
+                }
                     .tabItem {
                         Label("Discover", systemImage: "map.circle.fill")
                     }.tag(1)
                 
-                HistoryPage()
+                ZStack {
+                    HistoryPage()
+                }
                     .tabItem {
                         Label("History", systemImage: "clock.fill")
                     }.tag(2)
                 
-                
-                SavedDocumentPage()
+                ZStack {
+                    SavedDocumentPage()
+                }
                     .tabItem {
                         Label("Documents", systemImage: "doc")
                     }.tag(3)
             }
         }
+        .onAppear(perform: {
+            let appearance = UITabBarAppearance()
+            
+            appearance.configureWithOpaqueBackground()
+            
+            appearance.backgroundColor = .primaryWhite
+            
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        })
         .task {
             SwiftDataContextManager()
         }

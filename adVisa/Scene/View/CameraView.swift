@@ -73,9 +73,11 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     @State var alreadyTakenPicture: Bool = false
     var savedDocumentViewModel = SavedDocumentViewModel()
     var showDocumentSheetBinding: Binding<Bool>
+    var captureCompleteBinding: Binding<Bool>
 
-    init(showDocumentSheetBinding: Binding<Bool>) {
+    init(showDocumentSheetBinding: Binding<Bool>, captureCompleteBinding: Binding<Bool>) {
         self.showDocumentSheetBinding = showDocumentSheetBinding
+        self.captureCompleteBinding = captureCompleteBinding
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -714,6 +716,11 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     .sink(receiveCompletion: { completion in
                         switch completion {
                         case .finished:
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                self.savedDocumentViewModel.alreadyTakenPicture = true
+                                self.dismiss(animated: true)
+                            }
+                            self.captureCompleteBinding.wrappedValue = true
                             self.showDocumentSheetBinding.wrappedValue = false
                             print("Save successful")
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -834,6 +841,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                         self.savedDocumentViewModel.alreadyTakenPicture = true
                         self.dismiss(animated: true)
                     }
+                    self.captureCompleteBinding.wrappedValue = true
                     self.showDocumentSheetBinding.wrappedValue = false
                     print("Save successful")
                 case .failure(let error):
@@ -856,6 +864,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             self.savedDocumentViewModel.alreadyTakenPicture = true
             self.dismiss(animated: true)
         }
+        self.captureCompleteBinding.wrappedValue = true
         self.showDocumentSheetBinding.wrappedValue = false
         print("Save successful")
     }

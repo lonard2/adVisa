@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 class VisaPromptViewModel: ObservableObject {
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     @Published var startDate: Date = Date()
     @Published var endDate: Date = Date()
@@ -20,6 +23,8 @@ class VisaPromptViewModel: ObservableObject {
     private var totalDays = 0
     
     @Published var nextQuestion: Bool = false
+    
+    private let miscRepository: MiscRepository = MiscRepository()
     
     func nextForm() {
         self.nextQuestion = true
@@ -41,5 +46,23 @@ class VisaPromptViewModel: ObservableObject {
         }
         
         return totalDays
+    }
+    
+    func saveTraveData() {
+        miscRepository.save(param: MiscData(visitPurpose: travelPurpose, durationStay: String(totalDays), otherNames: "", formerNationality: "", dateOfArrival: startDate, portOfEntry: "", shipAirlineName: ""))
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("Save MISCCC data successful")
+                case .failure(let error):
+                    // Handle the error
+                    DispatchQueue.main.async {
+                        print("Error saving identity card: \(error.localizedDescription)")
+                    }
+                }
+            }, receiveValue: { success in
+                // Handle the success case if needed (though here it is not strictly necessary)
+            })
+            .store(in: &cancellables) // Store the cancellable in a Set<AnyCancellable>
     }
 }
