@@ -11,15 +11,15 @@ import SwiftData
 @Model
 class MiscData {
     @Attribute(.unique) var id: String = UUID().uuidString
-    var visitPurpose: String
-    var durationStay: String
-    var otherNames: String
-    var formerNationality: String
-    var dateOfArrival: Date
-    var portOfEntry: String
-    var shipAirlineName: String
+    var visitPurpose: String?
+    var durationStay: String?
+    var otherNames: String?
+    var formerNationality: String?
+    var dateOfArrival: Date?
+    var portOfEntry: String?
+    var shipAirlineName: String?
     
-    init(visitPurpose: String, durationStay: String, otherNames: String, formerNationality: String, dateOfArrival: Date, portOfEntry: String, shipAirlineName: String) {
+    init(visitPurpose: String? = nil, durationStay: String? = nil, otherNames: String? = nil, formerNationality: String? = nil, dateOfArrival: Date? = nil, portOfEntry: String? = nil, shipAirlineName: String? = nil) {
         self.visitPurpose = visitPurpose
         self.durationStay = durationStay
         self.otherNames = otherNames

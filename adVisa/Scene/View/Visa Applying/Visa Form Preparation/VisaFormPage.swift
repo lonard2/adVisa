@@ -86,6 +86,9 @@ struct VisaFormPage: View {
                 Spacer()
             }
         }
+        .onAppear() {
+            
+        }
     }
 }
 

@@ -53,7 +53,7 @@ class VisaPromptViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
-                    print("Save misc data successful")
+                    print("Save MISCCC data successful")
                 case .failure(let error):
                     // Handle the error
                     DispatchQueue.main.async {
