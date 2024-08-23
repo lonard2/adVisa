@@ -76,6 +76,7 @@ class VisaFormViewModel: ObservableObject {
     private let guarantorRepostory: GuarantorRepository = GuarantorRepository()
     private let inviterRepository: InviterRepository = InviterRepository()
     private let crimeRemarkRepository: CrimeRemarkRepository = CrimeRemarkRepository()
+    private let miscRepository: MiscRepository = MiscRepository()
     
     func nextForm() {
         self.pageStep += 1
@@ -137,7 +138,7 @@ class VisaFormViewModel: ObservableObject {
                 // Handle the success case if needed (though here it is not strictly necessary)
             })
             .store(in: &cancellables) // Store the cancellable in a Set<AnyCancellable>
-
+        
     }
     
     func saveInviterData() {
@@ -189,4 +190,33 @@ class VisaFormViewModel: ObservableObject {
             })
             .store(in: &cancellables) // Store the cancellable in a Set<AnyCancellable>
     }
+    
+    func updateMiscData() {
+        miscRepository.fetchFirst()
+            .receive(on: DispatchQueue.main)
+            .flatMap { [weak self] data -> AnyPublisher<EmptyResponse, DataError> in
+                guard let self = self else {
+                    return Fail(error: DataError.genericError(error: NSError(domain: "ViewModel", code: -1, userInfo: nil)))
+                        .eraseToAnyPublisher()
+                }
+                let updatedData = data
+                // Perform any updates to the fetched data here
+                updatedData?.otherNames = otherName
+                updatedData?.formerNationality = priorNationality == "" ? otherNationality : priorNationality
+                
+                return self.miscRepository.update(param: updatedData!)
+            }
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    print("Error updating misc data: \(error)")
+                case .finished:
+                    print("Successfully updated misc data")
+                }
+            }, receiveValue: { _ in
+                // Handle successful update if needed
+            })
+            .store(in: &cancellables)
+    }
+    
 }

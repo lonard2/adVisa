@@ -71,17 +71,17 @@ struct VisaFormConfirmationPage: View {
             print("start")
             await fetchData()
             print("fetch")
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                if pdfPreviewViewModel.crimeRemarkData != nil {
-                    // Ensure that the UI updates on the main thread
-                    DispatchQueue.main.async {
-                        loadAndFillPDF()
-                    }
-                } else {
-                    print("Data fetching failed or returned nil.")
-                }
-            }
+            loadAndFillPDF()
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+//                if pdfPreviewViewModel.crimeRemarkData != nil {
+//                    // Ensure that the UI updates on the main thread
+//                    DispatchQueue.main.async {
+//                        loadAndFillPDF()
+//                    }
+//                } else {
+//                    print("Data fetching failed or returned nil.")
+//                }
+//            }
             // Ensure data is fetched before proceeding
             
             print("end")
@@ -190,7 +190,7 @@ struct VisaFormConfirmationPage: View {
                     case "topmostSubform[0].Page1[0].#area[10].T68[1]":
                         annotation.widgetStringValue = "T" // name ship or airline
                     case "topmostSubform[0].Page1[0].T68[2]":
-                        annotation.widgetStringValue = "A" // Purpose of visit to japan
+                        annotation.widgetStringValue = pdfPreviewViewModel.miscData?.visitPurpose // Purpose of visit to japan
                     case "topmostSubform[0].Page1[0].#area[11].T97[0]":
                         annotation.widgetStringValue = pdfPreviewViewModel.domicileData?.currentTelephoneNum // ocurrent place
                     case "topmostSubform[0].Page1[0].#area[11].T3[0]":
