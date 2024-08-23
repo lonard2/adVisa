@@ -46,7 +46,7 @@ struct GuarantorForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.guarantorGender == GenderEnum.male ? "his" : "her") Name?")
+                            Text("What is \(viewModel.guarantorGender == GenderEnum.male ? "his" : "her") name?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -55,6 +55,19 @@ struct GuarantorForm: View {
                                 .padding(.horizontal, 6)
                                 .background(Color(.primaryWhite))
                                 .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What is \(viewModel.guarantorGender == GenderEnum.male ? "his" : "her") phone number?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Guarantor's Phone Number", text: $viewModel.guarantorPhoneNumber)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                                .keyboardType(.numbersAndPunctuation)
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
@@ -120,7 +133,19 @@ struct GuarantorForm: View {
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
-                            TextField("Your Guarantor's Nationality", text: $viewModel.guarantorJobPosition)
+                            TextField("Your Guarantor's Nationality", text: $viewModel.guarantorNationality)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What is \(viewModel.guarantorGender == GenderEnum.male ? "his" : "her") immigration status?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Guarantor's Immigration Status", text: $viewModel.guarantorImmigrationStatus)
                                 .padding(.vertical, 2)
                                 .padding(.horizontal, 6)
                                 .background(Color(.primaryWhite))
@@ -137,6 +162,9 @@ struct GuarantorForm: View {
         Spacer()
         
         Button {
+            if viewModel.hasGuarantor {
+                viewModel.saveGuarantorData()
+            }
             viewModel.nextForm()
         } label: {
             Text("Continue")

@@ -63,7 +63,7 @@ struct InviterForm: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("What is \(viewModel.inviterGender == GenderEnum.male ? "his" : "her") Name?")
+                            Text("What is \(viewModel.inviterGender == GenderEnum.male ? "his" : "her") name?")
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
@@ -72,6 +72,19 @@ struct InviterForm: View {
                                 .padding(.horizontal, 6)
                                 .background(Color(.primaryWhite))
                                 .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What is \(viewModel.inviterGender == GenderEnum.male ? "his" : "her") phone number?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Inviter's Phone Number", text: $viewModel.inviterPhoneNumber)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                                .keyboardType(.numbersAndPunctuation)
                         }
                         
                         VStack(alignment: .leading, spacing: 8) {
@@ -137,7 +150,19 @@ struct InviterForm: View {
                                 .font(.system(size: 17))
                                 .fontWeight(.semibold)
                             
-                            TextField("Your Inviter's Nationality", text: $viewModel.inviterJobPosition)
+                            TextField("Your Inviter's Nationality", text: $viewModel.inviterNationality)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
+                                .background(Color(.primaryWhite))
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.defaultGray, lineWidth: 0.5))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What is \(viewModel.inviterGender == GenderEnum.male ? "his" : "her") immigration status?")
+                                .font(.system(size: 17))
+                                .fontWeight(.semibold)
+                            
+                            TextField("Your Inviter's Immigration Status", text: $viewModel.inviterImmigrationStatus)
                                 .padding(.vertical, 2)
                                 .padding(.horizontal, 6)
                                 .background(Color(.primaryWhite))
@@ -154,6 +179,9 @@ struct InviterForm: View {
         Spacer()
         
         Button {
+            if viewModel.hasInviter {
+                viewModel.saveInviterData()
+            }
             viewModel.nextForm()
         } label: {
             Text("Continue")
