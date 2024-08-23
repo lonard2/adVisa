@@ -9,15 +9,20 @@ import SwiftUI
 
 struct ConfirmUploadDocumentPage: View {
     
-    @State var documentName: String
-    @State var uploadedImageName: String
+    @ObservedObject var viewModel = SavedDocumentViewModel()
+    @Environment(\.dismiss) var dismiss
+    
+    @State var documentName: String = ""
+    @State var uploadedImageName: String = ""
+    
+    @State var retakePicture: Bool = false
     
     var body: some View {
         VStack {
             
             HStack(spacing: 10) {
                 Button {
-                    
+                    retakePicture.toggle()
                 } label: {
                     Text("Retake")
                         .padding(.vertical, 7)
@@ -33,7 +38,7 @@ struct ConfirmUploadDocumentPage: View {
                     .foregroundStyle(Color(.primaryWhite))
                 
                 Button {
-                    
+                    dismiss()
                 } label: {
                     Text("Save")
                         .padding(.vertical, 7)
@@ -52,7 +57,8 @@ struct ConfirmUploadDocumentPage: View {
                 
                 Spacer()
                 
-                Image(uploadedImageName)
+                Text(uploadedImageName)
+                    .multilineTextAlignment(.center)
                     .padding(10)
                 
                 Spacer()
@@ -60,7 +66,42 @@ struct ConfirmUploadDocumentPage: View {
             .background(Color(.primaryWhite))
             
         }
+        .fullScreenCover(isPresented: $retakePicture) {
+            CameraLayerView(selectedDocument: viewModel.processedDocumentType, showDocumentSheet: .constant(false))
+                .ignoresSafeArea()
+        }
         .background(Color.primaryWhite)
+        .onAppear {
+            switch(viewModel.processedDocumentType) {
+            case .ktp:
+                documentName = "KTP"
+                uploadedImageName = "ktp" + "_" + UUID().uuidString
+            case .passport_bio:
+                documentName = "Passport Bio"
+                uploadedImageName = "pass_bio" + "_" +  UUID().uuidString
+            case .passport_endorsement:
+                documentName = "Passport Endorsement"
+                uploadedImageName = "pass_endorse" + "_" +  UUID().uuidString
+            case .self_portrait:
+                documentName = "My Self Portrait"
+                uploadedImageName = "self" + "_" +  UUID().uuidString
+            case .tiket_pesawat:
+                documentName = "Flight Ticket"
+                uploadedImageName = "ticket" + "_" +  UUID().uuidString
+            case .hotel:
+                documentName = "Accomodation"
+                uploadedImageName = "accomodation" + "_" +  UUID().uuidString
+            case .bank_statement:
+                documentName = "Bank Statement"
+                uploadedImageName = "bank" + "_" +  UUID().uuidString
+            case .family_card:
+                documentName = "Family Card"
+                uploadedImageName = "fc" + "_" +  UUID().uuidString
+            case .none:
+                documentName = "KTP"
+                uploadedImageName = "identity" + "_" +  UUID().uuidString
+            }
+        }
     }
 }
 

@@ -10,10 +10,14 @@ import SwiftUI
 struct UploadDocumentSheet: View {
     
     @Binding var document: Document
+    @Environment(\.dismiss) var dismiss
     
     @State private var openCamera = false
+    @ObservedObject var viewModel = SavedDocumentViewModel()
     
     @Binding var selectedDocumentType : DocumentTypeDetailed
+    @Binding var showDocumentSheet: Bool
+    @Binding var goConfirmDocument: Bool
     
     var body: some View {
         
@@ -38,8 +42,7 @@ struct UploadDocumentSheet: View {
             VStack(spacing: 20) {
                 Button {
                     openCamera.toggle()
-                    
-                    
+
                 } label: {
                     Text("Take Picture")
                         .padding(.vertical, 7)
@@ -50,7 +53,7 @@ struct UploadDocumentSheet: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 .fullScreenCover(isPresented: $openCamera) {
-                    CameraLayerView(selectedDocument: selectedDocumentType)
+                    CameraLayerView(selectedDocument: selectedDocumentType, showDocumentSheet: $showDocumentSheet)
                         .ignoresSafeArea()
                 }
                 
@@ -69,6 +72,11 @@ struct UploadDocumentSheet: View {
             .padding(.vertical, 12)
             
         }
+        .onDisappear {
+            goConfirmDocument = true
+        }
+        
+        
         
     }
 }

@@ -66,6 +66,20 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     var cropWidth: Int = 720
     var cropHeight: Int = 1200
     
+    @State var alreadyTakenPicture: Bool = false
+    var savedDocumentViewModel = SavedDocumentViewModel()
+    var showDocumentSheetBinding: Binding<Bool>
+
+    init(showDocumentSheetBinding: Binding<Bool>) {
+        self.showDocumentSheetBinding = showDocumentSheetBinding
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
@@ -106,11 +120,23 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             selectedDocumentFile = "self_portrait_guideline_camera.png"
             selectedDocumentWidth = 250
             selectedDocumentHeight = 250
-        case .generic:
+        case .bank_statement:
             selectedDocumentFile = "generic_camera_guide.png"
             selectedDocumentWidth = 250
             selectedDocumentHeight = 250
         case .none:
+            selectedDocumentFile = "generic_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .tiket_pesawat:
+            selectedDocumentFile = "generic_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .hotel:
+            selectedDocumentFile = "generic_camera_guide.png"
+            selectedDocumentWidth = 250
+            selectedDocumentHeight = 250
+        case .family_card:
             selectedDocumentFile = "generic_camera_guide.png"
             selectedDocumentWidth = 250
             selectedDocumentHeight = 250
@@ -435,24 +461,43 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                 case .passport_bio:
                     cropWidth = 960
                     cropHeight = 1400
+                    self.savedDocumentViewModel.processedDocumentType = .passport_bio
                 case .passport_endorsement:
                     cropWidth = 1150
                     cropHeight = 780
+                    self.savedDocumentViewModel.processedDocumentType = .passport_endorsement
                 case .ktp:
                     cropWidth = 960
                     cropHeight = 1400
+                    self.savedDocumentViewModel.processedDocumentType = .ktp
                 case .self_portrait:
+                    self.savedDocumentViewModel.processedDocumentType = .self_portrait
                     return
-                case .generic:
-                    cropWidth = 1150
-                    cropHeight = 780
+                case .bank_statement:
+                    self.savedDocumentViewModel.processedDocumentType = .bank_statement
+                    return
                 case .none:
+                    self.savedDocumentViewModel.processedDocumentType = .passport_bio
                     cropWidth = 1080
                     cropHeight = 780
+                case .tiket_pesawat:
+                    self.savedDocumentViewModel.processedDocumentType = .tiket_pesawat
+                    cropWidth = 1150
+                    cropHeight = 780
+                case .hotel:
+                    self.savedDocumentViewModel.processedDocumentType = .hotel
+                    cropWidth = 1150
+                    cropHeight = 780
+                case .family_card:
+                    self.savedDocumentViewModel.processedDocumentType = .family_card
+                    return
                 }
                 if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: CGFloat(cropWidth), cropHeight: CGFloat(cropHeight)) {
                     if let image = CIImage(image: croppedImage) {
                         self.processCapturedImage(image)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     }
                 } else {
                     return
@@ -668,6 +713,11 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     .sink(receiveCompletion: { completion in
                         switch completion {
                         case .finished:
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                self.savedDocumentViewModel.alreadyTakenPicture = true
+                                self.dismiss(animated: true)
+                            }
+                            self.showDocumentSheetBinding.wrappedValue = false
                             print("Save successful")
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                 self.navigationManager?.shouldNavigate = true
@@ -782,6 +832,11 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                 switch completion {
                 case .finished:
                     // Handle successful completion, if needed
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        self.savedDocumentViewModel.alreadyTakenPicture = true
+                        self.dismiss(animated: true)
+                    }
+                    self.showDocumentSheetBinding.wrappedValue = false
                     print("Save successful")
                 case .failure(let error):
                     // Handle the error, for example by logging it
@@ -799,11 +854,21 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     }
     
     private func extractAccomodationData(from recognizedTexts: [String]) {
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.savedDocumentViewModel.alreadyTakenPicture = true
+            self.dismiss(animated: true)
+        }
+        self.showDocumentSheetBinding.wrappedValue = false
+        print("Save successful")
     }
     
     private func extractFlightTicketData(from recognizedTexts: [String]) {
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.savedDocumentViewModel.alreadyTakenPicture = true
+            self.dismiss(animated: true)
+        }
+        self.showDocumentSheetBinding.wrappedValue = false
+        print("Save successful")
     }
     
     @objc func pickPhoto() {
@@ -823,7 +888,32 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             print("Image selected: \(selectedImage)")
             
             if let ciImage = CIImage(image: selectedImage) {
+                
+                switch(selectedDocument) {
+                case .passport_bio:
+                    self.savedDocumentViewModel.processedDocumentType = .passport_bio
+                case .passport_endorsement:
+                    self.savedDocumentViewModel.processedDocumentType = .passport_endorsement
+                case .ktp:
+                    self.savedDocumentViewModel.processedDocumentType = .ktp
+                case .self_portrait:
+                    self.savedDocumentViewModel.processedDocumentType = .self_portrait
+                case .bank_statement:
+                    self.savedDocumentViewModel.processedDocumentType = .bank_statement
+                case .none:
+                    self.savedDocumentViewModel.processedDocumentType = .passport_bio
+                case .tiket_pesawat:
+                    self.savedDocumentViewModel.processedDocumentType = .tiket_pesawat
+                case .hotel:
+                    self.savedDocumentViewModel.processedDocumentType = .hotel
+                case .family_card:
+                    self.savedDocumentViewModel.processedDocumentType = .family_card
+                }
+                
                 self.processCapturedImage(ciImage)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
                 print("Picture from picker processed.")
             } else {
                 print("Picture from picker couldn't be processed.")
