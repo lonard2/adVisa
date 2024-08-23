@@ -184,7 +184,7 @@ struct VisaFormConfirmationPage: View {
                     case "topmostSubform[0].Page1[0].T64[0]":
                         annotation.widgetStringValue = pdfPreviewViewModel.travelHistoryData?.travelDuration // dates and duration of previous stays in japan
                     case "topmostSubform[0].Page1[0].T66[0]":
-                        annotation.widgetStringValue = pdfPreviewViewModel.miscData?.dateOfArrival.formatted(.dateTime.year().month().day()) //date of arrivals
+                        annotation.widgetStringValue = pdfPreviewViewModel.miscData?.dateOfArrival?.formatted(.dateTime.year().month().day()) //date of arrivals
                     case "topmostSubform[0].Page1[0].#area[10].T68[0]":
                         annotation.widgetStringValue = pdfPreviewViewModel.miscData?.portOfEntry //port of entry into japan
                     case "topmostSubform[0].Page1[0].#area[10].T68[1]":
