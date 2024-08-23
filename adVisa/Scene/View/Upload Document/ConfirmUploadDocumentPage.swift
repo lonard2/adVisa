@@ -17,11 +17,14 @@ struct ConfirmUploadDocumentPage: View {
     
     @State var retakePicture: Bool = false
     
+    @Binding var captureComplete: Bool = true
+    
     var body: some View {
         VStack {
             
             HStack(spacing: 10) {
                 Button {
+                    captureComplete.toggle()
                     retakePicture.toggle()
                 } label: {
                     Text("Retake")
@@ -38,6 +41,7 @@ struct ConfirmUploadDocumentPage: View {
                     .foregroundStyle(Color(.primaryWhite))
                 
                 Button {
+                    captureComplete.toggle()
                     dismiss()
                 } label: {
                     Text("Save")

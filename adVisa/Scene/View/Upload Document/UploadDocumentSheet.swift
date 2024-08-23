@@ -18,6 +18,7 @@ struct UploadDocumentSheet: View {
     @Binding var selectedDocumentType : DocumentTypeDetailed
     @Binding var showDocumentSheet: Bool
     @Binding var goConfirmDocument: Bool
+    @Binding var captureComplete: Bool
     
     var body: some View {
         
@@ -53,7 +54,7 @@ struct UploadDocumentSheet: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 .fullScreenCover(isPresented: $openCamera) {
-                    CameraLayerView(selectedDocument: selectedDocumentType, showDocumentSheet: $showDocumentSheet)
+                    CameraLayerView(selectedDocument: selectedDocumentType, showDocumentSheet: $showDocumentSheet, captureComplete: $captureComplete)
                         .ignoresSafeArea()
                 }
                 
