@@ -17,7 +17,7 @@ struct ConfirmUploadDocumentPage: View {
     
     @State var retakePicture: Bool = false
     
-    @Binding var captureComplete: Bool = true
+    @Binding var captureComplete: Bool
     
     var body: some View {
         VStack {
@@ -71,7 +71,7 @@ struct ConfirmUploadDocumentPage: View {
             
         }
         .fullScreenCover(isPresented: $retakePicture) {
-            CameraLayerView(selectedDocument: viewModel.processedDocumentType, showDocumentSheet: .constant(false))
+            CameraLayerView(selectedDocument: viewModel.processedDocumentType, showDocumentSheet: .constant(false), captureComplete: $captureComplete)
                 .ignoresSafeArea()
         }
         .background(Color.primaryWhite)
@@ -110,5 +110,6 @@ struct ConfirmUploadDocumentPage: View {
 }
 
 #Preview {
-    ConfirmUploadDocumentPage(documentName: "Passport (Bio Page)", uploadedImageName: "passport_bio_guide")
+    ConfirmUploadDocumentPage(documentName: "Passport (Bio Page)", uploadedImageName: "passport_bio_guide", captureComplete: .constant(true))
 }
+

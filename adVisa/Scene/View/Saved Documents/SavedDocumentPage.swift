@@ -63,7 +63,7 @@ struct SavedDocumentPage: View {
         })
         .fullScreenCover(isPresented: $goConfirmDocument) {
             if(captureComplete) {
-                ConfirmUploadDocumentPage()
+                ConfirmUploadDocumentPage(captureComplete: $captureComplete)
             }
         }
         
