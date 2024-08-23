@@ -11,7 +11,6 @@ import SwiftUI
 import AVFoundation
 
 struct CameraLayerView: UIViewControllerRepresentable {
-    
     var selectedDocument: DocumentTypeDetailed
     @Binding var showDocumentSheet: Bool
     var savedDocumentViewModel = SavedDocumentViewModel()

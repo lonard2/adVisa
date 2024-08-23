@@ -34,7 +34,7 @@ struct ContactInformationForm: View {
                             .font(.system(size: 17))
                             .fontWeight(.semibold)
                         
-                        TextField("Home Telephone Number", text: $viewModel.currentAddress)
+                        TextField("Home Telephone Number", text: $viewModel.homeTelephoneNumber)
                             .padding(.vertical, 2)
                             .padding(.horizontal, 6)
                             .background(Color(.primaryWhite))
@@ -49,7 +49,7 @@ struct ContactInformationForm: View {
                     .font(.system(size: 17))
                     .fontWeight(.semibold)
                 
-                TextField("Mobile Phone Number", text: $viewModel.currentAddress)
+                TextField("Mobile Phone Number", text: $viewModel.mobilePhoneNumber)
                     .padding(.vertical, 2)
                     .padding(.horizontal, 6)
                     .background(Color(.primaryWhite))
@@ -62,7 +62,7 @@ struct ContactInformationForm: View {
                     .font(.system(size: 17))
                     .fontWeight(.semibold)
                 
-                TextField("Email Address", text: $viewModel.currentAddress)
+                TextField("Email Address", text: $viewModel.currentEmail)
                     .padding(.vertical, 2)
                     .padding(.horizontal, 6)
                     .background(Color(.primaryWhite))
@@ -75,6 +75,7 @@ struct ContactInformationForm: View {
         Spacer()
         
         Button {
+            viewModel.saveDomicileData()
             viewModel.nextForm()
         } label: {
             Text("Continue")

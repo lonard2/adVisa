@@ -54,17 +54,6 @@ class PdfPreviewVisaViewModel: ObservableObject {
         self.domicileRepository = domicileRepository
         self.employerRepository = employerRepository
         self.accomodationRepository = accomodationRepository
-        
-        fetchPassportData()
-        fetchIdentityCardData()
-        fetchGuarantorData()
-        fetchInviterData()
-        fetchCrimeRemarkData()
-        fetchTravelHistoryData()
-        fetchMiscData()
-        fetchDomicileData()
-        fetchEmployerData()
-        fetchAccomodationData()
     }
     
     func fetchPassportData() {
@@ -143,6 +132,7 @@ class PdfPreviewVisaViewModel: ObservableObject {
                 }
             }, receiveValue: { [weak self] data in
                 self?.crimeRemarkData = data
+                print("crime \(self?.crimeRemarkData?.haveCrimeConvicted.description ?? "nooway")")
             })
             .store(in: &cancellables)
     }
@@ -207,6 +197,8 @@ class PdfPreviewVisaViewModel: ObservableObject {
                 }
             }, receiveValue: { [weak self] data in
                 self?.employerData = data
+                print("company name: \(self?.employerData?.employerName ?? "nil")")
+                            print("company address: \(self?.employerData?.employerAddress ?? "nil")")
             })
             .store(in: &cancellables)
     }

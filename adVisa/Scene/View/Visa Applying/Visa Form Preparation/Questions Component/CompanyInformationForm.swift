@@ -54,6 +54,7 @@ struct CompanyInformationForm: View {
         Spacer()
         
         Button {
+            viewModel.saveEmployerData()
             viewModel.nextForm()
         } label: {
             Text("Continue")

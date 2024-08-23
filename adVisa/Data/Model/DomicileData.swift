@@ -7,16 +7,15 @@
 
 import Foundation
 import SwiftData
+
 @Model
 class DomicileData {
     @Attribute(.unique) var id: String = UUID().uuidString
-    var currentAddress: String
     var currentPhoneNum: String
-    var currentTelephoneNum: String
+    var currentTelephoneNum: String?
     var currentEmail: String
     
-    init(currentAddress: String, currentPhoneNum: String, currentTelephoneNum: String, currentEmail: String) {
-        self.currentAddress = currentAddress
+    init(currentPhoneNum: String, currentTelephoneNum: String? = nil, currentEmail: String) {
         self.currentPhoneNum = currentPhoneNum
         self.currentTelephoneNum = currentTelephoneNum
         self.currentEmail = currentEmail

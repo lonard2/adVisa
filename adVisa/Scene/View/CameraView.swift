@@ -20,6 +20,8 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
     var passportRepository: PassportRepository?
     var identityCardRepository: IdentityCardRepository?
     
+    var navigationManager: NavigationManager?
+    
     private var cancellables: Set<AnyCancellable> = []
     private var isAuthorized = false
     
@@ -717,6 +719,9 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                             }
                             self.showDocumentSheetBinding.wrappedValue = false
                             print("Save successful")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                self.navigationManager?.shouldNavigate = true
+                            }
                         case .failure(let error):
                             // Handle the error
                             DispatchQueue.main.async {
