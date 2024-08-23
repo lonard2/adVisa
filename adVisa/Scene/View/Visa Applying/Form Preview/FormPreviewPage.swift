@@ -61,29 +61,6 @@ struct FormPreviewPage: View {
                         .shadow(color: .black.opacity(0.25) ,radius: 4)
                     }
                     
-                    NavigationLink {
-                        ItineraryFormConfirmationPage()
-                            .navigationBarBackButtonHidden(true)
-                    } label: {
-                        HStack {
-                            Text("Itinerary Form")
-                                .foregroundStyle(Color(.primaryBlack))
-                                .font(.system(size: 15))
-                                .fontWeight(.semibold)
-                            
-                            Spacer()
-                            
-                            Image(systemName: "chevron.right")
-                                .foregroundStyle(Color(.primaryBlack))
-                                .font(.system(size: 15))
-                            
-                        }
-                        .padding(16)
-                        .background(Color(.primaryWhite))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .shadow(color: .black.opacity(0.25) ,radius: 4)
-                    }
-                    
                     Spacer()
                     
                     NavigationLink {
