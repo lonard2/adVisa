@@ -17,7 +17,7 @@ public class SwiftDataContextManager {
 
     init() {
         do {
-            container = try ModelContainer(for: PassportData.self, IdentityCardData.self, PlaneTicketData.self, DomicileData.self, TravelHistoryData.self, EmployerData.self, OccupationData.self, GuarantorData.self, InviterData.self, MiscData.self, CrimeRemarkData.self, AccomodationData.self)
+            container = try ModelContainer(for: PassportData.self, IdentityCardData.self, PlaneTicketData.self, DomicileData.self, TravelHistoryData.self, EmployerData.self, OccupationData.self, GuarantorData.self, InviterData.self, MiscData.self, CrimeRemarkData.self, AccomodationData.self, DepartureFlightData.self, ReturnFlightData.self)
             if let container {
                 context = ModelContext(container)
             }

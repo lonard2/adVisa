@@ -24,6 +24,8 @@ struct CameraLayerView: UIViewControllerRepresentable {
         cameraViewController.selectedDocument = selectedDocument
         cameraViewController.identityCardRepository = IdentityCardRepository()
         cameraViewController.passportRepository = PassportRepository()
+        cameraViewController.departureFlightRepository = DepartureFlightRepository()
+        cameraViewController.returnFlightRepository = ReturnFlightRepository()
         
         return cameraViewController
     }

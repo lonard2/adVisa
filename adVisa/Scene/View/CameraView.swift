@@ -14,11 +14,15 @@ import Combine
 protocol CameraViewControllerProtocol {
     var passportRepository: PassportRepository? { get set }
     var identityCardRepository: IdentityCardRepository? { get set }
+    var departureFlightRepository: DepartureFlightRepository? { get set }
+    var returnFlightRepository: ReturnFlightRepository? { get set }
 }
 
 class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, CameraViewControllerProtocol, UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
     var passportRepository: PassportRepository?
     var identityCardRepository: IdentityCardRepository?
+    var departureFlightRepository: DepartureFlightRepository?
+    var returnFlightRepository: ReturnFlightRepository?
     
     var navigationManager: NavigationManager?
     
@@ -495,9 +499,6 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                 if let croppedImage = cropMiddlePartOfImage(image: image, cropWidth: CGFloat(cropWidth), cropHeight: CGFloat(cropHeight)) {
                     if let image = CIImage(image: croppedImage) {
                         self.processCapturedImage(image)
-                        DispatchQueue.main.async {
-                            self.dismiss(animated: true, completion: nil)
-                        }
                     }
                 } else {
                     return
@@ -612,7 +613,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     print("Model classification error: \(error?.localizedDescription ?? "Unknown error")")
                     return
                 }
-                
+                print(topResult.identifier)
                 DispatchQueue.main.async {
                     switch topResult.identifier {
                     case "ktp":
@@ -665,16 +666,16 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
             }
             
             let recognizedTexts = observations.compactMap { $0.topCandidates(1).first?.string }
-            
+            print("The documen type is \(documentType)")
             switch documentType {
+            case .tiket_pesawat:
+                self?.extractFlightTicketData(from: recognizedTextByPosition)
             case .ktp:
                 self?.extractIdentityCardData(from: recognizedTexts)
             case .passport:
                 self?.extractPassportDataWithGeometry(from: recognizedTextByPosition)
             case .hotel:
-                self?.extractAccomodationData(from: recognizedTexts)
-            case .tiket_pesawat:
-                self?.extractFlightTicketData(from: recognizedTexts)
+                self?.extractAccomodationData(from: recognizedTextByPosition)
             case .none:
                 self?.extractIdentityCardData(from: recognizedTexts)
             }
@@ -713,14 +714,11 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     .sink(receiveCompletion: { completion in
                         switch completion {
                         case .finished:
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                self.savedDocumentViewModel.alreadyTakenPicture = true
-                                self.dismiss(animated: true)
-                            }
                             self.showDocumentSheetBinding.wrappedValue = false
                             print("Save successful")
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                self.navigationManager?.shouldNavigate = true
+                                self.savedDocumentViewModel.alreadyTakenPicture = true
+                                self.dismiss(animated: true)
                             }
                         case .failure(let error):
                             // Handle the error
@@ -853,7 +851,7 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         }
     }
     
-    private func extractAccomodationData(from recognizedTexts: [String]) {
+    private func extractAccomodationData(from recognizedTextByPosition: [(text: String, boundingBox: CGRect)]) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.savedDocumentViewModel.alreadyTakenPicture = true
             self.dismiss(animated: true)
@@ -862,12 +860,103 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
         print("Save successful")
     }
     
-    private func extractFlightTicketData(from recognizedTexts: [String]) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.savedDocumentViewModel.alreadyTakenPicture = true
-            self.dismiss(animated: true)
+    private func extractFlightTicketData(from recognizedTextByPosition: [(text: String, boundingBox: CGRect)]) {
+        print("RUNNING")
+        var flight: String = ""
+        var from: String = ""
+        var to: String = ""
+        var airlines: String = ""
+        var flightDestination: [String] = []
+
+        let regex = try! NSRegularExpression(pattern: "(Jakarta|Tokyo)", options: .caseInsensitive)
+
+        for (text, boundingBox) in recognizedTextByPosition {
+            if text.contains("Departure Flight") {
+                flight = "Departure Flight"
+            } else if text.contains("Return Flight") {
+                flight = "Return Flight"
+            } else if text.contains("All Nippon Airways") {
+                airlines = text
+            }
+            
+            // Match "Jakarta" or "Tokyo" in the text
+            let range = NSRange(location: 0, length: text.utf16.count)
+            if let match = regex.firstMatch(in: text, options: [], range: range) {
+                let city = (text as NSString).substring(with: match.range)
+                flightDestination.append(city)
+                
+                if flight == "Departure Flight" {
+                    if city.contains("Jakarta") {
+                        from = city
+                    } else if city.contains("Tokyo") {
+                        to = city
+                    }
+                } else if flight == "Return Flight" {
+                    if city.contains("Tokyo") {
+                        from = city
+                    } else if city.contains("Jakarta") {
+                        to = city
+                    }
+                }
+            }
         }
-        self.showDocumentSheetBinding.wrappedValue = false
+
+        DispatchQueue.main.async {
+            print("Flight: \(flight)")
+            print("From: \(from)")
+            print("To: \(to)")
+            print("Airlines: \(airlines)")
+        }
+        
+        if (flight == "Departure Flight") {
+            departureFlightRepository?.save(param: DepartureFlightData(id: UUID().uuidString, airlines: airlines, to: to, from: from))
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                        case .finished:
+                            self.showDocumentSheetBinding.wrappedValue = false
+                            print("Save successful")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                self.savedDocumentViewModel.alreadyTakenPicture = true
+                                self.dismiss(animated: true)
+                            }
+                        case .failure(let error):
+                            // Handle the error
+                            DispatchQueue.main.async {
+                                print("Error saving identity card: \(error.localizedDescription)")
+                            }
+                        }
+                    }, receiveValue: { success in
+                        // Handle the success case if needed (though here it is not strictly necessary)
+                    })
+                    .store(in: &cancellables) // Store the cancellable in a Set<AnyCancellable>
+        } else {
+            returnFlightRepository?.save(param: ReturnFlightData(id: UUID().uuidString, airlines: airlines, to: to, from: from))
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        self.showDocumentSheetBinding.wrappedValue = false
+                        print("Save successful")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            self.savedDocumentViewModel.alreadyTakenPicture = true
+                            self.dismiss(animated: true)
+                        }
+                    case .failure(let error):
+                        // Handle the error
+                        DispatchQueue.main.async {
+                            print("Error saving identity card: \(error.localizedDescription)")
+                        }
+                    }
+                }, receiveValue: { success in
+                    // Handle the success case if needed (though here it is not strictly necessary)
+                })
+                .store(in: &cancellables) // Store the cancellable in a Set<AnyCancellable>
+        }
+
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//            self.savedDocumentViewModel.alreadyTakenPicture = true
+//            self.dismiss(animated: true)
+//        }
+//        self.showDocumentSheetBinding.wrappedValue = false
         print("Save successful")
     }
     
@@ -911,9 +1000,6 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                 }
                 
                 self.processCapturedImage(ciImage)
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
                 print("Picture from picker processed.")
             } else {
                 print("Picture from picker couldn't be processed.")

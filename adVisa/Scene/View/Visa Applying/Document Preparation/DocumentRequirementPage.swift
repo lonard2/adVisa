@@ -58,7 +58,7 @@ struct DocumentRequirementPage: View {
                         DocumentRow(document: document)
                             .onTapGesture {
                                 selectedDocument = document
-                                
+                                print(selectedDocument.documentName)
                                 switch(selectedDocument.documentName) {
                                 case "Passport (Bio Page)":
                                     selectedDocumentType = .passport_bio
