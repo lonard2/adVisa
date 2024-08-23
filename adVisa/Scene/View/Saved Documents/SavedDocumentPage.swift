@@ -17,6 +17,7 @@ struct SavedDocumentPage: View {
     @State var showDocumentSheet = false
     
     @State var goConfirmDocument = false
+    @State var captureComplete = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -58,10 +59,12 @@ struct SavedDocumentPage: View {
         .padding(.vertical, 12)
         .navigationTitle("Saved Documents")
         .sheet(isPresented: $showDocumentSheet, content: {
-            UploadDocumentSheet(document: $selectedDocument, selectedDocumentType: $selectedDocumentType, showDocumentSheet: $showDocumentSheet, goConfirmDocument: $goConfirmDocument)
+            UploadDocumentSheet(document: $selectedDocument, selectedDocumentType: $selectedDocumentType, showDocumentSheet: $showDocumentSheet, goConfirmDocument: $goConfirmDocument, captureComplete: $captureComplete)
         })
         .fullScreenCover(isPresented: $goConfirmDocument) {
-            ConfirmUploadDocumentPage()
+            if(captureComplete) {
+                ConfirmUploadDocumentPage()
+            }
         }
         
         Spacer()
