@@ -58,24 +58,14 @@ struct UploadDocumentSheet: View {
                         .ignoresSafeArea()
                 }
                 
-                Button {
-                    
-                } label: {
-                    Text("Select From Photos")
-                        .padding(.vertical, 7)
-                        .frame(maxWidth: .infinity)
-                        .font(.system(size: 15))
-                        .foregroundStyle(Color(.primaryBlue))
-                }
-
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 12)
             
         }
-        .onDisappear {
-            goConfirmDocument = true
-        }
+//        .onDisappear {
+//            goConfirmDocument = true
+//        }
         
         
         

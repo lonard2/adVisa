@@ -61,11 +61,11 @@ struct SavedDocumentPage: View {
         .sheet(isPresented: $showDocumentSheet, content: {
             UploadDocumentSheet(document: $selectedDocument, selectedDocumentType: $selectedDocumentType, showDocumentSheet: $showDocumentSheet, goConfirmDocument: $goConfirmDocument, captureComplete: $captureComplete)
         })
-        .fullScreenCover(isPresented: $goConfirmDocument) {
-            if(captureComplete) {
-                ConfirmUploadDocumentPage(captureComplete: $captureComplete)
-            }
-        }
+//        .fullScreenCover(isPresented: $goConfirmDocument) {
+//            if(captureComplete) {
+//                ConfirmUploadDocumentPage(captureComplete: $captureComplete)
+//            }
+//        }
         
         Spacer()
     }
