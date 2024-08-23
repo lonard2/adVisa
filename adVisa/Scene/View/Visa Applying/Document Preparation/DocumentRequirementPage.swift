@@ -15,6 +15,7 @@ struct DocumentRequirementPage: View {
     @State private var selectedDocument: Document = Document(icon: "", imageName: "", documentName: "", explanation: "")
     
     @State private var selectedDocumentType: DocumentTypeDetailed = .none
+    @State private var goConfirmDocument = false
     
     let documents: [Document] = [
         Document(icon: "airplane.departure", imageName: "flight_booking_guide_1", documentName: "Away Flight Booking", explanation: "Kindly provide your away flight booking confirmation or a screenshot of your flight ticket’s details. You can take a picture of a print-out copy or take a screenshot of any OTA you use and choose it from Photos."),
@@ -68,13 +69,13 @@ struct DocumentRequirementPage: View {
                                 case "Self Portrait":
                                     selectedDocumentType = .self_portrait
                                 case "Bank Statement":
-                                    selectedDocumentType = .generic
+                                    selectedDocumentType = .bank_statement
                                 case "Return Flight Bookings":
-                                    selectedDocumentType = .generic
+                                    selectedDocumentType = .tiket_pesawat
                                 case "Away Flight Booking":
-                                    selectedDocumentType = .generic
+                                    selectedDocumentType = .tiket_pesawat
                                 case "Hotel Bookings":
-                                    selectedDocumentType = .generic
+                                    selectedDocumentType = .hotel
                                 case "none":
                                     selectedDocumentType = .passport_bio
                                 default:
@@ -112,8 +113,11 @@ struct DocumentRequirementPage: View {
             }
         }
         .sheet(isPresented: $showSheet, content: {
-            UploadDocumentSheet(document: $selectedDocument, selectedDocumentType: $selectedDocumentType)
+            UploadDocumentSheet(document: $selectedDocument, selectedDocumentType: $selectedDocumentType, showDocumentSheet: $showSheet, goConfirmDocument: $goConfirmDocument)
         })
+        .fullScreenCover(isPresented: $goConfirmDocument) {
+            ConfirmUploadDocumentPage()
+        }
     }
 }
 

@@ -46,7 +46,7 @@ struct ContentView: View {
                 
                 SavedDocumentPage()
                     .tabItem {
-                        Label("Discover", systemImage: "doc")
+                        Label("Documents", systemImage: "doc")
                     }.tag(3)
             }
         }

@@ -13,13 +13,15 @@ import AVFoundation
 struct CameraLayerView: UIViewControllerRepresentable {
     
     var selectedDocument: DocumentTypeDetailed
+    @Binding var showDocumentSheet: Bool
+    var savedDocumentViewModel = SavedDocumentViewModel()
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: CameraViewController, context: Context) {
 
     }
     
-    func makeUIViewController(context: Context) -> UIViewController {
-        let cameraViewController = CameraViewController()
+    func makeUIViewController(context: Context) -> CameraViewController {
+        let cameraViewController = CameraViewController(showDocumentSheetBinding: $showDocumentSheet)
         cameraViewController.selectedDocument = selectedDocument
         cameraViewController.identityCardRepository = IdentityCardRepository()
         cameraViewController.passportRepository = PassportRepository()

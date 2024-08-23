@@ -28,5 +28,5 @@ enum DocumentType {
 }
 
 enum DocumentTypeDetailed {
-    case ktp, passport_bio, passport_endorsement, self_portrait, generic, none
+    case ktp, passport_bio, passport_endorsement, self_portrait, tiket_pesawat, hotel, bank_statement, family_card, none
 }
