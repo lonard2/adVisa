@@ -154,7 +154,7 @@ class PdfPreviewVisaViewModel: ObservableObject {
     }
     
     func fetchMiscData() {
-        travelRepository.fetchFirst()
+        miscRepository.fetchFirst()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -164,7 +164,7 @@ class PdfPreviewVisaViewModel: ObservableObject {
                     break
                 }
             }, receiveValue: { [weak self] data in
-                self?.travelHistoryData = data
+                self?.miscData = data
             })
             .store(in: &cancellables)
     }
