@@ -716,10 +716,6 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     .sink(receiveCompletion: { completion in
                         switch completion {
                         case .finished:
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                self.savedDocumentViewModel.alreadyTakenPicture = true
-                                self.dismiss(animated: true)
-                            }
                             self.captureCompleteBinding.wrappedValue = true
                             self.showDocumentSheetBinding.wrappedValue = false
                             print("Save successful")
@@ -730,6 +726,8 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                         case .failure(let error):
                             // Handle the error
                             DispatchQueue.main.async {
+                                self.savedDocumentViewModel.alreadyTakenPicture = true
+                                self.dismiss(animated: true)
                                 print("Error saving identity card: \(error.localizedDescription)")
                             }
                         }
@@ -846,6 +844,10 @@ class CameraViewController : UIViewController, AVCaptureVideoDataOutputSampleBuf
                     print("Save successful")
                 case .failure(let error):
                     // Handle the error, for example by logging it
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        self.savedDocumentViewModel.alreadyTakenPicture = true
+                        self.dismiss(animated: true)
+                    }
                     print("Failed to save passport data: \(error.localizedDescription)")
                 }
             }, receiveValue: { success in
