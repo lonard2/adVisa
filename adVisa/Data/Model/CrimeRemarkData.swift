@@ -17,9 +17,9 @@ class CrimeRemarkData {
     var haveDrugOffence: Bool
     var haveIllictOffence: Bool
     var haveTraffickingOffence: Bool
-    var relevantDetails: String
+    var relevantDetails: String?
     
-    init(haveCrimeConvicted: Bool, haveImprisonedOneYear: Bool, haveDeported: Bool, haveDrugOffence: Bool, haveIllictOffence: Bool, haveTraffickingOffence: Bool, relevantDetails: String) {
+    init(haveCrimeConvicted: Bool, haveImprisonedOneYear: Bool, haveDeported: Bool, haveDrugOffence: Bool, haveIllictOffence: Bool, haveTraffickingOffence: Bool, relevantDetails: String? = nil) {
         self.haveCrimeConvicted = haveCrimeConvicted
         self.haveImprisonedOneYear = haveImprisonedOneYear
         self.haveDeported = haveDeported

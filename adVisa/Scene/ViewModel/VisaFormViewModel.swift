@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 class VisaFormViewModel: ObservableObject {
+    private var cancellables: Set<AnyCancellable> = []
+    
     @Published var pageStep = 1
     
     @Published var hasOtherName = false
@@ -64,11 +67,75 @@ class VisaFormViewModel: ObservableObject {
     
     @Published var crimeDetails = ""
     
+    private let domicileRepository: DomicileRepository = DomicileRepository()
+    private let employerRepository: EmployerRepository = EmployerRepository()
+    private let crimeRemarkRepository: CrimeRemarkRepository = CrimeRemarkRepository()
+    
     func nextForm() {
         self.pageStep += 1
     }
     
     func resetFormPage() {
         self.pageStep = 1
+    }
+    
+    func saveDomicileData() {
+        print(mobilePhoneNumber)
+        print(homeTelephoneNumber)
+        print(currentEmail)
+        domicileRepository.save(param: DomicileData(currentPhoneNum: mobilePhoneNumber, currentTelephoneNum: homeTelephoneNumber, currentEmail: currentEmail))
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("Save domicile successful")
+                case .failure(let error):
+                    // Handle the error
+                    DispatchQueue.main.async {
+                        print("Error saving identity card: \(error.localizedDescription)")
+                    }
+                }
+            }, receiveValue: { success in
+                // Handle the success case if needed (though here it is not strictly necessary)
+            })
+            .store(in: &cancellables) // Store the cancellable in a Set<AnyCancellable>
+    }
+    
+    func saveEmployerData() {
+        print(companyName)
+        print(companyAddress)
+        print(companyPhoneNumber)
+        employerRepository.save(param: EmployerData(id: UUID().uuidString, employerName: companyName, employerTelephoneNum: companyPhoneNumber, employerAddress: companyAddress))
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("Save company successful")
+                case .failure(let error):
+                    // Handle the error
+                    DispatchQueue.main.async {
+                        print("Error saving identity card: \(error.localizedDescription)")
+                    }
+                }
+            }, receiveValue: { success in
+                // Handle the success case if needed (though here it is not strictly necessary)
+            })
+            .store(in: &cancellables) // Store the cancellable in a Set<AnyCancellable>
+    }
+    
+    func saveCrimeRemarkData() {
+        crimeRemarkRepository.save(param: CrimeRemarkData(haveCrimeConvicted: convictedCrimeAnyCountry, haveImprisonedOneYear: sentencedOneYearOrMore, haveDeported: deportedFromJapan, haveDrugOffence: drugOffense, haveIllictOffence: engagedInProstitution, haveTraffickingOffence: commitTrafficking, relevantDetails: crimeDetails))
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("Save company successful")
+                case .failure(let error):
+                    // Handle the error
+                    DispatchQueue.main.async {
+                        print("Error saving identity card: \(error.localizedDescription)")
+                    }
+                }
+            }, receiveValue: { success in
+                // Handle the success case if needed (though here it is not strictly necessary)
+            })
+            .store(in: &cancellables) // Store the cancellable in a Set<AnyCancellable>
     }
 }

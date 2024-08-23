@@ -42,7 +42,6 @@ internal class DomicileRepository: DataRepositoryProtocol {
             Task { @MainActor in
                 do {
                     let entity = DomicileData(
-                        currentAddress: param.currentAddress,
                         currentPhoneNum: param.currentPhoneNum,
                         currentTelephoneNum: param.currentTelephoneNum,
                         currentEmail: param.currentEmail
@@ -73,7 +72,6 @@ internal class DomicileRepository: DataRepositoryProtocol {
                 let result = Result {
                     do {
                         if let entity = try self.container?.mainContext.fetch(fetchDescriptor).first {
-                            entity.currentAddress = param.currentAddress
                             entity.currentPhoneNum = param.currentPhoneNum
                             entity.currentTelephoneNum = param.currentTelephoneNum
                             entity.currentEmail = param.currentEmail

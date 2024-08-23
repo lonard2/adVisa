@@ -86,6 +86,9 @@ struct CrimeRecordForm: View {
             NavigationLink {
                 ItineraryDetailsPage()
                     .navigationBarBackButtonHidden(true)
+                    .onAppear {
+                        viewModel.saveCrimeRemarkData()
+                    }
             } label: {
                 Text("Continue")
                     .padding(.vertical, 7)
@@ -96,6 +99,7 @@ struct CrimeRecordForm: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             .onTapGesture {
+                
                 viewModel.resetFormPage()
             }
         }
